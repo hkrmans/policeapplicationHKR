@@ -1,3 +1,4 @@
+// Not fully functioning.
 import java.sql.*;
 
 public class DbConnection {
