@@ -9,4 +9,8 @@ public class DbConnection {
         }
         return null;
     }
+    public void search(Connection connect,String statement) throws SQLException {
+        Statement stmt = connect.createStatement();
+    }
+
 }
