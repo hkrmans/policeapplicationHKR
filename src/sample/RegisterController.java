@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.regex.Pattern;
@@ -15,10 +16,10 @@ import java.util.regex.Pattern;
 public class RegisterController {
 
     @FXML
-    private Button usernameTextfield;
+    private TextField usernameTextfield;
 
     @FXML
-    private Button passwordTextfield;
+    private TextField passwordTextfield;
 
 
 

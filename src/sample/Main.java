@@ -17,12 +17,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Police Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
-        Prisoner person = new Prisoner("Linus","Adolfsson","197807063217",0,null);
-        connect.addPerson(person);
+        //DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
+       // Prisoner person = new Prisoner("Linus","Adolfsson","197807063217",0,null);
+        //connect.addPerson(person);
     }
 
     public static void main(String[] args) {
