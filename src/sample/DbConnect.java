@@ -15,11 +15,11 @@ class DbConnect{
         return connection;
     }
 
-    public ArrayList<Person> searchDb() throws SQLException {
+    public ArrayList<Civilian> getCivilians() throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         ResultSet rs = stmt.executeQuery("select * from person");
-        ArrayList<Person> personList = new ArrayList<>();
+        ArrayList<Civilian> personList = new ArrayList<>();
         while(rs.next()){
             Civilian person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
             personList.add(person);
