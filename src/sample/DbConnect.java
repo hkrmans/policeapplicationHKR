@@ -22,6 +22,7 @@ class DbConnect{
         ArrayList<Person> personList = new ArrayList<>();
         while(rs.next()){
             Civilian person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
+            personList.add(person);
         }
         return personList;
     }
