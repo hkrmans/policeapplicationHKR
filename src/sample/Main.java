@@ -23,6 +23,7 @@ public class Main extends Application {
         //DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
        // Prisoner person = new Prisoner("Linus","Adolfsson","197807063217",0,null);
         //connect.addPerson(person);
+
     }
 
     public static void main(String[] args) {

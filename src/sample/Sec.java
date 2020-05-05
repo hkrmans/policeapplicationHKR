@@ -2,6 +2,8 @@ package sample;
 
 import java.nio.charset.StandardCharsets;
 import java.security.*;
+import java.util.*;
+import java.io.*;
 
 public class Sec{
     private static final SecureRandom rand = new SecureRandom();
@@ -38,5 +40,20 @@ public class Sec{
             hexString.append(hex);
         }
         return hexString;
+    }
+
+    public String decrypter(String password){
+        try{
+            File file = new File("pass.txt");
+            Scanner reader = new Scanner(file);
+            while(reader.hasNextLine()){
+                String decryptedPass = reader.nextLine();
+                return decryptedPass;
+            }
+            reader.close();
+        }catch(FileNotFoundException e){
+            return "error1";
+        }
+        return "error2";
     }
 }
