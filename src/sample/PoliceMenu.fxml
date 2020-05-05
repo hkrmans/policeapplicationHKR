@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PoliceMenuController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="625.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,12 +18,12 @@
          <font>
             <Font size="36.0" />
          </font></Text>
-      <Button layoutX="358.0" layoutY="260.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View convictions" />
-      <Button layoutX="358.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
-      <Button layoutX="97.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="Register crime" />
-      <Button layoutX="358.0" layoutY="130.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
-      <Button layoutX="97.0" layoutY="130.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
-      <Button layoutX="97.0" layoutY="260.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />
-      <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" text="Logout" />
+      <Button layoutX="358.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewConvictionsSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View convictions" />
+      <Button layoutX="358.0" layoutY="200.0" mnemonicParsing="false" onAction="#HandlePrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
+      <Button layoutX="97.0" layoutY="200.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Register crime" />
+      <Button layoutX="358.0" layoutY="130.0" mnemonicParsing="false" onAction="#ViewPrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
+      <Button layoutX="97.0" layoutY="130.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
+      <Button layoutX="97.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewMostWantedSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />
+      <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#LogOutAsPoliceButtonOnAction" text="Logout" />
    </children>
 </AnchorPane>

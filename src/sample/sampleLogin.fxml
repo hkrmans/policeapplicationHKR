@@ -29,7 +29,7 @@
          <font>
             <Font size="26.0" />
          </font></Text>
-      <Button layoutX="534.0" layoutY="187.0" mnemonicParsing="false" text="Login" />
+      <Button layoutX="534.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogInToPoliceMenuButtonOnAction" text="Login" />
       <Button layoutX="539.0" layoutY="342.0" mnemonicParsing="false" text="Exit" />
       <Button layoutX="475.0" layoutY="342.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
    </children>
