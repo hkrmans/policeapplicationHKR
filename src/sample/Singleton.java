@@ -64,8 +64,8 @@ public class Singleton {
         return policeInstance;
     }
 
-    public ArrayList<Police> getPoliceList() {
-        return this.policeList;
+    public ArrayList<Police> getPoliceList() throws SQLException {
+        return dbc.getPolice();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -79,8 +79,8 @@ public class Singleton {
         return prisonerInstance;
     }
 
-    public ArrayList<Prisoner> getPrisonerList() {
-        return this.prisonerList;
+    public ArrayList<Prisoner> getPrisonerList() throws SQLException {
+        return dbc.getPrisoner();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -94,8 +94,8 @@ public class Singleton {
         return wantedCriminalInstance;
     }
 
-    public ArrayList<WantedCriminal> getWantedCriminalList() {
-        return this.wantedCriminalsList;
+    public ArrayList<WantedCriminal> getWantedCriminalList() throws SQLException {
+        return dbc.getWantedCriminals();
     }
 
     //---------------------------------------------------------------------------------------------

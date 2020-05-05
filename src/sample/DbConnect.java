@@ -3,7 +3,7 @@ package sample;
 import java.sql.*;
 import java.util.*;
 
-class DbConnect{
+class DbConnect<T> {
     private static DbConnect single_instance = null;
     private static Connection connection;
 
