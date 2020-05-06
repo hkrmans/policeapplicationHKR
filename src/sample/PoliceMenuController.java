@@ -2,121 +2,47 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.io.IOException;
 
 
 public class PoliceMenuController {
 
     @FXML
-    void LogOutAsPoliceButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    void LogOutAsPoliceButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "sample.fxml");
     }
 
     @FXML
-    void HandlePrisonerSceneButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    void HandlePrisonerSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "");
     }
 
 
     @FXML
-    void RegisterCrimeSceneButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadReports.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    void RegisterCrimeSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "ReadReports.fxml");
     }
 
     @FXML
-    void ViewConvictionsSceneButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    void ViewConvictionsSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "");
     }
 
     @FXML
-    void ViewMostWantedSceneButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("mostWanted.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    void ViewMostWantedSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "MostWanted.fxml");
     }
 
 
     @FXML
-    void ViewPrisonerSceneButtonOnAction(ActionEvent event) {
-
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("viewprisoners.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    void ViewPrisonerSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "ViewPrisoners.fxml");
 
     }
 
     @FXML
     void reportSceneButtonOnAction(ActionEvent event) {
-        
+
 
     }
 

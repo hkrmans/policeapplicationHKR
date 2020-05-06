@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,19 +23,8 @@ public class ViewPrisonersController implements Initializable {
     private TextArea showPrisoner;
 
     @FXML
-    void GoBackViewPrisonersButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PoliceMenu.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    void GoBackViewPrisonersButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "PoliceMenu.fxml");
 
     }
 

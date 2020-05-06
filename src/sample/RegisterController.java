@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import static sample.Singleton.getAccountInstance;
@@ -24,60 +26,65 @@ public class RegisterController {
 
 
     @FXML
-    private TextField emailTextfield,usernameTextfield, CNTextfield;
+    private TextField emailTextfield, usernameTextfield, CNTextfield;
     @FXML
     private Label usernameLabel, emailLabel, civicNumberLabel;
 
     @FXML
-    private void keyReleaseUsername(){
-       if (checkUsername()){
-           usernameLabel.setText("Passed");
-       }else{
-           usernameLabel.setText("Username unavailable");
-       }
+    private void keyReleaseUsername() {
+        if (checkUsername()) {
+            usernameLabel.setText("Passed");
+        } else {
+            usernameLabel.setText("Username unavailable");
+        }
 
     }
-    private boolean checkUsername(){
-        boolean check= true;
+
+    private boolean checkUsername() {
+        boolean check = true;
         ArrayList<Account> accounts = Singleton.getAccountInstance().getAccountList();
-        for (Account a: accounts) {
-            if (a.getUsername().equals(usernameTextfield.getText())){
+        for (Account a : accounts) {
+            if (a.getUsername().equals(usernameTextfield.getText())) {
                 check = false;
             }
         }
         return check;
     }
+
     @FXML
-    private void keyReleaseEmail(){
-        if (checkEmail()){
+    private void keyReleaseEmail() {
+        if (checkEmail()) {
             emailLabel.setText("Passed");
-        }else{
+        } else {
             emailLabel.setText("Email unavailable");
         }
     }
-    private boolean checkEmail(){
-        boolean check= true;
+
+    private boolean checkEmail() {
+        boolean check = true;
         ArrayList<Account> accounts = Singleton.getAccountInstance().getAccountList();
-        for (Account a: accounts) {
-            if (a.getEmail().equals(emailTextfield.getText())){
+        for (Account a : accounts) {
+            if (a.getEmail().equals(emailTextfield.getText())) {
                 check = false;
             }
         }
         return check;
     }
+
     @FXML
     private void keyReleaseCivicNumber() throws SQLException {
-        if (checkCivicNumber()){
+        if (checkCivicNumber()) {
             civicNumberLabel.setText("Passed");
-        }else{
+        } else {
             civicNumberLabel.setText("Invalid civic number");
         }
     }
+
     private boolean checkCivicNumber() throws SQLException {
-        boolean check= false;
+        boolean check = false;
         ArrayList<Civilian> civilians = Singleton.getCivilianInstance().getCivilianList();
-        for (Civilian c: civilians) {
-            if (c.getCivicNumber().equals(CNTextfield.getText())){
+        for (Civilian c : civilians) {
+            if (c.getCivicNumber().equals(CNTextfield.getText())) {
                 civilianToReg = c;
                 check = true;
             }
@@ -88,7 +95,7 @@ public class RegisterController {
     @FXML
     private void registerButtonOnAction(ActionEvent event) {
 
-        Account a = new Account(civilianToReg,usernameTextfield.getText(),"Jb84raA1??10",emailTextfield.getText());
+        Account a = new Account(civilianToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         {
             try {
                 dbc = new DbConnect("policemanagment", "Jb84raA1??10");
@@ -101,7 +108,7 @@ public class RegisterController {
 
 
     @FXML
-    private void backButtonOnAction(ActionEvent event) {
-
+    private void backButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "sample.fxml");
     }
 }
