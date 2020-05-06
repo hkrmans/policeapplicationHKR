@@ -8,24 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ReadReportsController {
 
     @FXML
-    void ReportGoBackButtonOnAction(ActionEvent event) {
-
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PoliceMenu.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    void ReportGoBackButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "PoliceMenu.fxml");
     }
 
 

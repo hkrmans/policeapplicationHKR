@@ -2,45 +2,18 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.io.IOException;
 
 public class LoginController {
 
     @FXML
-    private void backButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private void backButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "sample.fxml");
     }
 
 
     @FXML
-    void LogInToPoliceMenuButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PoliceMenu.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    void LogInToPoliceMenuButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "PoliceMenu.fxml");
     }
 }

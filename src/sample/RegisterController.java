@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class RegisterController {
@@ -60,18 +61,7 @@ public class RegisterController {
 
 
     @FXML
-    private void backButtonOnAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private void backButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "sample.fxml");
     }
 }

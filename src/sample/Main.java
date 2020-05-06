@@ -27,8 +27,8 @@ public class Main extends Application {
         //connect.addPerson(c);
        // Police p = new Police("Manna", "Thompson","199504034432","2516312012");
       //  connect.addPerson(p);
-        WantedCriminal wc = new WantedCriminal("Valter", "Sjo", "200305068799",10,999);
-        connect.addPerson(wc);
+       // WantedCriminal wc = new WantedCriminal("Valter", "Sjo", "200305068799",10,999);
+        //connect.addPerson(wc);
     }
 
     public static void main(String[] args) {

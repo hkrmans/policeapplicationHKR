@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CivilianMenuController">
    <children>
       <ImageView fitHeight="446.0" fitWidth="633.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,10 +18,10 @@
          <font>
             <Font size="34.0" />
          </font></Text>
-      <Button layoutX="88.0" layoutY="127.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Report crime" />
-      <Button layoutX="88.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="View convictions" />
-      <Button layoutX="382.0" layoutY="127.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Book meeting" />
-      <Button layoutX="516.0" layoutY="343.0" mnemonicParsing="false" text="Logout" />
-      <Button layoutX="382.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="View most wanted" />
+      <Button layoutX="88.0" layoutY="127.0" mnemonicParsing="false" onAction="#CivilianReportCrimeButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="Report crime" />
+      <Button layoutX="88.0" layoutY="249.0" mnemonicParsing="false" onAction="#CivilianViewConvictionsButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="View convictions" />
+      <Button layoutX="382.0" layoutY="127.0" mnemonicParsing="false" onAction="#CivilianBookMeetingButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="Book meeting" />
+      <Button layoutX="516.0" layoutY="343.0" mnemonicParsing="false" onAction="#LogOutCivilianButtonOnAction" text="Logout" />
+      <Button layoutX="382.0" layoutY="249.0" mnemonicParsing="false" onAction="#CivilianMostWantedButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="View most wanted" />
    </children>
 </AnchorPane>
