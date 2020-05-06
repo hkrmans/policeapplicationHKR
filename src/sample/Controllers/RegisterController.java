@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import sample.*;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -91,7 +92,7 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void registerButtonOnAction(ActionEvent event) throws SQLException {
+    private void registerButtonOnAction() throws SQLException {
 
         Account a = new Account(civilianToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         {

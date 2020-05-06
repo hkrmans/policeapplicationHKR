@@ -1,7 +1,8 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import sample.SceneChanger;
 
 import java.io.IOException;
 
