@@ -20,7 +20,7 @@
          </font></Text>
       <Button layoutX="358.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewConvictionsSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View convictions" />
       <Button layoutX="358.0" layoutY="200.0" mnemonicParsing="false" onAction="#HandlePrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
-      <Button layoutX="97.0" layoutY="200.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Register crime" />
+      <Button layoutX="97.0" layoutY="200.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read and register reports" />
       <Button layoutX="358.0" layoutY="130.0" mnemonicParsing="false" onAction="#ViewPrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
       <Button layoutX="97.0" layoutY="130.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
       <Button layoutX="97.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewMostWantedSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />

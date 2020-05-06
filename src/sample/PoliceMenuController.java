@@ -51,7 +51,7 @@ public class PoliceMenuController {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadReports.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -116,6 +116,7 @@ public class PoliceMenuController {
 
     @FXML
     void reportSceneButtonOnAction(ActionEvent event) {
+        
 
     }
 
