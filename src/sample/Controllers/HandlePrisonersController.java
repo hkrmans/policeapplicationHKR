@@ -9,7 +9,7 @@ import java.io.IOException;
 public class HandlePrisonersController {
     @FXML
     void GoBackHandlePrisonerButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "PoliceMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
 
     }
 }

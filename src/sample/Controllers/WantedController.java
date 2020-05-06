@@ -26,7 +26,7 @@ public class WantedController implements Initializable {
     
     @FXML
     void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "PoliceMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
 
     }
 

@@ -25,6 +25,6 @@ public class BookMeetingController {
 
     @FXML
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "StandardMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
     }
 }

@@ -108,7 +108,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void backButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ViewPrisonersController implements Initializable {
 
     @FXML
     void GoBackViewPrisonersButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "PoliceMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
 
     }
 

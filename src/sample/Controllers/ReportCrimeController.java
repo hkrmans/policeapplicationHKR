@@ -10,7 +10,7 @@ public class ReportCrimeController {
 
     @FXML
     void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
 
     }
 

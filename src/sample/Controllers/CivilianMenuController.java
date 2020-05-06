@@ -10,29 +10,30 @@ public class CivilianMenuController {
 
     @FXML
     void CivilianBookMeetingButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "BookMeeting.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/BookMeeting.fxml");
     }
 
 
     @FXML
     void CivilianMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "MostWanted.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/MostWanted.fxml");
     }
 
 
     @FXML
     void CivilianReportCrimeButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "ReportCrime.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/ReportCrime.fxml");
 
     }
 
     @FXML
-    void CivilianViewConvictionsButtonOnAction(ActionEvent event) {
+    void CivilianViewConvictionsButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "fxmlFiles/ViewConviction.fxml");
 
     }
 
     @FXML
     void LogOutCivilianButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
     }
 }

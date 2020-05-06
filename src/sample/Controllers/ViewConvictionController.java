@@ -22,7 +22,7 @@ public class ViewConvictionController implements Initializable {
 
     @FXML
     void LogOutViewConvictionButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
 
     }
 

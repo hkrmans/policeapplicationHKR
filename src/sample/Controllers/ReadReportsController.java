@@ -30,7 +30,7 @@ public class ReadReportsController implements Initializable {
 
     @FXML
     void ReportGoBackButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "PoliceMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
 
