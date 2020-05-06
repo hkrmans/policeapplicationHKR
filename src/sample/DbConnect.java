@@ -76,10 +76,11 @@ class DbConnect<T> {
         }
     }
 
-    public void addAccoount(Account account) throws SQLException {
+    public void addAccount(Account account) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"account.getEmail()+"')");
+        stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()
+                +"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
 
     }
 }
