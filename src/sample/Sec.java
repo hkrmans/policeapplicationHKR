@@ -1,5 +1,8 @@
 package sample;
 
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.*;
@@ -36,24 +39,11 @@ public class Sec{
         byte[] encodedhash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
         StringBuffer hexString = new StringBuffer();
         for(Byte e: encodedhash){
-            String hex = Integer.toHexString(0xff& e);
+            String hex = Integer.toHexString(0xff & e);
             hexString.append(hex);
         }
         return hexString;
     }
 
-    public String decrypter(String password){
-        try{
-            File file = new File("pass.txt");
-            Scanner reader = new Scanner(file);
-            while(reader.hasNextLine()){
-                String decryptedPass = reader.nextLine();
-                return decryptedPass;
-            }
-            reader.close();
-        }catch(FileNotFoundException e){
-            return "error1";
-        }
-        return "error2";
-    }
+
 }
