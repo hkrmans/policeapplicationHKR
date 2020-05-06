@@ -14,7 +14,7 @@ public class PoliceMenuController {
 
     @FXML
     void HandlePrisonerSceneButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "");
+        SceneChanger.changeScene(event, "HandlePrisoners.fxml");
     }
 
 
@@ -25,7 +25,7 @@ public class PoliceMenuController {
 
     @FXML
     void ViewConvictionsSceneButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "");
+        SceneChanger.changeScene(event, "ViewConviction.fxml");
     }
 
     @FXML
@@ -41,7 +41,8 @@ public class PoliceMenuController {
     }
 
     @FXML
-    void reportSceneButtonOnAction(ActionEvent event) {
+    void reportSceneButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "ReportCrime.fxml");
 
 
     }
