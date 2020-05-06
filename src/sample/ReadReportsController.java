@@ -19,9 +19,6 @@ import java.util.ResourceBundle;
 public class ReadReportsController implements Initializable {
     private ArrayList<CrimeRapport> rapports;
     private int index = 0;
-    private Civilian b = new Civilian("a", "b", "12121");
-    private CrimeRapport a = new CrimeRapport("Hej", b);
-    private CrimeRapport c = new CrimeRapport("jeh", b);
 
 
     @FXML
