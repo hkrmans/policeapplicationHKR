@@ -37,6 +37,8 @@ public class Singleton {
             case 7:
                 meetingList = new ArrayList<>();
                 break;
+            case 8:
+                accountList = new ArrayList<>();
         }
     }
 
@@ -141,6 +143,21 @@ public class Singleton {
 
     public ArrayList<Meeting> getMeetingList() {
         return this.meetingList;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private static Singleton accountInstance;
+    private ArrayList<Account> accountList = null;
+
+    public static Singleton getAccountInstance() {
+        if (accountInstance == null) {
+            accountInstance = new Singleton(8);
+        }
+        return accountInstance;
+    }
+
+    public ArrayList<Account> getAccountList() {
+        return this.accountList;
     }
 
     //---------------------------------------------------------------------------------------------
