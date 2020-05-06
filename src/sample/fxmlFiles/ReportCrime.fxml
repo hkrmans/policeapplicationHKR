@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReportCrimeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ReportCrimeController">
    <children>
       <ImageView fitHeight="440.0" fitWidth="665.0" layoutX="-5.0" layoutY="-40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/shutterstock_burglary1.jpg" />
+            <Image url="@../../images/shutterstock_burglary1.jpg" />
          </image></ImageView>
       <Text fill="WHITE" layoutX="25.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT CRIME">
          <font>

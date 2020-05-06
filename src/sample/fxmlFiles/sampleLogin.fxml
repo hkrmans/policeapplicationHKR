@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.LoginController">
    <children>
       <ImageView fitHeight="582.0" fitWidth="717.0" layoutX="-69.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/068j0K6mwNVgOrQk9BnrQMh-6.fit_scale.size_2698x1517.v1569486946.jpg" />
+            <Image url="@../../images/068j0K6mwNVgOrQk9BnrQMh-6.fit_scale.size_2698x1517.v1569486946.jpg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="88.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">

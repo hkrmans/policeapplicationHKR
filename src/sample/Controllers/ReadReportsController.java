@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import sample.Civilian;
+import sample.CrimeRapport;
+import sample.SceneChanger;
+import sample.Singleton;
 
 import java.io.IOException;
 import java.net.URL;

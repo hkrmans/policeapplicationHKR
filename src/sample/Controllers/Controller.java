@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ public class Controller {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sampleLogin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxmlFiles/sampleLogin.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -32,7 +32,7 @@ public class Controller {
            Node node = (Node) event.getSource();
            Stage stage = (Stage) node.getScene().getWindow();
 
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("fxmlFiles/Register.fxml"));
            Parent root = loader.load();
 
            Scene scene = new Scene(root);
