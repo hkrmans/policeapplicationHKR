@@ -36,15 +36,16 @@ public class ReadReportsController implements Initializable {
     @FXML
     void ReportBackButtonOnAction(ActionEvent event) {
         try {
-            if (index <= rapports.size()){
-                index--;
-                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
-            }else if (index < 0){
-                index = 0;
+            index--;
+            if (index < 0){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("This is the first rapport");
                 alert.setContentText("This is the first rapport in the system");
+                alert.showAndWait();
+                index = 0;
+            }else if (index <= rapports.size()){
+                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -56,14 +57,16 @@ public class ReadReportsController implements Initializable {
     @FXML
     void ReportNextButtonOnAction(ActionEvent event) {
         try {
-            if (index < rapports.size()){
-                index++;
-                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
-            }else if (index > rapports.size()){
+            index++;
+            if (index > rapports.size()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("No rapports left");
                 alert.setContentText("There aren't any rapports left");
+                alert.showAndWait();
+                index = rapports.size()-1;
+            }else if (index < rapports.size()){
+                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -82,10 +85,7 @@ public class ReadReportsController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-            rapports.add(a);
-            rapports.add(c);
             crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
-
     }
 }
 
