@@ -39,6 +39,10 @@ public class Singleton {
                 break;
             case 8:
                 accountList = new ArrayList<>();
+                break;
+            case 9:
+                convictionList = new ArrayList<>();
+                break;
         }
     }
 
@@ -158,6 +162,21 @@ public class Singleton {
 
     public ArrayList<Account> getAccountList() {
         return this.accountList;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private static Singleton convictionInstance;
+    private ArrayList<Conviction> convictionList = null;
+
+    public static Singleton getConvictionInstance(){
+        if (convictionInstance == null){
+            convictionInstance = new Singleton(9);
+        }
+        return convictionInstance;
+    }
+
+    public ArrayList<Conviction> getConvictionList(){
+        return this.convictionList;
     }
 
     //---------------------------------------------------------------------------------------------
