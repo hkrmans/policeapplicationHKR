@@ -19,7 +19,8 @@ public class CivilianMenuController {
 
 
     @FXML
-    void CivilianReportCrimeButtonOnAction(ActionEvent event) {
+    void CivilianReportCrimeButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "ReportCrime.fxml");
 
     }
 
