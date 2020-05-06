@@ -20,7 +20,7 @@
             <Font name="Candara Bold Italic" size="50.0" />
          </font>
       </Text>
-      <TextArea layoutX="312.0" layoutY="111.0" opacity="0.91" prefHeight="259.0" prefWidth="258.0" />
-      <Button layoutX="85.0" layoutY="331.0" mnemonicParsing="false" onAction="#GoBackMostWantedButtonOnAction" prefHeight="38.0" prefWidth="136.0" text="Go back" />
+      <TextArea fx:id="showWanteds" layoutX="22.0" layoutY="105.0" opacity="0.91" prefHeight="238.0" prefWidth="556.0" />
+      <Button layoutX="23.0" layoutY="360.0" mnemonicParsing="false" onAction="#GoBackMostWantedButtonOnAction" prefHeight="18.0" prefWidth="174.0" text="Go back" />
    </children>
 </AnchorPane>

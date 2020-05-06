@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Singleton {
-    DbConnect dbc;
+    private DbConnect dbc;
 
     {
         try {

@@ -2,9 +2,9 @@ package sample;
 
 public class WantedCriminal extends Person {
     private int ranking;
-    private double bounty;
+    private int bounty;
 
-    public WantedCriminal(String firstName, String lastName, String civicNumber, int ranking, double bounty) {
+    public WantedCriminal(String firstName, String lastName, String civicNumber, int ranking, int bounty) {
         super(firstName, lastName, civicNumber);
         this.bounty = bounty;
         this.ranking = ranking;
@@ -18,11 +18,11 @@ public class WantedCriminal extends Person {
         this.ranking = ranking;
     }
 
-    public double getBounty() {
+    public int getBounty() {
         return bounty;
     }
 
-    public void setBounty(double bounty) {
+    public void setBounty(int bounty) {
         this.bounty = bounty;
     }
 }

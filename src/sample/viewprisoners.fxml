@@ -21,6 +21,6 @@
             <Font name="Arial Black" size="28.0" />
          </font>
       </Text>
-      <TextArea layoutX="43.0" layoutY="118.0" opacity="0.9" prefHeight="198.0" prefWidth="531.0" />
+      <TextArea fx:id="showPrisoner" layoutX="43.0" layoutY="118.0" opacity="0.9" prefHeight="198.0" prefWidth="531.0" />
    </children>
 </AnchorPane>
