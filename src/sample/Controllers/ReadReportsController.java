@@ -86,7 +86,10 @@ public class ReadReportsController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-            crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
+        for (CrimeRapport e : rapports) {
+            crimeRapportArea.setText(e.getRapport() + " | " + e.getWriter());
+        }
+
     }
 }
 
