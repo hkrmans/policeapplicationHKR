@@ -75,7 +75,7 @@ public class ReadReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            rapports = DbConnect.getInstance().getCrimeRapports();
+           // rapports = DbConnect.getInstance().getCrimeRapport();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -37,7 +37,12 @@ public class RegisterController implements Initializable {
 
     private boolean checkUsername() {
         boolean check = true;
-        ArrayList<Account> accounts = DbConnect.getInstance().getAccounts();
+        ArrayList<Account> accounts = null;
+        try {
+            accounts = DbConnect.getInstance().getAccount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         for (Account a : accounts) {
             if (a.getUsername().equals(usernameTextfield.getText())) {
                 check = false;
@@ -58,7 +63,12 @@ public class RegisterController implements Initializable {
 
     private boolean checkEmail() {
         boolean check = true;
-        ArrayList<Account> accounts = DbConnect.getInstance().getAccounts();
+        ArrayList<Account> accounts = null;
+        try {
+            accounts = DbConnect.getInstance().getAccount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         for (Account a : accounts) {
             if (a.getEmail().equals(emailTextfield.getText())) {
                 check = false;

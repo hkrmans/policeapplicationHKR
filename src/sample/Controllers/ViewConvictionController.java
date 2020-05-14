@@ -90,9 +90,8 @@ public class ViewConvictionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            convictions = Singleton.getConvictionInstance().getConvictionList();
-            prisoners = Singleton.getPrisonerInstance().getPrisonerList();
-
+            convictions =  DbConnect.getInstance().getConviction();
+            prisoners = DbConnect.getInstance().getPrisoner();
         }catch (Exception ex){
             ex.printStackTrace();
         }
