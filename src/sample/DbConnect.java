@@ -95,7 +95,9 @@ public class DbConnect<T>{
         ResultSet rs = stmt.executeQuery("select * from account");
         ArrayList<Account> accountList = new ArrayList<>();
         while(rs.next()){
-            Account account = new Account(null,rs.getString(1),rs.getString(3),rs.getString(4));
+            ResultSet rs2 = stmt.executeQuery("Select * from person where person.civicnumber = " + rs.getString(2));
+            Civilian civilian = new Civilian(rs2.getString(1),rs2.getString(2),rs2.getString(3));
+            Account account = new Account(civilian,rs.getString(1),rs.getString(3),rs.getString(4));
             accountList.add(account);
         }
         return accountList;
