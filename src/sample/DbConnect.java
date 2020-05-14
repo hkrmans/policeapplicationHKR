@@ -31,7 +31,6 @@ public class DbConnect<T>{
             Civilian person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
             personList.add(person);
         }
-        connection.close();
         return personList;
     }
 
@@ -44,7 +43,6 @@ public class DbConnect<T>{
             WantedCriminal criminal = new WantedCriminal(rs.getString(1), rs.getString(2),rs.getString(3),rs.getInt(5),rs.getInt(6));
             personList.add(criminal);
         }
-        connection.close();
         return personList;
     }
 
@@ -57,7 +55,6 @@ public class DbConnect<T>{
             Police police = new Police(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
             personList.add(police);
         }
-        connection.close();
         return personList;
     }
 
@@ -70,7 +67,6 @@ public class DbConnect<T>{
             Prisoner prisoner = new Prisoner(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),null);
             personList.add(prisoner);
         }
-        connection.close();
         return personList;
     }
 
@@ -85,15 +81,12 @@ public class DbConnect<T>{
         }else if(person instanceof Prisoner){
             stmt.executeUpdate("INSERT INTO prisoners(CivicNumber) values('"+((Prisoner)person).getCivicNumber()+"')");
         }
-        connection.close();
     }
 
     public static void addAccount(Account account) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
-        connection.close();
-
     }
 
     public ArrayList<Account> getAccount() throws SQLException{
@@ -105,7 +98,6 @@ public class DbConnect<T>{
             Account account = new Account(null,rs.getString(1),rs.getString(3),rs.getString(4));
             accountList.add(account);
         }
-        connection.close();
         return accountList;
 
     }
@@ -114,7 +106,6 @@ public class DbConnect<T>{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO convictions(sentence,convictionDate,realeseDate,PrisonerID) values('"+conviction.getSentence()+"','"+conviction.getConviction()+"','"+conviction.getRelease()+"','"+((Prisoner)conviction.getPrisoner()).getPrisonerId()+"')");
-        connection.close();
     }
 
     public ArrayList<Conviction> getConviction() throws SQLException{
@@ -127,7 +118,6 @@ public class DbConnect<T>{
             ResultSet rs2 = stmt.executeQuery("select * from person where person.civi" + rs.getString(5));
             convictionList.add(conviction);
         }
-        connection.close();
         return convictionList;
     }
 
@@ -135,8 +125,6 @@ public class DbConnect<T>{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduleDate) values('"+((Prisoner)meeting.getPrisoner()).getPrisonerId()+"','"+((Person)meeting.getVisitor()).getCivicNumber()+"','"+meeting.getDate()+"')");
-        connection.close();
-
     }
 
     public ArrayList<Meeting> getMeetings() throws SQLException{
@@ -149,7 +137,6 @@ public class DbConnect<T>{
             Civilian person = new Civilian(rs2.getString(1),rs2.getString(2),rs2.getString(3));
             Meeting meeting = new Meeting(null,person,rs.getDate(3));
         }
-        connection.close();
         return meetingList;
     }
 
@@ -157,7 +144,6 @@ public class DbConnect<T>{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO crime(TypeofCrime,dateofCrime,suspect,RaportId) values('"+crime.getTypeOfCrime()+"','"+crime.getDateOfCrime()+"','"+((Person)crime.getSuspect()).getCivicNumber()+"','"+((CrimeRapport)crime.getRapport()).getRapportID()+"')");
-        connection.close();
     }
 
     public ArrayList<Crime> getCrime() throws SQLException{
@@ -175,13 +161,11 @@ public class DbConnect<T>{
             Crime crime = new Crime(rs.getDate(2),rs.getString(1),person,raport);
             crimesList.add(crime);
         }
-        connection.close();
         return crimesList;
     }
     public void addCrimeRapport(CrimeRapport rapport) throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO crimeraport(Writter,Text) values('"+((Person)rapport.getWriter()).getCivicNumber()+"','"+rapport.getRapport()+"')");
-        connection.close();
     }
 }
