@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,6 +23,14 @@ public class Main extends Application {
         primaryStage.show();
         DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
+        /*
+        Date date =Date.valueOf("2020-05-05");//converting string into sql date
+        Person p = new Civilian("bogge","kung","200010109999");
+        Crime c = new Crime(date,"hejsan",p,
+                new CrimeRapport("hejsan",p,10));
+        connect.addCrime(c);
+        
+         */
 
     }
 
