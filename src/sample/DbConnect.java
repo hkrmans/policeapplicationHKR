@@ -3,11 +3,11 @@ package sample;
 import java.sql.*;
 import java.util.*;
 
-class DbConnect<T> {
+public class DbConnect<T> {
     private static DbConnect single_instance = null;
     private static Connection connection;
 
-    DbConnect(String username, String password) throws SQLException {
+    public DbConnect(String username, String password) throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host",username,password);
     }
 
@@ -81,10 +81,11 @@ class DbConnect<T> {
         connection.close();
     }
 
-    public void addAccoount(Account account) throws SQLException {
+    public void addAccount(Account account) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-       // stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
+        stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
+
 
     }
 }

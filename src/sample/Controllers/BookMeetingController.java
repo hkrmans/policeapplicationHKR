@@ -1,7 +1,9 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import sample.SceneChanger;
+
 import java.io.IOException;
 
 public class BookMeetingController {
@@ -23,6 +25,6 @@ public class BookMeetingController {
 
     @FXML
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "StandardMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
     }
 }

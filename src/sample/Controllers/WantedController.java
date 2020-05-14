@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import sample.SceneChanger;
+import sample.Singleton;
+import sample.WantedCriminal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +26,7 @@ public class WantedController implements Initializable {
     
     @FXML
     void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "PoliceMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
 
     }
 

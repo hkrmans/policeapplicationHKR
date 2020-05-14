@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Singleton {
-    private DbConnect dbc;
+    DbConnect dbc;
 
     {
         try {
@@ -36,6 +36,12 @@ public class Singleton {
                 break;
             case 7:
                 meetingList = new ArrayList<>();
+                break;
+            case 8:
+                accountList = new ArrayList<>();
+                break;
+            case 9:
+                convictionList = new ArrayList<>();
                 break;
         }
     }
@@ -141,6 +147,36 @@ public class Singleton {
 
     public ArrayList<Meeting> getMeetingList() {
         return this.meetingList;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private static Singleton accountInstance;
+    private ArrayList<Account> accountList = null;
+
+    public static Singleton getAccountInstance() {
+        if (accountInstance == null) {
+            accountInstance = new Singleton(8);
+        }
+        return accountInstance;
+    }
+
+    public ArrayList<Account> getAccountList() {
+        return this.accountList;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private static Singleton convictionInstance;
+    private ArrayList<Conviction> convictionList = null;
+
+    public static Singleton getConvictionInstance(){
+        if (convictionInstance == null){
+            convictionInstance = new Singleton(9);
+        }
+        return convictionInstance;
+    }
+
+    public ArrayList<Conviction> getConvictionList(){
+        return this.convictionList;
     }
 
     //---------------------------------------------------------------------------------------------

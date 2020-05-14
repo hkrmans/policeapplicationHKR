@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -16,13 +15,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxmlFiles/sample.fxml"));
         primaryStage.setTitle("Police Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
         Sec sec = new Sec();
-        System.out.println(sec.decrypter("k!!AY!U!!Q!@b!R!`!!`R!!Q"));
 
     }
 
