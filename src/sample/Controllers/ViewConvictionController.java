@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.Conviction;
+import sample.DbConnect;
 import sample.SceneChanger;
-import sample.Singleton;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class ViewConvictionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            convictions = Singleton.getConvictionInstance().getConvictionList();
+            convictions = DbConnect.getInstance().getConviction();
         }catch (Exception ex){
             ex.printStackTrace();
         }

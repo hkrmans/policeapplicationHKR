@@ -19,7 +19,7 @@ public class Main extends Application {
         primaryStage.setTitle("Police Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
+        DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
 
     }
