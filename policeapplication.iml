@@ -19,12 +19,21 @@
     <orderEntry type="library" name="openjfx-11.0.2_windows-x64_bin-sdk" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="lib1" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.16" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.16" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.16" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.16_-_kopia.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.20.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Crime {
     private Date dateOfCrime;
-    private Enum typeOfCrime;
+    private String typeOfCrime;
     private Person suspect;
     private CrimeRapport rapport;
 
-    public Crime(Date dateOfCrime, Enum typeOfCrime, Person suspect, CrimeRapport rapport) {
+    public Crime(Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport) {
         this.dateOfCrime = dateOfCrime;
         this.typeOfCrime = typeOfCrime;
         this.suspect = suspect;
@@ -19,7 +19,7 @@ public class Crime {
         return dateOfCrime;
     }
 
-    public Enum getTypeOfCrime() {
+    public String getTypeOfCrime() {
         return typeOfCrime;
     }
 
