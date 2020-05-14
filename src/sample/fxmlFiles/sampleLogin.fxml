@@ -23,8 +23,8 @@
          <font>
             <Font size="55.0" />
          </font></Text>
-      <TextField layoutX="88.0" layoutY="187.0" />
-      <TextField layoutX="352.0" layoutY="187.0" />
+      <TextField fx:id="username" layoutX="88.0" layoutY="187.0" />
+      <TextField fx:id="password" layoutX="352.0" layoutY="187.0" />
       <Text fill="#f8f6f6" layoutX="355.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="142.6275634765625">
          <font>
             <Font size="26.0" />

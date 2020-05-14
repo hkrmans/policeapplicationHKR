@@ -17,6 +17,22 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
     private Civilian civilianToReg;
+    private DbConnect dbc = DbConnect.getInstance();
+    ArrayList<Account> accounts;
+    ArrayList<Civilian> civilians;
+
+    {
+        try {
+            civilians = dbc.getCivilians();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            accounts = dbc.getAccount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private TextField emailTextfield, usernameTextfield, CNTextfield;
@@ -24,12 +40,16 @@ public class RegisterController implements Initializable {
     private Label usernameLabel, emailLabel, civicNumberLabel;
     @FXML
     private Button registerButton;
-
+    private void setButton(){
+        if (checkCivicNumber() && checkUsername() && checkEmail()){
+            registerButton.setDisable(false);
+        }
+    }
     @FXML
     private void keyReleaseUsername() {
         if (checkUsername()) {
             usernameLabel.setText("Passed");
-            registerButton.setDisable(false);
+            setButton();
         } else {
             usernameLabel.setText("Username unavailable");
         }
@@ -37,12 +57,6 @@ public class RegisterController implements Initializable {
 
     private boolean checkUsername() {
         boolean check = true;
-        ArrayList<Account> accounts = null;
-        try {
-            accounts = DbConnect.getInstance().getAccount();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         for (Account a : accounts) {
             if (a.getUsername().equals(usernameTextfield.getText())) {
                 check = false;
@@ -55,7 +69,7 @@ public class RegisterController implements Initializable {
     private void keyReleaseEmail() {
         if (checkEmail()) {
             emailLabel.setText("Passed");
-            registerButton.setDisable(false);
+            setButton();
         } else {
             emailLabel.setText("Email unavailable");
         }
@@ -63,12 +77,6 @@ public class RegisterController implements Initializable {
 
     private boolean checkEmail() {
         boolean check = true;
-        ArrayList<Account> accounts = null;
-        try {
-            accounts = DbConnect.getInstance().getAccount();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         for (Account a : accounts) {
             if (a.getEmail().equals(emailTextfield.getText())) {
                 check = false;
@@ -78,18 +86,17 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void keyReleaseCivicNumber() throws SQLException {
+    private void keyReleaseCivicNumber() {
         if (checkCivicNumber()) {
             civicNumberLabel.setText("Passed");
-            registerButton.setDisable(false);
+            setButton();
         } else {
             civicNumberLabel.setText("Invalid civic number");
         }
     }
 
-    private boolean checkCivicNumber() throws SQLException {
+    private boolean checkCivicNumber() {
         boolean check = false;
-        ArrayList<Civilian> civilians = DbConnect.getInstance().getCivilians();
         for (Civilian c : civilians) {
             if (c.getCivicNumber().equals(CNTextfield.getText())) {
                 civilianToReg = c;
@@ -100,10 +107,13 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void registerButtonOnAction() throws SQLException {
-
+    private void registerButtonOnAction() {
         Account a = new Account(civilianToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
-        DbConnect.addAccount(a);
+        try {
+            dbc.addAccount(a);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
