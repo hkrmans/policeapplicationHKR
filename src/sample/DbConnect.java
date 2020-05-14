@@ -24,6 +24,7 @@ class DbConnect<T> {
             Civilian person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
             personList.add(person);
         }
+        connection.close();
         return personList;
     }
 
@@ -36,6 +37,7 @@ class DbConnect<T> {
             WantedCriminal criminal = new WantedCriminal(rs.getString(1), rs.getString(2),rs.getString(3),rs.getInt(5),rs.getInt(6));
             personList.add(criminal);
         }
+        connection.close();
         return personList;
     }
 
@@ -48,6 +50,7 @@ class DbConnect<T> {
             Police police = new Police(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
             personList.add(police);
         }
+        connection.close();
         return personList;
     }
 
@@ -60,6 +63,7 @@ class DbConnect<T> {
             Prisoner prisoner = new Prisoner(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),null);
             personList.add(prisoner);
         }
+        connection.close();
         return personList;
     }
 
@@ -74,12 +78,13 @@ class DbConnect<T> {
         }else if(person instanceof Prisoner){
             stmt.executeUpdate("INSERT INTO prisoners(CivicNumber) values('"+((Prisoner)person).getCivicNumber()+"')");
         }
+        connection.close();
     }
 
     public void addAccoount(Account account) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"account.getEmail()+"')");
+       // stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
 
     }
 }

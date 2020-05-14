@@ -22,6 +22,7 @@ public class Main extends Application {
         primaryStage.show();
         DbConnect connect = new DbConnect("policemanagment","Jb84raA1??10");
         Sec sec = new Sec();
+        System.out.println(sec.decrypter("k!!AY!U!!Q!@b!R!`!!`R!!Q"));
 
     }
 
