@@ -16,9 +16,7 @@ import java.util.ResourceBundle;
 
 
 public class RegisterController implements Initializable {
-    Civilian civilianToReg;
-    DbConnect dbc;
-
+    private Civilian civilianToReg;
 
     @FXML
     private TextField emailTextfield, usernameTextfield, CNTextfield;
@@ -39,7 +37,12 @@ public class RegisterController implements Initializable {
 
     private boolean checkUsername() {
         boolean check = true;
-        ArrayList<Account> accounts = Singleton.getAccountInstance().getAccountList();
+        ArrayList<Account> accounts = null;
+        try {
+            accounts = DbConnect.getInstance().getAccount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         for (Account a : accounts) {
             if (a.getUsername().equals(usernameTextfield.getText())) {
                 check = false;
@@ -60,7 +63,12 @@ public class RegisterController implements Initializable {
 
     private boolean checkEmail() {
         boolean check = true;
-        ArrayList<Account> accounts = Singleton.getAccountInstance().getAccountList();
+        ArrayList<Account> accounts = null;
+        try {
+            accounts = DbConnect.getInstance().getAccount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         for (Account a : accounts) {
             if (a.getEmail().equals(emailTextfield.getText())) {
                 check = false;
@@ -81,7 +89,7 @@ public class RegisterController implements Initializable {
 
     private boolean checkCivicNumber() throws SQLException {
         boolean check = false;
-        ArrayList<Civilian> civilians = Singleton.getCivilianInstance().getCivilianList();
+        ArrayList<Civilian> civilians = DbConnect.getInstance().getCivilians();
         for (Civilian c : civilians) {
             if (c.getCivicNumber().equals(CNTextfield.getText())) {
                 civilianToReg = c;
@@ -95,14 +103,7 @@ public class RegisterController implements Initializable {
     private void registerButtonOnAction() throws SQLException {
 
         Account a = new Account(civilianToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
-        {
-            try {
-                dbc = new DbConnect("policemanagment", "Jb84raA1??10");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        dbc.addAccount(a);
+        DbConnect.addAccount(a);
     }
 
 

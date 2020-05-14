@@ -7,8 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
-
-
+import sample.Conviction;
+import sample.SceneChanger;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -90,8 +90,8 @@ public class ViewConvictionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            convictions = Singleton.getConvictionInstance().getConvictionList();
-            prisoners = Singleton.getPrisonerInstance().getPrisonerList();
+            convictions =  DbConnect.getInstance().getConviction();
+            prisoners = DbConnect.getInstance().getPrisoner();
         }catch (Exception ex){
             ex.printStackTrace();
         }

@@ -7,12 +7,19 @@ public class DbConnect<T>{
     private static DbConnect single_instance = null;
     private static Connection connection;
 
-    public DbConnect(String username, String password) throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host",username,password);
+    public static DbConnect getInstance(){
+        if (single_instance == null){
+            try {
+                single_instance = new DbConnect("Jb84raA1??10");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return single_instance;
     }
 
-    public static Connection getInstance(){
-        return connection;
+    private DbConnect(String password) throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host","policemanagment" ,password);
     }
 
     public ArrayList<Civilian> getCivilians() throws SQLException {
@@ -76,7 +83,7 @@ public class DbConnect<T>{
         }
     }
 
-    public void addAccount(Account account) throws SQLException {
+    public static void addAccount(Account account) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+account.getUsername()+"','"+((Person)account.getOwner()).getCivicNumber()+"','"+account.getPassword()+"','"+account.getEmail()+"')");
