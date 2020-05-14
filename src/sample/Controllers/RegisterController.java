@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,12 +17,18 @@ import java.util.ResourceBundle;
 
 
 public class RegisterController implements Initializable {
-    private Civilian civilianToReg;
+    private Person personToReg;
     private DbConnect dbc = DbConnect.getInstance();
     ArrayList<Account> accounts;
     ArrayList<Civilian> civilians;
+    ArrayList<Police> polices;
 
     {
+        try {
+            polices = dbc.getPolice();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             civilians = dbc.getCivilians();
         } catch (SQLException e) {
@@ -40,19 +47,22 @@ public class RegisterController implements Initializable {
     private Label usernameLabel, emailLabel, civicNumberLabel;
     @FXML
     private Button registerButton;
+    
     private void setButton(){
         if (checkCivicNumber() && checkUsername() && checkEmail()){
             registerButton.setDisable(false);
+        }else{
+            registerButton.setDisable(true);
         }
     }
     @FXML
     private void keyReleaseUsername() {
         if (checkUsername()) {
             usernameLabel.setText("Passed");
-            setButton();
         } else {
             usernameLabel.setText("Username unavailable");
         }
+        setButton();
     }
 
     private boolean checkUsername() {
@@ -69,10 +79,10 @@ public class RegisterController implements Initializable {
     private void keyReleaseEmail() {
         if (checkEmail()) {
             emailLabel.setText("Passed");
-            setButton();
         } else {
             emailLabel.setText("Email unavailable");
         }
+        setButton();
     }
 
     private boolean checkEmail() {
@@ -89,17 +99,23 @@ public class RegisterController implements Initializable {
     private void keyReleaseCivicNumber() {
         if (checkCivicNumber()) {
             civicNumberLabel.setText("Passed");
-            setButton();
         } else {
             civicNumberLabel.setText("Invalid civic number");
         }
+        setButton();
     }
 
     private boolean checkCivicNumber() {
         boolean check = false;
         for (Civilian c : civilians) {
             if (c.getCivicNumber().equals(CNTextfield.getText())) {
-                civilianToReg = c;
+                personToReg = c;
+                check = true;
+            }
+        }
+        for (Police p: polices) {
+            if (p.getCivicNumber().equals(CNTextfield.getText())){
+                personToReg = p;
                 check = true;
             }
         }
@@ -107,15 +123,25 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void registerButtonOnAction() {
-        Account a = new Account(civilianToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
+    private void registerButtonOnAction(ActionEvent event) {
+        Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         try {
             dbc.addAccount(a);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmed");
+        alert.setContentText("You are now registered");
+        alert.showAndWait();
+
+        try {
+            backButtonOnAction(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void backButtonOnAction(ActionEvent event) throws IOException {
