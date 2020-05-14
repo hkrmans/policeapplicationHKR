@@ -47,7 +47,7 @@ public class RegisterController implements Initializable {
     private Label usernameLabel, emailLabel, civicNumberLabel;
     @FXML
     private Button registerButton;
-    
+
     private void setButton(){
         if (checkCivicNumber() && checkUsername() && checkEmail()){
             registerButton.setDisable(false);
