@@ -22,10 +22,6 @@ public class Main extends Application {
         primaryStage.show();
         DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
-      /*  Civilian c = new Civilian("Richard","Svensson","199801019999");
-        connect.addPerson(c);
-
-       */
 
     }
 

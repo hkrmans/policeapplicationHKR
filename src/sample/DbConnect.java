@@ -95,10 +95,7 @@ public class DbConnect<T>{
         ResultSet rs = stmt.executeQuery("select * from account");
         ArrayList<Account> accountList = new ArrayList<>();
         while(rs.next()){
-            ResultSet rs2 = stmt.executeQuery("Select * from person where person.civicnumber = " + rs.getString(2));
-            Civilian civilian = new Civilian(rs2.getString(1),rs2.getString(2),rs2.getString(3));
-            Account account = new Account(civilian,rs.getString(1),rs.getString(3),rs.getString(4));
-            accountList.add(account);
+            ResultSet rs2 = stmt.executeQuery("show tables");
         }
         return accountList;
 
@@ -145,7 +142,7 @@ public class DbConnect<T>{
     public void addCrime(Crime crime) throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        stmt.executeUpdate("INSERT INTO crime(TypeofCrime,dateofCrime,suspect,RaportId) values('"+crime.getTypeOfCrime()+"','"+crime.getDateOfCrime()+"','"+((Person)crime.getSuspect()).getCivicNumber()+"','"+((CrimeRapport)crime.getRapport()).getRapportID()+"')");
+        stmt.executeUpdate("INSERT INTO crime(TypeOfCrime,dateOfCrime,suspect,RaportId) values('"+crime.getTypeOfCrime()+"','"+crime.getDateOfCrime()+"','"+((Person)crime.getSuspect()).getCivicNumber()+"','"+((CrimeRapport)crime.getRapport()).getRapportID()+"')");
     }
 
     public ArrayList<Crime> getCrime() throws SQLException{
