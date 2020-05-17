@@ -3,16 +3,16 @@ package sample;
 import java.sql.Date;
 
 public class Conviction {
-    private Date release;
-    private Date conviction;
+    private java.sql.Date release;
+    private java.sql.Date conviction;
     private String sentence;
     private Prisoner prisoner;
 
-    public Date getRelease() {
+    public java.sql.Date getRelease() {
         return release;
     }
 
-    public Date getConviction() {
+    public java.sql.Date getConviction() {
         return conviction;
     }
 

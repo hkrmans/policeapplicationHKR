@@ -3,19 +3,19 @@ package sample;
 import java.util.Date;
 
 public class Crime {
-    private Date dateOfCrime;
+    private java.sql.Date dateOfCrime;
     private String typeOfCrime;
     private Person suspect;
     private CrimeRapport rapport;
 
-    public Crime(Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport) {
+    public Crime(java.sql.Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport) {
         this.dateOfCrime = dateOfCrime;
         this.typeOfCrime = typeOfCrime;
         this.suspect = suspect;
         this.rapport = rapport;
     }
 
-    public Date getDateOfCrime() {
+    public java.sql.Date getDateOfCrime() {
         return dateOfCrime;
     }
 

@@ -8,7 +8,7 @@ public class CrimeRapport {
     public CrimeRapport(String rapport, Person writer,int rapportID) {
         this.rapport = rapport;
         this.writer = writer;
-        this.writer = writer;
+        this.rapportID = rapportID;
 
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,7 +23,6 @@ public class Main extends Application {
         primaryStage.show();
         DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
-
     }
 
     public static void main(String[] args) {

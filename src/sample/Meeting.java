@@ -5,7 +5,7 @@ import java.util.Date;
 public class Meeting {
     private Prisoner prisoner;
     private Civilian visitor;
-    private Date date;
+    private java.sql.Date date;
 
     public Prisoner getPrisoner() {
         return prisoner;
@@ -15,13 +15,17 @@ public class Meeting {
         return visitor;
     }
 
-    public Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public Meeting(Prisoner prisoner, Civilian visitor, Date date) {
+    public Meeting(Prisoner prisoner, Civilian visitor, java.sql.Date date) {
         this.prisoner = prisoner;
         this.visitor = visitor;
         this.date = date;
+    }
+
+    public void setPrisoner(Prisoner prisoner){
+        this.prisoner = prisoner;
     }
 }

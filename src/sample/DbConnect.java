@@ -40,7 +40,7 @@ public class DbConnect<T>{
         ResultSet rs = stmt.executeQuery("select firstName,lastName,person.civicnumber,WantedID,WantedRanking,Bounty from person,wantedcriminal where person.civicnumber = wantedcriminal.CivicNumber");
         ArrayList<WantedCriminal> personList = new ArrayList<>();
         while(rs.next()){
-            WantedCriminal criminal = new WantedCriminal(rs.getString(1), rs.getString(2),rs.getString(3),rs.getInt(5),rs.getInt(6));
+            WantedCriminal criminal = new WantedCriminal(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(5),rs.getInt(6),rs.getInt(4));
             personList.add(criminal);
         }
         return personList;
@@ -92,10 +92,12 @@ public class DbConnect<T>{
     public ArrayList<Account> getAccount() throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        ResultSet rs = stmt.executeQuery("select * from account");
+        ResultSet rs = stmt.executeQuery("select * from person, account where person.civicnumber = account.CivicNumber");
         ArrayList<Account> accountList = new ArrayList<>();
         while(rs.next()){
-            ResultSet rs2 = stmt.executeQuery("show tables");
+            Person person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
+            Account account = new Account(person,rs.getString(4),rs.getString(6),rs.getString(7));
+            accountList.add(account);
         }
         return accountList;
 
@@ -110,11 +112,11 @@ public class DbConnect<T>{
     public ArrayList<Conviction> getConviction() throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        ResultSet rs = stmt.executeQuery("select * from convictions");
+        ResultSet rs = stmt.executeQuery("select * from convictions, prisoners where convictions.PrisonerID = prisoners.PrisonerId");
         ArrayList<Conviction> convictionList = new ArrayList<>();
         while(rs.next()){
-            Conviction conviction = new Conviction(rs.getDate(4),rs.getDate(3),rs.getString(1),null);
-            ResultSet rs2 = stmt.executeQuery("select * from person where person.civi" + rs.getString(5));
+            Prisoner prisoner = new Prisoner(null,null,rs.getString(7),rs.getInt(6),null);
+            Conviction conviction = new Conviction(rs.getDate(4),rs.getDate(3),rs.getString(1),prisoner);
             convictionList.add(conviction);
         }
         return convictionList;
@@ -123,18 +125,19 @@ public class DbConnect<T>{
     public void bookMeeting(Meeting meeting) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduleDate) values('"+((Prisoner)meeting.getPrisoner()).getPrisonerId()+"','"+((Person)meeting.getVisitor()).getCivicNumber()+"','"+meeting.getDate()+"')");
+        stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduledDate) values('"+((Prisoner)meeting.getPrisoner()).getPrisonerId()+"','"+((Person)meeting.getVisitor()).getCivicNumber()+"','"+meeting.getDate()+"')");
     }
 
     public ArrayList<Meeting> getMeetings() throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        ResultSet rs = stmt.executeQuery("select * from meeting");
+        ResultSet rs = stmt.executeQuery("select * from prisoners,person,meeting where prisoners.PrisonerId = meeting.PrisonerID and meeting.person = person.CivicNumber");
         ArrayList<Meeting> meetingList = new ArrayList<>();
         while(rs.next()){
-            ResultSet rs2 = stmt.executeQuery("select * from person where person.civicnumber = " + rs.getString(2));
-            Civilian person = new Civilian(rs2.getString(1),rs2.getString(2),rs2.getString(3));
-            Meeting meeting = new Meeting(null,person,rs.getDate(3));
+            Civilian person = new Civilian(rs.getString(3),rs.getString(4),rs.getString(5));
+            Prisoner prisoner = new Prisoner(null,null,null,rs.getInt(1),null);
+            Meeting meeting = new Meeting(prisoner,person,rs.getDate(8));
+            meetingList.add(meeting);
         }
         return meetingList;
     }
@@ -142,22 +145,19 @@ public class DbConnect<T>{
     public void addCrime(Crime crime) throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        stmt.executeUpdate("INSERT INTO crime(TypeOfCrime,dateOfCrime,suspect,RaportId) values('"+crime.getTypeOfCrime()+"','"+crime.getDateOfCrime()+"','"+((Person)crime.getSuspect()).getCivicNumber()+"','"+((CrimeRapport)crime.getRapport()).getRapportID()+"')");
+        stmt.executeUpdate("insert into crime(dateOfCrime,typeOfCrime,suspect,raportID) values('"+crime.getDateOfCrime()+"','"+crime.getTypeOfCrime()+"','"+((Person)crime.getSuspect()).getCivicNumber()+"','"+((CrimeRapport)crime.getRapport()).getRapportID()+"')");
     }
 
     public ArrayList<Crime> getCrime() throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
-        ResultSet rs = stmt.executeQuery("select * from crime");
+        ResultSet rs = stmt.executeQuery("select * from crime,crimeraport,wantedcriminal,person where wantedcriminal.CivicNumber = crime.suspect and crime.RaportID = crimeraport.RaportId and writter = person.civicnumber");
         ArrayList<Crime> crimesList = new ArrayList<>();
         while(rs.next()){
-            ResultSet rs2 = stmt.executeQuery("select * from person where person.civicnumber = " + rs.getString(3));
-            Person person = new Civilian(rs2.getString(1), rs2.getString(2),rs2.getString(3));
-            ResultSet rs3 = stmt.executeQuery("select * from crimeraport where crimeraport.RaportId = " +rs.getString(4));
-            ResultSet rs4 = stmt.executeQuery("select * from person where person.civicnumber = " + rs3.getString(1));
-            Person person2 = new Civilian(rs4.getString(1),rs4.getString(2),rs4.getString(3));
-            CrimeRapport raport = new CrimeRapport(rs3.getString(2),person2,rs.getInt(4));
-            Crime crime = new Crime(rs.getDate(2),rs.getString(1),person,raport);
+            Person writter = new Civilian(rs.getString(13),rs.getString(14),rs.getString(15));
+            CrimeRapport raport = new CrimeRapport(rs.getString(7),writter,rs.getInt(4));
+            WantedCriminal wantedCriminal = new WantedCriminal(null,null,rs.getString(11),rs.getInt(10),rs.getInt(9),rs.getInt(12));
+            Crime crime = new Crime(rs.getDate(1),rs.getString(2),wantedCriminal,raport);
             crimesList.add(crime);
         }
         return crimesList;
@@ -166,5 +166,18 @@ public class DbConnect<T>{
         Statement stmt = connection.createStatement();
         stmt.executeQuery("use policemanagment");
         stmt.executeUpdate("INSERT INTO crimeraport(Writter,Text) values('"+((Person)rapport.getWriter()).getCivicNumber()+"','"+rapport.getRapport()+"')");
+    }
+
+    public ArrayList<CrimeRapport> getCrimeRapport() throws SQLException{
+        Statement stmt = connection.createStatement();
+        stmt.executeQuery("use policemanagment");
+        ResultSet rs = stmt.executeQuery("select * from person,crimeraport where person.civicnumber = writter");
+        ArrayList<CrimeRapport> crimerapportList = new ArrayList<>();
+        while(rs.next()){
+            Civilian person = new Civilian(rs.getString(1),rs.getString(2),rs.getString(3));
+            CrimeRapport rapport = new CrimeRapport(rs.getString(5),person,rs.getInt(6));
+            crimerapportList.add(rapport);
+        }
+        return crimerapportList;
     }
 }
