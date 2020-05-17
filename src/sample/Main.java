@@ -23,6 +23,7 @@ public class Main extends Application {
         primaryStage.show();
         DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
+
     }
 
     public static void main(String[] args) {

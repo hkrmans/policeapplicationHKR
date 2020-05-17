@@ -1,6 +1,6 @@
 package sample;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Crime {
     private java.sql.Date dateOfCrime;
