@@ -10,7 +10,7 @@ import java.util.*;
 public class DbConnect<T>{
     private static DbConnect single_instance = null;
     private static Connection connection;
-    private static Sec sec;
+    private static Sec sec = new Sec();
 
     public static DbConnect getInstance(String password){
         if (single_instance == null){
