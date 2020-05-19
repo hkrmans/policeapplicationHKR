@@ -12,18 +12,16 @@ import sample.*;
 import java.net.URL;
 import java.nio.file.*;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 
 public class RegisterController implements Initializable {
-    String password = null;
+    private String password = null;
     private Person personToReg;
-    Sec sec = new Sec();
+    private Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
     private ArrayList<Account> accounts = dbc.getAccount();
     private ArrayList<Civilian> civilians = dbc.getCivilians();
@@ -111,22 +109,13 @@ public class RegisterController implements Initializable {
         return check;
     }
 
-    public String getPassword() {
-        String password = null;
-        try (Scanner fileReader = new Scanner("pass.txt")) {
-            password = fileReader.nextLine();
-            System.out.println(password);
-        }
-        return password;
-    }
-
     private void removeAndGetFirstPassword() {
-        Path path = Paths.get("pass.txt");
+        Path path = Paths.get("src/pass.txt");
         if (Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
             try {
                 List<String> lines = Files.readAllLines(path);
                 password = lines.get(0);
-                System.out.println(password);
+
                 ArrayList<String> lines2 = new ArrayList<>();
                 for (int i = 1; i < lines.size(); i++) {
                     lines2.add(lines.get(i));
@@ -142,15 +131,18 @@ public class RegisterController implements Initializable {
     private void registerButtonOnAction(ActionEvent event) {
         removeAndGetFirstPassword();
         if (password != null) {
-            Account a = null;
-            a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
-
+            Account a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
+            System.out.println(a.getOwner().getCivicNumber());
+            System.out.println(a.getOwner().getFirstName());
+            System.out.println(a.getOwner().getLastName());
+            System.out.println(a.getUsername());
+            System.out.println(a.getEmail());
+            System.out.println(a.getPassword());
             try {
-                dbc.addAccount(a);
+                DbConnect.addAccount(a);
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
-
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmed");
@@ -174,23 +166,5 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         registerButton.setDisable(true);
-     /*   Path path = Paths.get("pass.txt");
-        if (Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
-            try {
-                List<String> lines = Files.readAllLines(path);
-                lines.stream().forEach(System.out::println);
-             //   System.out.println(lines.get(0));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-
-      */
-        try {
-            String line0 = Files.readAllLines(Paths.get("pass.txt")).get(0);
-            System.out.println(line0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
