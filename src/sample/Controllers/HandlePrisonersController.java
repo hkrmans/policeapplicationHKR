@@ -62,11 +62,7 @@ public class HandlePrisonersController {
     private boolean searchForPrisoner() {
         boolean check = false;
         ArrayList<Prisoner> prisoners = null;
-        try {
-            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
 
         for (Prisoner p : prisoners) {
             if (p.getPrisonerId() == Integer.parseInt(ID.getText())) {

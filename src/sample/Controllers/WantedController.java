@@ -26,12 +26,8 @@ public class WantedController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Sec sec = new Sec();
-            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getWantedCriminals();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Sec sec = new Sec();
+        wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getWantedCriminals();
         for (WantedCriminal wc : wantedCriminals) {
             showWanteds.appendText(wc.getFirstName() + " | " + wc.getLastName() + " | CN:" + wc.getCivicNumber()
                     + " | Bounty:" + wc.getBounty() + " | Ranking:" + wc.getRanking()+"\n");

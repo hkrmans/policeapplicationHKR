@@ -26,11 +26,7 @@ public class LoginController {
         loggedInAccount = null;
         boolean check = false;
         ArrayList<Account> accounts = null;
-        try {
-            accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getAccount();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getAccount();
         try {
             for (Account a : accounts) {
                 if (a.getUsername().equalsIgnoreCase(username.getText()) &&
@@ -51,11 +47,7 @@ public class LoginController {
     private void LogInButtonOnAction(ActionEvent event) throws IOException {
         ArrayList<Police> police = null;
         if (checkAccount()) {
-            try {
-                police = DbConnect.getInstance(sec.decrypter(password.getText())).getPolice();
-            }catch (SQLException e) {
-                e.printStackTrace();
-            }
+            police = DbConnect.getInstance(sec.decrypter(password.getText())).getPolice();
             boolean checkPolice = false;
 
             for (Police p : police) {

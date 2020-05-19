@@ -29,11 +29,7 @@ public class ViewPrisonersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
         for (Prisoner p: prisoners) {
             showPrisoner.appendText(p.getFirstName() +" | "+ p.getLastName()+" | CN:"+ p.getCivicNumber()
                     +" | ID:"+p.getPrisonerId()+" | Release Date:"+ p.getReleaseDate()+ "\n");
