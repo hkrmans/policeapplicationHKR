@@ -21,18 +21,13 @@ import java.util.Scanner;
 
 
 public class RegisterController implements Initializable {
+    String password = null;
     private Person personToReg;
     Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
-    ArrayList<Account> accounts;
-    ArrayList<Civilian> civilians;
-    ArrayList<Police> polices;
-
-    {
-        polices = dbc.getPolice();
-        civilians = dbc.getCivilians();
-        accounts = dbc.getAccount();
-    }
+    private ArrayList<Account> accounts = dbc.getAccount();
+    private ArrayList<Civilian> civilians = dbc.getCivilians();
+    private ArrayList<Police> polices = dbc.getPolice();
 
     @FXML
     private TextField emailTextfield, usernameTextfield, CNTextfield;
@@ -116,19 +111,22 @@ public class RegisterController implements Initializable {
         return check;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         String password = null;
         try (Scanner fileReader = new Scanner("pass.txt")) {
             password = fileReader.nextLine();
+            System.out.println(password);
         }
         return password;
     }
 
-    private void removeFirstPassword() {
+    private void removeAndGetFirstPassword() {
         Path path = Paths.get("pass.txt");
         if (Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
             try {
                 List<String> lines = Files.readAllLines(path);
+                password = lines.get(0);
+                System.out.println(password);
                 ArrayList<String> lines2 = new ArrayList<>();
                 for (int i = 1; i < lines.size(); i++) {
                     lines2.add(lines.get(i));
@@ -142,16 +140,10 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerButtonOnAction(ActionEvent event) {
-        String password = getPassword();
-        System.out.println(password);
-        removeFirstPassword();
+        removeAndGetFirstPassword();
         if (password != null) {
             Account a = null;
-            try {
-                a = new Account(personToReg, usernameTextfield.getText(), sec.hashPassword(password), emailTextfield.getText());
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+            a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
 
             try {
                 dbc.addAccount(a);
@@ -182,5 +174,23 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         registerButton.setDisable(true);
+     /*   Path path = Paths.get("pass.txt");
+        if (Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
+            try {
+                List<String> lines = Files.readAllLines(path);
+                lines.stream().forEach(System.out::println);
+             //   System.out.println(lines.get(0));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+      */
+        try {
+            String line0 = Files.readAllLines(Paths.get("pass.txt")).get(0);
+            System.out.println(line0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
