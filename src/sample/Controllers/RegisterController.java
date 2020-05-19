@@ -28,17 +28,17 @@ public class RegisterController implements Initializable {
     {
         try {
             polices = dbc.getPolice();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             civilians = dbc.getCivilians();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             accounts = dbc.getAccount();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -129,7 +129,7 @@ public class RegisterController implements Initializable {
         Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         try {
             dbc.addAccount(a);
-        } catch (SQLException | NoSuchAlgorithmException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

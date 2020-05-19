@@ -36,7 +36,7 @@ public class Sec{
         }
     }
 
-    public StringBuffer hashPassword(String input) throws NoSuchAlgorithmException {
+    public String hashPassword(String input) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedhash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
         StringBuffer hexString = new StringBuffer();
@@ -44,7 +44,7 @@ public class Sec{
             String hex = Integer.toHexString(0xff & e);
             hexString.append(hex);
         }
-        return hexString;
+        return hexString.toString();
     }
 
     public String decrypter(String password){

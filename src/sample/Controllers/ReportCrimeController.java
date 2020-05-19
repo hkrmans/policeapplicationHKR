@@ -31,8 +31,6 @@ public class ReportCrimeController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     @Override

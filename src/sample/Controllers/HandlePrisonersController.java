@@ -64,7 +64,7 @@ public class HandlePrisonersController {
         ArrayList<Prisoner> prisoners = null;
         try {
             prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

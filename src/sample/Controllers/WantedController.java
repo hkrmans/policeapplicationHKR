@@ -29,7 +29,7 @@ public class WantedController implements Initializable {
         try {
             Sec sec = new Sec();
             wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getWantedCriminals();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         for (WantedCriminal wc : wantedCriminals) {

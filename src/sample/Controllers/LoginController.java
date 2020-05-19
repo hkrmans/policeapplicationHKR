@@ -28,7 +28,7 @@ public class LoginController {
         ArrayList<Account> accounts = null;
         try {
             accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getAccount();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
@@ -53,7 +53,7 @@ public class LoginController {
         if (checkAccount()) {
             try {
                 police = DbConnect.getInstance(sec.decrypter(password.getText())).getPolice();
-            }catch (SQLException e) {
+            }catch (Exception e) {
                 e.printStackTrace();
             }
             boolean checkPolice = false;

@@ -31,7 +31,7 @@ public class ViewPrisonersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         for (Prisoner p: prisoners) {
