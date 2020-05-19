@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class LoginController {
     private static Account loggedInAccount = null;
+    Sec sec = new Sec();
     @FXML
     TextField username, password;
 
@@ -24,7 +25,7 @@ public class LoginController {
         boolean check = false;
         ArrayList<Account> accounts = null;
         try {
-            accounts = DbConnect.getInstance().getAccount();
+            accounts = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getAccount();
         } catch (SQLException e) {
             e.printStackTrace();
         }

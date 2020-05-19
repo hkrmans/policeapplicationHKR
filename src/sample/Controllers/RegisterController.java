@@ -18,7 +18,8 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
     private Person personToReg;
-    private DbConnect dbc = DbConnect.getInstance();
+    Sec sec = new Sec();
+    private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
     ArrayList<Account> accounts;
     ArrayList<Civilian> civilians;
     ArrayList<Police> polices;

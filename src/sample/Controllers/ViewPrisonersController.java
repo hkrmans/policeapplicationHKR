@@ -7,6 +7,8 @@ import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.Prisoner;
 import sample.SceneChanger;
+import sample.Sec;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class ViewPrisonersController implements Initializable {
     private ArrayList<Prisoner> prisoners;
+    Sec sec = new Sec();
     @FXML
     private TextArea showPrisoner;
 
@@ -27,7 +30,7 @@ public class ViewPrisonersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            prisoners = DbConnect.getInstance().getPrisoner();
+            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
         } catch (SQLException e) {
             e.printStackTrace();
         }

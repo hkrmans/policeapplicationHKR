@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.SceneChanger;
+import sample.Sec;
 import sample.WantedCriminal;
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +27,8 @@ public class WantedController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            wantedCriminals = DbConnect.getInstance().getWantedCriminals();
+            Sec sec = new Sec();
+            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getWantedCriminals();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package sample;
 
+import com.mysql.cj.xdevapi.Session;
+
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
@@ -58,18 +60,25 @@ public class Sec{
         }
         ArrayList<Integer> passnumbers = new ArrayList<>();
         for(int p = 0; p<24;p+=2){
-            if(p>12 || p==0|| p==6|| p== 4) {
-                passnumbers.add(number.get(p) - number.get(p+1));
-            }else{
+            if(p<4 || p==10|| p==8) {
                 passnumbers.add(number.get(p) + number.get(p+1));
+            }else{
+                passnumbers.add(number.get(p) - number.get(p+1));
             }
         }
         String passreturn = "";
         for(int x: passnumbers){
             passreturn += (char) x;
-            System.out.println(x);
         }
         return(passreturn);
+    }
+
+    public void sendEmail(Account account){
+        String to = "mats_00@live.se";
+        String from = "mats_06_20@hotmail.com";
+        String host = "localhost";
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host",host);
     }
 
 

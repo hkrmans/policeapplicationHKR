@@ -7,10 +7,10 @@ public class DbConnect<T>{
     private static DbConnect single_instance = null;
     private static Connection connection;
 
-    public static DbConnect getInstance(){
+    public static DbConnect getInstance(String password){
         if (single_instance == null){
             try {
-                single_instance = new DbConnect("Jb84raA1??10");
+                single_instance = new DbConnect(password);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -179,5 +179,20 @@ public class DbConnect<T>{
             crimerapportList.add(rapport);
         }
         return crimerapportList;
+    }
+
+    public int getAccountType(DbConnect connect, String username){
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeQuery("use policemanagment");
+            ResultSet rs = stmt.executeQuery("Select * from account,police where police.CivicNumber = account.CivicNumber and account.username =" + username);
+            while(rs.next()){
+                return 1;
+            }
+            return 2;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

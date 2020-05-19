@@ -21,8 +21,9 @@ public class Main extends Application {
         primaryStage.setTitle("Police Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        DbConnect connect = DbConnect.getInstance();
         Sec sec = new Sec();
+        DbConnect connect = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+
 
     }
 

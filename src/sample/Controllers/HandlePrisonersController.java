@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import sample.DbConnect;
 import sample.Prisoner;
 import sample.SceneChanger;
+import sample.Sec;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class HandlePrisonersController {
     Prisoner prisoner;
+    Sec sec = new Sec();
 
     @FXML
     private TextField ID, firstname, lastname, CN, RD;
@@ -61,7 +63,7 @@ public class HandlePrisonersController {
         boolean check = false;
         ArrayList<Prisoner> prisoners = null;
         try {
-            prisoners = DbConnect.getInstance().getPrisoner();
+            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
         } catch (SQLException e) {
             e.printStackTrace();
         }
