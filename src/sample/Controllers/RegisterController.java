@@ -121,6 +121,7 @@ public class RegisterController implements Initializable {
         try (Scanner fileReader = new Scanner("pass.txt")) {
             password = fileReader.nextLine();
         }
+        return password;
     }
 
     private void removeFirstPassword() {
