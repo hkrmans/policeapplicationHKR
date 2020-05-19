@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.sql.Date;
@@ -23,6 +24,8 @@ public class Main extends Application {
         primaryStage.show();
         Sec sec = new Sec();
         DbConnect connect = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+        Image image = new Image("images/icon.png");
+        primaryStage.getIcons().add(image);
 
 
     }

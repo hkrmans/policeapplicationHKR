@@ -20,6 +20,7 @@
          </font></Text>
       <Button layoutX="191.0" layoutY="218.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="195.0" text="Register account" />
       <Button layoutX="191.0" layoutY="155.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="195.0" text="Login" />
-      <Button layoutX="225.0" layoutY="295.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="Exit" />
+      <Button layoutX="225.0" layoutY="295.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="26.0" prefWidth="127.0" text="Exit" />
+      <Button layoutX="501.0" layoutY="358.0" mnemonicParsing="false" onAction="#helpButtonOnAction" prefHeight="26.0" prefWidth="72.0" text="Help" />
    </children>
 </AnchorPane>
