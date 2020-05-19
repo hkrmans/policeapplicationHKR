@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -11,17 +12,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ViewConvictionController">
    <children>
-      <ImageView fitHeight="614.0" fitWidth="750.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="496.0" fitWidth="757.0" layoutX="-7.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/crime20scene20tape20police_1531623025617.JPG_48622233_ver1.0-9.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="45.0" layoutY="343.0" mnemonicParsing="false" onAction="#LogOutViewConvictionButtonOnAction" text="Log out" />
-      <Text fill="WHITE" layoutX="358.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Convictions">
+      <Button layoutX="23.0" layoutY="356.0" mnemonicParsing="false" onAction="#LogOutViewConvictionButtonOnAction" text="Log out" />
+      <Text fill="WHITE" layoutX="320.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Convictions">
          <font>
             <Font size="34.0" />
          </font></Text>
-      <TextArea fx:id="convictionsArea" layoutX="220.0" layoutY="91.0" prefHeight="272.0" prefWidth="450.0" />
+      <TextArea fx:id="convictionsArea" layoutX="220.0" layoutY="106.0" prefHeight="214.0" prefWidth="374.0" />
       <TextField fx:id="nameTextField" layoutX="28.0" layoutY="91.0" />
       <TextField fx:id="releaseTextField" layoutX="28.0" layoutY="140.0" />
       <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="197.0" />
@@ -30,12 +31,12 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fill="#fdfcfc" layoutX="28.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text fill="#fdfcfc" layoutX="28.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="28.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Release date">
+      <Text fill="WHITE" layoutX="28.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>
             <Font size="13.0" />
          </font>
@@ -45,7 +46,15 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Button layoutX="111.0" layoutY="343.0" mnemonicParsing="false" onAction="#goBackButtonOnAction" text="Go back" />
+      <Button layoutX="99.0" layoutY="356.0" mnemonicParsing="false" onAction="#goBackButtonOnAction" text="Go back" />
       <Button layoutX="77.0" layoutY="241.0" mnemonicParsing="false" onAction="#searchButtonOnAction" text="Search" />
+      <TextField fx:id="indexTextField" layoutX="351.0" layoutY="330.0" prefHeight="26.0" prefWidth="130.0" />
+      <Button layoutX="494.0" layoutY="330.0" mnemonicParsing="false" onAction="#viewMoreInfoButtonOnAction" text="View more info" />
+      <Text fill="WHITE" layoutX="200.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter prisoner ssn to see convictions:" wrappingWidth="164.893798828125">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <ScrollBar layoutX="579.0" layoutY="111.0" orientation="VERTICAL" prefHeight="206.0" prefWidth="14.0" />
    </children>
 </AnchorPane>

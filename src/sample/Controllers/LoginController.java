@@ -66,8 +66,9 @@ public class LoginController {
             } else {
                 SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
             }
-        }else{
+        } else {
             System.out.println("Pass and user does not match");
         }
     }
 }
+

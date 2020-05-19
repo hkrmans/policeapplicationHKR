@@ -14,16 +14,16 @@
             <Image url="@../../images/istockphoto-963931834-612x612.jpg" />
          </image>
       </ImageView>
-      <Text fill="#f0f0f0" layoutX="187.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POLICE MENU">
+      <Text fill="#f0f0f0" layoutX="209.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POLICE MENU">
          <font>
-            <Font size="36.0" />
+            <Font name="Impact" size="36.0" />
          </font></Text>
-      <Button layoutX="358.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewConvictionsSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View convictions" />
-      <Button layoutX="358.0" layoutY="200.0" mnemonicParsing="false" onAction="#HandlePrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
-      <Button layoutX="97.0" layoutY="200.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read and register reports" />
-      <Button layoutX="358.0" layoutY="130.0" mnemonicParsing="false" onAction="#ViewPrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
-      <Button layoutX="97.0" layoutY="130.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
-      <Button layoutX="97.0" layoutY="260.0" mnemonicParsing="false" onAction="#ViewMostWantedSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />
+      <Button layoutX="343.0" layoutY="233.0" mnemonicParsing="false" onAction="#ViewConvictionsSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View convictions" />
+      <Button layoutX="342.0" layoutY="179.0" mnemonicParsing="false" onAction="#HandlePrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
+      <Button layoutX="77.0" layoutY="179.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read and register reports" />
+      <Button layoutX="341.0" layoutY="117.0" mnemonicParsing="false" onAction="#ViewPrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
+      <Button layoutX="77.0" layoutY="117.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
+      <Button layoutX="77.0" layoutY="233.0" mnemonicParsing="false" onAction="#ViewMostWantedSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />
       <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#LogOutAsPoliceButtonOnAction" text="Logout" />
    </children>
 </AnchorPane>

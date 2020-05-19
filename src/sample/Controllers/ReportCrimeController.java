@@ -2,11 +2,13 @@ package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import sample.SceneChanger;
-
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ReportCrimeController {
+public class ReportCrimeController implements Initializable {
 
     @FXML
     void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
@@ -19,4 +21,8 @@ public class ReportCrimeController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
