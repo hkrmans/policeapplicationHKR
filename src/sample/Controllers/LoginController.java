@@ -23,9 +23,8 @@ public class LoginController {
     private void LogInButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event,"fxmlFiles/PoliceMenu.fxml");
     }
-}
 
-    /*private boolean checkAccount() {
+    private boolean checkAccount() {
         loggedInAccount = null;
         boolean check = false;
         ArrayList<Account> accounts = null;
@@ -45,5 +44,4 @@ public class LoginController {
         return check;
 
     }
-
-     */
+}

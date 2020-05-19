@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import sample.*;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -128,7 +129,7 @@ public class RegisterController implements Initializable {
         Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         try {
             dbc.addAccount(a);
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
