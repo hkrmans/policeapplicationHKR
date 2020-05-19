@@ -3,12 +3,18 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import sample.SceneChanger;
+import javafx.scene.control.TextArea;
+import sample.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReportCrimeController implements Initializable {
+    private Person writer;
+
+    @FXML
+    private TextArea reportCrimeArea;
 
     @FXML
     void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
@@ -18,6 +24,14 @@ public class ReportCrimeController implements Initializable {
 
     @FXML
     void UploadCrimeButtonOnAction(ActionEvent event) {
+        String rapport = reportCrimeArea.getText();
+        try{
+            CrimeRapport crimeRapport = new CrimeRapport(rapport, writer, 0);
+            DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").addCrimeRapport(crimeRapport);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
     }
 

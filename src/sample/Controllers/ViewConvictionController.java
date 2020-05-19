@@ -20,13 +20,10 @@ public class ViewConvictionController implements Initializable {
 
     @FXML
     private TextArea convictionsArea;
-
     @FXML
     private TextField nameTextField;
-
     @FXML
     private TextField ssnTextField;
-
     @FXML
     private TextField releaseTextField;
     @FXML
@@ -65,6 +62,7 @@ public class ViewConvictionController implements Initializable {
 
     @FXML
     private void searchButtonOnAction() {
+        convictionsArea.clear();
         String searchByFirstName = nameTextField.getText();
         String searchBySsn = ssnTextField.getText();
         String searchByLastName = releaseTextField.getText();

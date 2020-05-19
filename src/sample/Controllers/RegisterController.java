@@ -1,4 +1,5 @@
 package sample.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
+
 import java.net.URL;
 import java.nio.file.*;
 import java.security.NoSuchAlgorithmException;
@@ -27,21 +29,9 @@ public class RegisterController implements Initializable {
     ArrayList<Police> polices;
 
     {
-        try {
-            polices = dbc.getPolice();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            civilians = dbc.getCivilians();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            accounts = dbc.getAccount();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        polices = dbc.getPolice();
+        civilians = dbc.getCivilians();
+        accounts = dbc.getAccount();
     }
 
     @FXML
@@ -128,23 +118,22 @@ public class RegisterController implements Initializable {
 
     private String getPassword() {
         String password = null;
-        try(Scanner fileReader = new Scanner("pass.txt")) {
+        try (Scanner fileReader = new Scanner("pass.txt")) {
             password = fileReader.nextLine();
         }
-        return password;
     }
 
-    private void removeFirstPassword(){
+    private void removeFirstPassword() {
         Path path = Paths.get("pass.txt");
-        if(Files.exists(path, LinkOption.NOFOLLOW_LINKS)){
-            try{
+        if (Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
+            try {
                 List<String> lines = Files.readAllLines(path);
                 ArrayList<String> lines2 = new ArrayList<>();
-                for (int i = 1; i < lines.size(); i++){
+                for (int i = 1; i < lines.size(); i++) {
                     lines2.add(lines.get(i));
                 }
                 Files.write(path, lines2);
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
@@ -158,21 +147,23 @@ public class RegisterController implements Initializable {
         if (password != null) {
             Account a = null;
             try {
-                a = new Account(personToReg, usernameTextfield.getText(),sec.hashPassword(password), emailTextfield.getText());
+                a = new Account(personToReg, usernameTextfield.getText(), sec.hashPassword(password), emailTextfield.getText());
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
+
             try {
                 dbc.addAccount(a);
-            } catch (SQLException e) {
+            } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
+
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmed");
             alert.setContentText("You are now registered");
             alert.showAndWait();
-        }else{
+        } else {
             System.out.println("Error");
         }
         try {

@@ -21,6 +21,7 @@ public class LoginController {
         SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
     }
 
+
     private boolean checkAccount() {
         loggedInAccount = null;
         boolean check = false;
@@ -45,13 +46,14 @@ public class LoginController {
 
     }
 
+
     @FXML
     private void LogInButtonOnAction(ActionEvent event) throws IOException {
         ArrayList<Police> police = null;
         if (checkAccount()) {
             try {
                 police = DbConnect.getInstance(sec.decrypter(password.getText())).getPolice();
-            } catch (SQLException e) {
+            }catch (SQLException e) {
                 e.printStackTrace();
             }
             boolean checkPolice = false;
