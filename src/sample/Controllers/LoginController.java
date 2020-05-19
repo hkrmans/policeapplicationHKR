@@ -19,8 +19,13 @@ public class LoginController {
     private void backButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
     }
+    @FXML
+    private void LogInButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event,"fxmlFiles/PoliceMenu.fxml");
+    }
+}
 
-    private boolean checkAccount() {
+    /*private boolean checkAccount() {
         loggedInAccount = null;
         boolean check = false;
         ArrayList<Account> accounts = null;
@@ -41,16 +46,4 @@ public class LoginController {
 
     }
 
-    @FXML
-    private void LogInButtonOnAction(ActionEvent event) throws IOException {
-        if (checkAccount()) {
-            if (loggedInAccount.getOwner() instanceof Police) {
-                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-            } else if (loggedInAccount.getOwner() instanceof Civilian) {
-                SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
-            }
-        } else {
-            System.out.println("Pass and user does not match");
-        }
-    }
-}
+     */

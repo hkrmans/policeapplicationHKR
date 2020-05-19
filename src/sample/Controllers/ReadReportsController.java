@@ -76,7 +76,9 @@ public class ReadReportsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
            // rapports = DbConnect.getInstance().getCrimeRapport();
-        }catch (Exception e){
+            crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         for (CrimeRapport e : rapports) {

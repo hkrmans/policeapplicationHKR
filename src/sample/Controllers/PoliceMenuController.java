@@ -49,4 +49,11 @@ public class PoliceMenuController {
 
     }
 
+
+    @FXML
+    void handlePrisonersButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event,"fxmlFiles/HandlePrisoners.fxml");
+
+    }
+
 }

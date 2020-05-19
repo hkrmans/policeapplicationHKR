@@ -12,7 +12,7 @@ public class Conviction {
         return release;
     }
 
-    public java.sql.Date getConviction() {
+    public Date getConviction() {
         return conviction;
     }
 
