@@ -5,18 +5,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import sample.CrimeRapport;
-import sample.DbConnect;
-import sample.SceneChanger;
+import javafx.scene.control.TextField;
+import sample.*;
+
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class ReadReportsController implements Initializable {
     private ArrayList<CrimeRapport> rapports;
-    private int index = 0;
+    private ArrayList<WantedCriminal> wantedCriminals;
+    private int indexes = 0;
+    private Sec sec = new Sec();
 
+    @FXML
+    private TextField wantedCriminalTextField;
+
+    @FXML
+    private TextField dateOfCrimeTextField;
+
+    @FXML
+    private TextField typeOfCrimeTextField;
+
+    @FXML
+    private TextArea wantedCriminalArea;
 
     @FXML
     private TextArea crimeRapportArea;
@@ -30,16 +45,16 @@ public class ReadReportsController implements Initializable {
     @FXML
     void ReportBackButtonOnAction(ActionEvent event) {
         try {
-            index--;
-            if (index < 0){
+            indexes--;
+            if (indexes < 0){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("This is the first rapport");
                 alert.setContentText("This is the first rapport in the system");
                 alert.showAndWait();
-                index = 0;
-            }else if (index <= rapports.size()){
-                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
+                indexes = 0;
+            }else if (indexes <= rapports.size()){
+                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -51,16 +66,16 @@ public class ReadReportsController implements Initializable {
     @FXML
     void ReportNextButtonOnAction(ActionEvent event) {
         try {
-            index++;
-            if (index > rapports.size()){
+            indexes++;
+            if (indexes > rapports.size()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("No rapports left");
                 alert.setContentText("There aren't any rapports left");
                 alert.showAndWait();
-                index = rapports.size()-1;
-            }else if (index < rapports.size()){
-                crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
+                indexes = rapports.size()-1;
+            }else if (indexes < rapports.size()){
+                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + ((Person) rapports.get(indexes).getWriter()).getFirstName());
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -69,20 +84,59 @@ public class ReadReportsController implements Initializable {
 
     @FXML
     void ReportRegisterButtonOnAction(ActionEvent event) {
-
+        String dateOfCrime = dateOfCrimeTextField.getText();
+        String typeOfCrime = typeOfCrimeTextField.getText();
+        String index = wantedCriminalTextField.getText();
+        final String regex = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))[-]([0][1-9]|[1-2][\\d]|[3][0-1])";
+        final String regexTwo = "[a-zA-Z]+";
+        final String regexThree = "[0-9]$";
+        try{
+            if (Pattern.matches(regex, dateOfCrime)){
+                if(Pattern.matches(regexTwo, typeOfCrime)){
+                    if (Pattern.matches(regexThree, index)){
+                        WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
+                                wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
+                        CrimeRapport crimeRapport = new CrimeRapport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
+                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport);
+                        DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).addCrime(crime);
+                    }else {
+                        throw new Exception();
+                    }
+                }else {
+                    throw new Exception();
+                }
+            }else {
+                throw new Exception();
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("You have entered wrong input");
+            alert.setContentText("You must enter date, crime and wanted criminal before register a crime or have you entered wrong input");
+            alert.showAndWait();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        int j = 0;
         try {
-           // rapports = DbConnect.getInstance().getCrimeRapport();
-            crimeRapportArea.setText(rapports.get(index).getRapport() + " | " + rapports.get(index).getWriter());
+            rapports = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getCrimeRapport();
+            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getWantedCriminals();
+            crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        for (int i = 0; i < wantedCriminals.size(); i++) {
+            wantedCriminalArea.appendText(j + ". | " + wantedCriminals.get(i).getFirstName() + " | "
+                    + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
+            j++;
+        }
+
         for (CrimeRapport e : rapports) {
-            crimeRapportArea.setText(e.getRapport() + " | " + e.getWriter());
+            crimeRapportArea.setText(e.getRapport() + " | " + ((Person)e.getWriter()).getFirstName());
         }
 
     }
