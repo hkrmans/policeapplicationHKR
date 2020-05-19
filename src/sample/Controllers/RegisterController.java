@@ -1,5 +1,4 @@
 package sample.Controllers;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,12 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
-
 import java.net.URL;
+import java.nio.file.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 
 public class RegisterController implements Initializable {
@@ -49,13 +51,14 @@ public class RegisterController implements Initializable {
     @FXML
     private Button registerButton;
 
-    private void setButton(){
-        if (checkCivicNumber() && checkUsername() && checkEmail()){
+    private void setButton() {
+        if (checkCivicNumber() && checkUsername() && checkEmail()) {
             registerButton.setDisable(false);
-        }else{
+        } else {
             registerButton.setDisable(true);
         }
     }
+
     @FXML
     private void keyReleaseUsername() {
         if (checkUsername()) {
@@ -114,8 +117,8 @@ public class RegisterController implements Initializable {
                 check = true;
             }
         }
-        for (Police p: polices) {
-            if (p.getCivicNumber().equals(CNTextfield.getText())){
+        for (Police p : polices) {
+            if (p.getCivicNumber().equals(CNTextfield.getText())) {
                 personToReg = p;
                 check = true;
             }
@@ -123,20 +126,55 @@ public class RegisterController implements Initializable {
         return check;
     }
 
+    private String getPassword() {
+        String password = null;
+        try(Scanner fileReader = new Scanner("pass.txt")) {
+            password = fileReader.nextLine();
+        }
+        return password;
+    }
+
+    private void removeFirstPassword(){
+        Path path = Paths.get("pass.txt");
+        if(Files.exists(path, LinkOption.NOFOLLOW_LINKS)){
+            try{
+                List<String> lines = Files.readAllLines(path);
+                ArrayList<String> lines2 = new ArrayList<>();
+                for (int i = 1; i < lines.size(); i++){
+                    lines2.add(lines.get(i));
+                }
+                Files.write(path, lines2);
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+
     @FXML
     private void registerButtonOnAction(ActionEvent event) {
-        Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
-        try {
-            dbc.addAccount(a);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        String password = getPassword();
+        System.out.println(password);
+        removeFirstPassword();
+        if (password != null) {
+            Account a = null;
+            try {
+                a = new Account(personToReg, usernameTextfield.getText(),sec.hashPassword(password), emailTextfield.getText());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            try {
+                dbc.addAccount(a);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmed");
+            alert.setContentText("You are now registered");
+            alert.showAndWait();
+        }else{
+            System.out.println("Error");
         }
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmed");
-        alert.setContentText("You are now registered");
-        alert.showAndWait();
-
         try {
             backButtonOnAction(event);
         } catch (IOException e) {
