@@ -8,10 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
-
 import java.net.URL;
 import java.nio.file.*;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.List;
@@ -23,33 +21,34 @@ public class RegisterController implements Initializable {
     private Person personToReg;
     private Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
-    ArrayList<Account> accounts = new ArrayList<>();
-    ArrayList<Civilian> civilians = new ArrayList<>();
-    ArrayList<Police> polices = new ArrayList<>();
+    private ArrayList<Account> accounts = new ArrayList<>();
+    private ArrayList<Civilian> civilians = new ArrayList<>();
+    private ArrayList<Police> polices = new ArrayList<>();
 
-    {
+    private void fillLists() {
         try {
-            Police police = new Police(null,null,null,null);
-            polices.add(police);
+            polices.add(new Police(null,null,null,null));
             dbc.getInfo(polices);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Civilian civilian = new Civilian(null,null,null);
-        try {
+
+            Civilian civilian = new Civilian("a", "b", "456789123456");
             civilians.add(civilian);
             dbc.getInfo(civilians);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Account account = new Account(null,null,null,null);
-            accounts.add(account);
+
+            accounts.add(new Account(civilian, "a", "b", "a"));
             dbc.getInfo(accounts);
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch(Exception ex){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("This is the first rapport");
+            alert.setContentText("This is the first rapport in the system");
+            alert.showAndWait();
+        }
+        for (Civilian c: civilians) {
+            System.out.println(c.getFirstName());
+            System.out.println(c.getLastName());
         }
     }
+
     @FXML
     private TextField emailTextfield, usernameTextfield, CNTextfield;
     @FXML
@@ -152,7 +151,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerButtonOnAction(ActionEvent event) {
-        Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
+        Account a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
         try {
             dbc.addInformation(a);
         } catch (Exception e) {
@@ -166,7 +165,7 @@ public class RegisterController implements Initializable {
             System.out.println(a.getUsername());
             System.out.println(a.getEmail());
             System.out.println(a.getPassword());
- //           DbConnect.addInformation(a);
+            //           DbConnect.addInformation(a);
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmed");
@@ -190,5 +189,6 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         registerButton.setDisable(true);
+        fillLists();
     }
 }
