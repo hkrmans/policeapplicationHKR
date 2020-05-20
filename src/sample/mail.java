@@ -1,6 +1,6 @@
 package sample;
 
-import java.util.*;
+/*import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -33,3 +33,5 @@ public class mail {
         }
     }
 }
+
+ */
