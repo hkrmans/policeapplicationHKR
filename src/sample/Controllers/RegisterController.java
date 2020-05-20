@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
+
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -27,23 +28,23 @@ public class RegisterController implements Initializable {
 
     private void fillLists() {
         try {
-            polices.add(new Police(null,null,null,null));
-            polices = dbc.getInfo(polices);
+            polices.add(new Police(null, null, null, null));
+            dbc.getInfo(polices);
 
             Civilian civilian = new Civilian("a", "b", "456789123456");
             civilians.add(civilian);
-            civilians = dbc.getInfo(civilians);
+            dbc.getInfo(civilians);
 
             accounts.add(new Account(civilian, "a", "b", "a"));
-            accounts = dbc.getInfo(accounts);
-        }catch(Exception ex){
+            dbc.getInfo(accounts);
+        } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("This is the first rapport");
             alert.setContentText("This is the first rapport in the system");
             alert.showAndWait();
         }
-        for (Civilian c: civilians) {
+        for (Civilian c : civilians) {
             System.out.println(c.getFirstName());
             System.out.println(c.getLastName());
         }
@@ -151,33 +152,36 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerButtonOnAction(ActionEvent event) {
-        Account a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
-        try {
-            dbc.addInformation(a);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         removeAndGetFirstPassword();
         if (password != null) {
-            System.out.println(a.getOwner().getCivicNumber());
-            System.out.println(a.getOwner().getFirstName());
-            System.out.println(a.getOwner().getLastName());
-            System.out.println(a.getUsername());
-            System.out.println(a.getEmail());
-            System.out.println(a.getPassword());
-            //           DbConnect.addInformation(a);
+            Account a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmed");
-            alert.setContentText("You are now registered");
-            alert.showAndWait();
+            try {
+                dbc.addInformation(a);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmed");
+                alert.setContentText("You are now registered and your password will be sent to your email");
+                alert.showAndWait();
+                password = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } else {
-            System.out.println("Error");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Something went wrong when generating your password");
+            alert.showAndWait();
         }
+
         try {
             backButtonOnAction(event);
         } catch (IOException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Something went wrong when trying to go back");
+            alert.showAndWait();
         }
     }
 
