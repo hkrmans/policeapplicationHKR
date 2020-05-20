@@ -6,8 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sample.Controllers.LoginController;
+
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Main extends Application {
 
@@ -22,6 +26,8 @@ public class Main extends Application {
         primaryStage.show();
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
+
+
     }
 
     public static void main(String[] args) {

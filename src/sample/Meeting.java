@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class Meeting {
     private Prisoner prisoner;
-    private Civilian visitor;
+    private Person visitor;
     private java.sql.Date date;
     private int meetingID;
 
-    public Prisoner getPrisoner(int i) {
+    public Prisoner getPrisoner() {
         return prisoner;
     }
 
-    public Civilian getVisitor() {
+    public Person getVisitor() {
         return visitor;
     }
 
@@ -20,7 +20,7 @@ public class Meeting {
         return date;
     }
 
-    public Meeting(Prisoner prisoner, Civilian visitor, java.sql.Date date,int meetingID) {
+    public Meeting(Prisoner prisoner, Person visitor, java.sql.Date date,int meetingID) {
         this.prisoner = prisoner;
         this.visitor = visitor;
         this.date = date;

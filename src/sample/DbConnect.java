@@ -90,7 +90,7 @@ public class DbConnect<T>{
             }else if(info instanceof Conviction){
                 stmt.executeUpdate("INSERT INTO convictions(sentence,convictionDate,realeseDate,PrisonerID) values('" + ((Conviction) info).getSentence() + "','" + ((Conviction) info).getConviction() + "','" + ((Conviction) info).getRelease() + "','" +(((Conviction) info).getPrisoner().getPrisonerId())+ "')");
             }else if(info instanceof Meeting){
-                stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduledDate) values('" + ((Meeting) info).getMeetingID() + "','" + ((Meeting) info).getVisitor().getCivicNumber() + "','" + ((Meeting) info).getDate() + "')");
+                stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduledDate) values('" + ((Meeting) info).getPrisoner().getPrisonerId() + "','" + ((Meeting) info).getVisitor().getCivicNumber() + "','" +((Meeting) info).getDate()+"')");
             }else if(info instanceof Crime){
                 stmt.executeUpdate("insert into crime(dateOfCrime,typeOfCrime,suspect,raportID) values('"+((Crime) info).getDateOfCrime()+"','"+((Crime) info).getTypeOfCrime()+"','"+((Crime) info).getSuspect().getCivicNumber()+"','"+((Crime) info).getRapport().getRapportID()+"')");
             }else if(info instanceof CrimeRapport){
