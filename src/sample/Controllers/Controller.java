@@ -19,7 +19,7 @@ public class Controller {
     }
 
     @FXML
-    private void exitButtonOnAction(ActionEvent event) throws IOException{
+    private void exitButtonOnAction(ActionEvent event) {
         System.exit(0);
     }
 

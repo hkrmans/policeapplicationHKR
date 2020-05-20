@@ -25,6 +25,11 @@ public class LoginController {
         SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
     }
 
+    @FXML
+    void exitLoginButtonOnAction(ActionEvent event) {
+        System.exit(0);
+
+    }
 
     private boolean checkAccount() {
         loggedInAccount = null;

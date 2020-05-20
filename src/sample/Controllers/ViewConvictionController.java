@@ -14,9 +14,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewConvictionController implements Initializable {
-    private ArrayList<Conviction> convictions;
-    private ArrayList<Prisoner> prisoners;
+
+    private ArrayList<Conviction> convictions = new ArrayList<>();
+    ArrayList<Prisoner> prisoners = new ArrayList<>();
     private Person person;
+    Sec sec = new Sec();
+    private final DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
 
     @FXML
     private TextArea convictionsArea;
@@ -66,6 +69,8 @@ public class ViewConvictionController implements Initializable {
         String searchByFirstName = nameTextField.getText();
         String searchBySsn = ssnTextField.getText();
         String searchByLastName = releaseTextField.getText();
+        Prisoner prisoner = new Prisoner(null,null,null,0,null);
+        prisoners.add(prisoner);
 
        for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByFirstName.equals(prisoners.get(i).getFirstName())) {
@@ -91,63 +96,23 @@ public class ViewConvictionController implements Initializable {
         }
     }
 
-    /*final String regex = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))[-]([0][1-9]|[1-2][\\d]|[3][0-1])";
-    final String regexTwo = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))";
-    final String regexThree = "[2][0][\\d]{2}";
-
-        try{
-        if (Pattern.matches("[a-zA-Z]+", nameTextField.getText())){
-
-        }else {
-            throw new Exception();
-        }
-
-        if (Pattern.matches("[0-9]{8}$", ssnTextField.getText())){
-
-        }else{
-            throw new Exception();
-        }
-
-        if (Pattern.matches(regex, releaseTextField.getText()) || Pattern.matches(regexTwo, releaseTextField.getText()) || Pattern.matches(regexThree, releaseTextField.getText())){
-
-        }else {
-            throw new Exception();
-        }
-
-
-    }catch (Exception e){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("ERROR");
-        alert.setHeaderText("Wrong input or the prisoner doesn't exist");
-        alert.setContentText("Please enter the right information again!");
-        alert.showAndWait();
-    }
-}
-
-
-     */
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void FillList(){
         try {
-            Sec sec = new Sec();
-            ArrayList<Conviction> convictions = new ArrayList<>();
             Conviction conviction = new Conviction(null,null,null,null,0);
             convictions.add(conviction);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(convictions);
-            ArrayList<Prisoner> prisoners = new ArrayList<>();
+            dbc.getInfo(convictions);
             Prisoner prisoner = new Prisoner(null,null,null,0, null);
             prisoners.add(prisoner);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
+            dbc.getInfo(prisoners);
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        /*for (Conviction c : convictions) {
-            convictionsArea.appendText(c.getPrisoner() + " | " + c.getSentence() + " | "
-                                         + c.getConviction() + "|" + c.getRelease());
-        }
 
-         */
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        FillList();
 
     }
 }
