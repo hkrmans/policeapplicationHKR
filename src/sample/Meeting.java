@@ -8,7 +8,7 @@ public class Meeting {
     private java.sql.Date date;
     private int meetingID;
 
-    public Prisoner getPrisoner() {
+    public Prisoner getPrisoner(int i) {
         return prisoner;
     }
 

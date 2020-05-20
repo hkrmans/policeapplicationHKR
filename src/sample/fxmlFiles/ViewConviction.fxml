@@ -22,7 +22,6 @@
          <font>
             <Font size="34.0" />
          </font></Text>
-      <TextArea fx:id="convictionsArea" layoutX="220.0" layoutY="106.0" prefHeight="214.0" prefWidth="374.0" />
       <TextField fx:id="nameTextField" layoutX="28.0" layoutY="91.0" />
       <TextField fx:id="releaseTextField" layoutX="28.0" layoutY="140.0" />
       <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="197.0" />
@@ -55,6 +54,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <ScrollBar layoutX="579.0" layoutY="111.0" orientation="VERTICAL" prefHeight="206.0" prefWidth="14.0" />
+      <TextArea fx:id="convictionsArea" layoutX="220.0" layoutY="96.0" prefHeight="226.0" prefWidth="359.0" />
+      <ScrollBar layoutX="564.0" layoutY="97.0" orientation="VERTICAL" prefHeight="218.0" prefWidth="14.0" />
    </children>
 </AnchorPane>
