@@ -23,29 +23,29 @@ public class RegisterController implements Initializable {
     private Person personToReg;
     private Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
-    ArrayList<Account> accounts;
-    ArrayList<Civilian> civilians;
-    ArrayList<Police> polices;
+    ArrayList<Account> accounts = new ArrayList<>();
+    ArrayList<Civilian> civilians = new ArrayList<>();
+    ArrayList<Police> polices = new ArrayList<>();
 
     {
         try {
             Police police = new Police(null,null,null,null);
             polices.add(police);
-            polices = dbc.getInfo(polices);
+            dbc.getInfo(polices);
         } catch (Exception e) {
             e.printStackTrace();
         }
         Civilian civilian = new Civilian(null,null,null);
         try {
             civilians.add(civilian);
-            civilians = dbc.getInfo(civilians);
+            dbc.getInfo(civilians);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Account account = new Account(civilian,null,null,null);
+            Account account = new Account(null,null,null,null);
             accounts.add(account);
-            accounts = dbc.getInfo(accounts);
+            dbc.getInfo(accounts);
         } catch (Exception e) {
             e.printStackTrace();
         }

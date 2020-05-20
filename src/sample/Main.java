@@ -29,12 +29,11 @@ public class Main extends Application {
         Sec sec = new Sec();
         DbConnect connect = new DbConnect(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!"));
 
-        Civilian civilian = new Civilian(null,null,null);
-        ArrayList<Civilian> civilians = new ArrayList<>();
-        civilians.add(civilian);
-
-
-
+        ArrayList<Prisoner> prisoners = new ArrayList<>();
+        Prisoner prisoner = new Prisoner(null,null,null,0,null);
+        prisoners.add(prisoner);
+        connect.getInfo(prisoners);
+        System.out.println(prisoners.size());
 
 
     }

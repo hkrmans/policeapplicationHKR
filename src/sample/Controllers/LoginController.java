@@ -29,7 +29,7 @@ public class LoginController {
         try {
             Account account = new Account(null,null,null,null);
             accounts.add(account);
-            accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(accounts);
+            DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(accounts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class LoginController {
             try {
                 Police police = new Police(null,null,null,null);
                 polices.add(police);
-                polices = DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(polices);
+                DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(polices);
             }catch (Exception e) {
                 e.printStackTrace();
             }

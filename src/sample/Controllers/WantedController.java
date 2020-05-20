@@ -31,7 +31,7 @@ public class WantedController implements Initializable {
             ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
             WantedCriminal wantedCriminal = new WantedCriminal(null,null,null,0,0,0);
             wantedCriminals.add(wantedCriminal);
-            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(wantedCriminals);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(wantedCriminals);
         } catch (Exception e) {
             e.printStackTrace();
         }
