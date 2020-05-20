@@ -4,12 +4,13 @@ import com.mysql.cj.result.SqlDateValueFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class DbConnect<T>{
     private static DbConnect single_instance = null;
     private static Connection connection;
-    private static Sec sec;
+    private static Sec sec = new Sec();
 
     public static DbConnect getInstance(String password){
         if (single_instance == null){
@@ -242,5 +243,17 @@ public class DbConnect<T>{
             e.printStackTrace();
         }
         return crimerapportList;
+    }
+    public void changePrisonerFirstname(String firstname, int id){
+
+    }
+    public void changePrisonerLastname(String lastname, int id){
+
+    }
+    public void changePrisonerCivicNumber(String CN, int id){
+
+    }
+    public void changePrisonerReleaseDate(Date RD, int id){
+
     }
 }

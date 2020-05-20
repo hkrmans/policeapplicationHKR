@@ -19,6 +19,7 @@ public class ReadReportsController implements Initializable {
     private ArrayList<CrimeRapport> rapports;
     private ArrayList<WantedCriminal> wantedCriminals;
     private int indexes = 0;
+    private Sec sec = new Sec();
 
     @FXML
     private TextField wantedCriminalTextField;
@@ -53,7 +54,7 @@ public class ReadReportsController implements Initializable {
                 alert.showAndWait();
                 indexes = 0;
             }else if (indexes <= rapports.size()){
-                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter());
+                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -74,7 +75,7 @@ public class ReadReportsController implements Initializable {
                 alert.showAndWait();
                 indexes = rapports.size()-1;
             }else if (indexes < rapports.size()){
-                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter());
+                crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + ((Person) rapports.get(indexes).getWriter()).getFirstName());
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -97,7 +98,7 @@ public class ReadReportsController implements Initializable {
                                 wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
                         CrimeRapport crimeRapport = new CrimeRapport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
                         Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport);
-                        DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").addCrime(crime);
+                        DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).addCrime(crime);
                     }else {
                         throw new Exception();
                     }
@@ -118,23 +119,24 @@ public class ReadReportsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        int j = 0;
         try {
-            rapports = DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").getCrimeRapport();
-            wantedCriminals = DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").getWantedCriminals();
-            crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter());
+            rapports = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getCrimeRapport();
+            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getWantedCriminals();
+            crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int j = 0;
+
         for (int i = 0; i < wantedCriminals.size(); i++) {
             wantedCriminalArea.appendText(j + ". | " + wantedCriminals.get(i).getFirstName() + " | "
-                                            + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
+                    + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
             j++;
         }
 
         for (CrimeRapport e : rapports) {
-            crimeRapportArea.setText(e.getRapport() + " | " + e.getWriter());
+            crimeRapportArea.setText(e.getRapport() + " | " + ((Person)e.getWriter()).getFirstName());
         }
 
     }
