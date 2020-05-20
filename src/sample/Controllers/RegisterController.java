@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
     private String password = null;
     private Person personToReg;
-    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+    private DbConnect dbc = DbConnect.getInstance("!)!AY!U!!Q!@b!R!`!`!T#Q!");
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();
     private ArrayList<Police> polices = new ArrayList<>();
@@ -29,11 +29,11 @@ public class RegisterController implements Initializable {
             polices.add(new Police(null, null, null, null));
             dbc.getInfo(polices);
 
-            Civilian civilian = new Civilian("a", "b", "456789123456");
+            Civilian civilian = new Civilian(null,null,null);
             civilians.add(civilian);
             dbc.getInfo(civilians);
 
-            accounts.add(new Account(civilian, "a", "b", "a"));
+            accounts.add(new Account(civilian,null,null,null));
             dbc.getInfo(accounts);
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

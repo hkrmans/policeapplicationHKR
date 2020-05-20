@@ -23,7 +23,7 @@ public class DbConnect<T>{
         return single_instance;
     }
 
-    DbConnect(String password) throws SQLException {
+   private DbConnect(String password) throws SQLException {
         password = sec.decrypter(password);
         this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host","policemanagment" ,password);
     }
