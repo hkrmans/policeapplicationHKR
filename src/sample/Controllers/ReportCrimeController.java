@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class ReportCrimeController implements Initializable {
     private Person writer;
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
     @FXML
     private TextArea reportCrimeArea;
@@ -27,7 +28,7 @@ public class ReportCrimeController implements Initializable {
         String rapport = reportCrimeArea.getText();
         try{
             CrimeRapport crimeRapport = new CrimeRapport(rapport, writer, 0);
-            DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").addInformation(crimeRapport);
+            dbc.addInformation(crimeRapport);
         }catch (Exception e){
             e.printStackTrace();
         }

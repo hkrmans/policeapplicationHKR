@@ -7,7 +7,6 @@ import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.Prisoner;
 import sample.SceneChanger;
-import sample.Sec;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,7 +14,8 @@ import java.util.ResourceBundle;
 
 public class ViewPrisonersController implements Initializable {
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
-    private Sec sec = new Sec();
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+
     @FXML
     private TextArea showPrisoner;
 
@@ -25,18 +25,25 @@ public class ViewPrisonersController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
-            prisoners.add(prisoner);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void showPrisoners(){
         for (Prisoner p : prisoners) {
             showPrisoner.appendText(p.getFirstName() + " | " + p.getLastName() + " | CN:" + p.getCivicNumber()
                     + " | ID:" + p.getPrisonerId() + " | Release Date:" + p.getReleaseDate() + "\n");
         }
+    }
+
+    private void fillPrisonerList(){
+        try {
+            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
+            prisoners.add(prisoner);
+            dbc.getInfo(prisoners);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillPrisonerList();
+        showPrisoners();
     }
 }

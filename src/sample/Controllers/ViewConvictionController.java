@@ -16,10 +16,10 @@ import java.util.ResourceBundle;
 public class ViewConvictionController implements Initializable {
 
     private ArrayList<Conviction> convictions = new ArrayList<>();
-    ArrayList<Prisoner> prisoners = new ArrayList<>();
+   private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private Person person;
-    Sec sec = new Sec();
-    private final DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+
 
     @FXML
     private TextArea convictionsArea;
@@ -113,6 +113,5 @@ public class ViewConvictionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FillList();
-
     }
 }

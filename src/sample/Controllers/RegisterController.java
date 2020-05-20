@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
     private String password = null;
     private Person personToReg;
-    private Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();

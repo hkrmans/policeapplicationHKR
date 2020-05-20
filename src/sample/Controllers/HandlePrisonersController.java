@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class HandlePrisonersController {
     private Prisoner prisoner;
     private Sec sec = new Sec();
-    private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
 
     @FXML
