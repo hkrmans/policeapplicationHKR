@@ -67,6 +67,7 @@ public class HandlePrisonersController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
 
         for (Prisoner p : prisoners) {
             if (p.getPrisonerId() == Integer.parseInt(ID.getText())) {

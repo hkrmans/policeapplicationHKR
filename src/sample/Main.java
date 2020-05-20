@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sample.Controllers.RegisterController;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -22,12 +23,8 @@ public class Main extends Application {
         primaryStage.setTitle("Police Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        Sec sec = new Sec();
-        DbConnect connect = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
-
-
     }
 
     public static void main(String[] args) {

@@ -56,6 +56,7 @@ public class LoginController {
             }catch (Exception e) {
                 e.printStackTrace();
             }
+
             boolean checkPolice = false;
 
             for (Police p : police) {
