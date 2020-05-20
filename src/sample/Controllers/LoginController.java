@@ -16,6 +16,10 @@ public class LoginController {
     @FXML
     private TextField username, password;
 
+    public static Account getLoggedInAccount() {
+        return loggedInAccount;
+    }
+
     @FXML
     private void backButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
@@ -33,7 +37,7 @@ public class LoginController {
         try {
             Account account = new Account(null, null, null, null);
             accounts.add(account);
-            DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(accounts);
+            DbConnect.getInstance(password.getText()).getInfo(accounts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,7 +64,7 @@ public class LoginController {
             try {
                 Police police = new Police(null, null, null, null);
                 polices.add(police);
-                DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(polices);
+                DbConnect.getInstance(password.getText()).getInfo(polices);
 
             }catch (Exception e) {
                 e.printStackTrace();
@@ -74,6 +78,7 @@ public class LoginController {
                     break;
                 }
             }
+
             if (checkPolice) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
             } else {

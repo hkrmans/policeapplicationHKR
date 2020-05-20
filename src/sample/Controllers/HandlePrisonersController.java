@@ -1,6 +1,7 @@
 package sample.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -17,37 +18,34 @@ import java.util.ArrayList;
 public class HandlePrisonersController {
     private Prisoner prisoner;
     private Sec sec = new Sec();
-    private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+    private ArrayList<Prisoner> prisoners = new ArrayList<>();
 
     @FXML
-    private TextField ID, firstname, lastname, CN, RD;
+    private TextField ID, firstname, lastname, RD;
     @FXML
-    private Label firstnameLabel, lastnameLabel, CNLabel, RDLabel;
-
-    @FXML
-    private void changeCN(ActionEvent event) {
-        //dbc.changePrisonerCivicNumber(CN.getText(), prisoner.getPrisonerId());
-    }
+    private Label firstnameLabel, lastnameLabel, RDLabel;
 
     @FXML
     private void changeFirstname(ActionEvent event) {
-        //dbc.changePrisonerFirstname(firstname.getText(), prisoner.getPrisonerId());
+        Prisoner p = prisoner;
+        p.setFirstName(firstname.getText());
+        dbc.updateInfo(p);
+        setLabels();
     }
 
     @FXML
     private void changeLastname(ActionEvent event) {
-        //dbc.changePrisonerLastname(lastname.getText(), prisoner.getPrisonerId());
+        Prisoner p = prisoner;
+        p.setLastName(lastname.getText());
+        dbc.updateInfo(p);
+        setLabels();
     }
 
     @FXML
     private void changeRD(ActionEvent event) {
-        Date date = null;
-        try {
-            date = Date.valueOf(RD.getText());
-            //dbc.changePrisonerReleaseDate(date, prisoner.getPrisonerId());
-        } catch (Exception ex) {
 
-        }
+        setLabels();
     }
 
 
@@ -56,21 +54,22 @@ public class HandlePrisonersController {
         if (searchForPrisoner()) {
             setLabels();
         } else {
-            System.out.println("no pris with that id");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("There is no prisoner with that id.");
+            alert.showAndWait();
         }
     }
 
     private void setLabels() {
         firstnameLabel.setText(prisoner.getFirstName());
         lastnameLabel.setText(prisoner.getLastName());
-        CNLabel.setText(prisoner.getCivicNumber());
-        RDLabel.setText(prisoner.getReleaseDate().toString());
+     //   RDLabel.setText(prisoner.getReleaseDate().toString());
     }
 
     private boolean searchForPrisoner() {
         boolean check = false;
 
-        ArrayList<Prisoner> prisoners = null;
         try {
             Prisoner prisoner = new Prisoner(null,null,null,0,null);
             prisoners.add(prisoner);

@@ -1,14 +1,8 @@
 package sample;
-
-import com.mysql.cj.xdevapi.Session;
-
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.*;
-import java.io.*;
+
 
 public class Sec{
     private static final SecureRandom rand = new SecureRandom();

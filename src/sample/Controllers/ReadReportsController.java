@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -16,10 +15,10 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class ReadReportsController implements Initializable {
-    private ArrayList<CrimeRapport> rapports;
-    private ArrayList<WantedCriminal> wantedCriminals;
+    private ArrayList<CrimeRapport> rapports = new ArrayList<>();
+    private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private int indexes = 0;
-    private Sec sec = new Sec();
 
     @FXML
     private TextField wantedCriminalTextField;
@@ -98,7 +97,7 @@ public class ReadReportsController implements Initializable {
                                 wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
                         CrimeRapport crimeRapport = new CrimeRapport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
                         Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport,0);
-                        DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).addInformation(crime);
+                        dbc.addInformation(crime);
                     }else {
                         throw new Exception();
                     }
@@ -117,33 +116,35 @@ public class ReadReportsController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        int j = 0;
+    private void fillLists(){
         try {
-            ArrayList<CrimeRapport> rapports = new ArrayList<>();
-            CrimeRapport rapport = new CrimeRapport(null,null,0);
-            rapports.add(rapport);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getInfo(rapports);
-            ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
-            WantedCriminal wantedCriminal = new WantedCriminal(null,null,null,0,0,0);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getInfo(wantedCriminals);
-            crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
+            rapports.add(new CrimeRapport(null,null,0));
+            dbc.getInfo(rapports);
+
+            wantedCriminals.add(new WantedCriminal(null,null,null,0,0,0));
+            dbc.getInfo(wantedCriminals);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void oklart(){
+        crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         for (int i = 0; i < wantedCriminals.size(); i++) {
-            wantedCriminalArea.appendText(j + ". | " + wantedCriminals.get(i).getFirstName() + " | "
+            wantedCriminalArea.appendText(i + ". | " + wantedCriminals.get(i).getFirstName() + " | "
                     + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
-            j++;
         }
 
         for (CrimeRapport e : rapports) {
             crimeRapportArea.setText(e.getRapport() + " | " + ((Person)e.getWriter()).getFirstName());
         }
-
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillLists();
+        oklart();
     }
 }
 

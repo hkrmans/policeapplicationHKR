@@ -19,6 +19,7 @@ import java.util.Date;
 public class BookMeetingController implements Initializable {
     private ArrayList<Prisoner> prisoners;
     private ArrayList<Meeting> meetings;
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
