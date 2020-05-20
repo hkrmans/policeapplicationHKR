@@ -1,11 +1,11 @@
 package sample.Models;
 
-public class CrimeRapport {
+public class CrimeReport {
     private String rapport;
     private Person writer;
     private int rapportID;
 
-    public CrimeRapport(String rapport, Person writer,int rapportID) {
+    public CrimeReport(String rapport, Person writer, int rapportID) {
         this.rapport = rapport;
         this.writer = writer;
         this.rapportID = rapportID;

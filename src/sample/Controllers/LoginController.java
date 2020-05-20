@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class LoginController {
     private static Account loggedInAccount = null;
-    private Sec sec = new Sec();
+    private Security security = new Security();
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<Police> polices = new ArrayList<>();
     @FXML
@@ -25,7 +25,7 @@ public class LoginController {
 
     @FXML
     private void backButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @FXML
@@ -47,7 +47,7 @@ public class LoginController {
         try {
             for (Account a : accounts) {
                 if (a.getUsername().equalsIgnoreCase(username.getText()) &&
-                        a.getPassword().equals(sec.hashPassword(password.getText()))) {
+                        a.getPassword().equals(security.hashPassword(password.getText()))) {
                     loggedInAccount = a;
                     check = true;
                     break;
@@ -85,7 +85,7 @@ public class LoginController {
             if (checkPolice) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
             } else {
-                SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
             }
         } else {
             System.out.println("Pass and user does not match");

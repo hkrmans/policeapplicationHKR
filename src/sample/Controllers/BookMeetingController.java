@@ -7,10 +7,8 @@ import sample.*;
 import sample.Models.Civilian;
 import sample.Models.Meeting;
 import sample.Models.Prisoner;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,10 +53,10 @@ public class BookMeetingController implements Initializable {
             }
         }
     }
-    
+
     @FXML
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
     }
     private void fillList(){
         try {

@@ -16,10 +16,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewConvictionController implements Initializable {
+public class ViewConvictionsController implements Initializable {
 
     private ArrayList<Conviction> convictions = new ArrayList<>();
-   private ArrayList<Prisoner> prisoners = new ArrayList<>();
+    private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private Person person;
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
@@ -36,12 +36,12 @@ public class ViewConvictionController implements Initializable {
     private TextField indexTextField;
 
     @FXML
-    private void goBackButtonOnAction(ActionEvent event){
+    private void goBackMenuButtonOnAction(ActionEvent event){
         try {
             if (person instanceof Police) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
             } else {
-                SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
             }
         }catch(IOException ex){
             ex.printStackTrace();
@@ -49,11 +49,6 @@ public class ViewConvictionController implements Initializable {
 
     }
 
-    @FXML
-    void LogOutViewConvictionButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
-
-    }
 
     @FXML
     void viewMoreInfoButtonOnAction(ActionEvent event) {

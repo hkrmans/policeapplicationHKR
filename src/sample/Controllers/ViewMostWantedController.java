@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
+import sample.Models.Police;
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class WantedController implements Initializable {
+public class ViewMostWantedController implements Initializable {
     private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
@@ -22,7 +23,11 @@ public class WantedController implements Initializable {
 
     @FXML
     void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        if(LoginController.getLoggedInAccount().getOwner() instanceof Police) {
+            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        } else {
+            SceneChanger.changeScene(event,"fxmlFiles/CivilianMenu.fxml");
+        }
     }
 
     private void fillWantedList(){
