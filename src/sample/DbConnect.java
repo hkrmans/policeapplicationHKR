@@ -100,7 +100,7 @@ public class DbConnect<T>{
         }
     }
 
-    public <T> ArrayList<T> getInfo(ArrayList<T> list){
+    public void getInfo(ArrayList<T> list){
         try {
             Statement stmt = connection.createStatement();
             stmt.executeQuery("use policemanagment");
@@ -171,6 +171,5 @@ public class DbConnect<T>{
             e.printStackTrace();
         }
         list.remove(0);
-        return list;
     }
 }

@@ -74,7 +74,7 @@ public class HandlePrisonersController {
         try {
             Prisoner prisoner = new Prisoner(null,null,null,0,null);
             prisoners.add(prisoner);
-            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
         } catch (Exception e) {
             e.printStackTrace();
         }

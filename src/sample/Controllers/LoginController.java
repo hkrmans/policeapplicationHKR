@@ -56,7 +56,8 @@ public class LoginController {
                 Police police = new Police(null, null, null, null);
                 polices.add(police);
                 DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(polices);
-            } catch (Exception e) {
+
+            }catch (Exception e) {
                 e.printStackTrace();
             }
 

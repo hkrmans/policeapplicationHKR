@@ -28,7 +28,7 @@ public class RegisterController implements Initializable {
 
     private void fillLists() {
         try {
-            polices.add(new Police(null, null, null, null));
+            polices.add(new Police(null,null,null,null));
             dbc.getInfo(polices);
 
             Civilian civilian = new Civilian("a", "b", "456789123456");
@@ -37,7 +37,7 @@ public class RegisterController implements Initializable {
 
             accounts.add(new Account(civilian, "a", "b", "a"));
             dbc.getInfo(accounts);
-        } catch (Exception ex) {
+        }catch(Exception ex){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("This is the first rapport");
