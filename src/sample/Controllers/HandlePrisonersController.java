@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class HandlePrisonersController {
     private Prisoner prisoner;
-    private Sec sec = new Sec();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
 
@@ -67,16 +66,19 @@ public class HandlePrisonersController {
      //   RDLabel.setText(prisoner.getReleaseDate().toString());
     }
 
-    private boolean searchForPrisoner() {
-        boolean check = false;
-
+    private void fillPrisonerList(){
         try {
             Prisoner prisoner = new Prisoner(null,null,null,0,null);
             prisoners.add(prisoner);
-            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
+            dbc.getInfo(prisoners);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private boolean searchForPrisoner() {
+        fillPrisonerList();
+        boolean check = false;
+
         for (Prisoner p : prisoners) {
             if (p.getPrisonerId() == Integer.parseInt(ID.getText())) {
                 prisoner = p;
@@ -89,6 +91,5 @@ public class HandlePrisonersController {
     @FXML
     private void GoBackHandlePrisonerButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-
     }
 }
