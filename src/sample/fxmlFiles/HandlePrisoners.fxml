@@ -24,17 +24,14 @@
       <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#GoBackHandlePrisonerButtonOnAction" text="Go back" />
       <TextField fx:id="ID" layoutX="383.0" layoutY="47.0" prefHeight="26.0" prefWidth="90.0" />
       <Text fill="WHITE" layoutX="332.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the prisoner you want to handle" />
-      <Label fx:id="firstnameLabel" layoutX="20.0" layoutY="107.0" prefHeight="18.0" prefWidth="72.0" text="Label" />
-      <TextField fx:id="firstname" layoutX="183.0" layoutY="104.0" />
-      <TextField fx:id="lastname" layoutX="183.0" layoutY="164.0" />
-      <TextField fx:id="CN" layoutX="183.0" layoutY="223.0" />
+      <Label fx:id="firstnameLabel" layoutX="20.0" layoutY="120.0" prefHeight="18.0" prefWidth="72.0" text="Label" />
+      <TextField fx:id="firstname" layoutX="183.0" layoutY="116.0" />
+      <TextField fx:id="lastname" layoutX="183.0" layoutY="200.0" />
       <TextField fx:id="RD" layoutX="183.0" layoutY="276.0" />
-      <Label fx:id="lastnameLabel" layoutX="20.0" layoutY="168.0" prefHeight="18.0" prefWidth="90.0" text="Label" />
-      <Label fx:id="CNLabel" layoutX="20.0" layoutY="227.0" prefHeight="18.0" prefWidth="90.0" text="Label" />
+      <Label fx:id="lastnameLabel" layoutX="17.0" layoutY="203.0" prefHeight="18.0" prefWidth="90.0" text="Label" />
       <Label fx:id="RDLabel" layoutX="26.0" layoutY="280.0" prefHeight="18.0" prefWidth="72.0" text="Label" />
-      <Button layoutX="383.0" layoutY="104.0" mnemonicParsing="false" onAction="#changeFirstname" prefHeight="26.0" prefWidth="131.0" text="Change firstname" />
-      <Button layoutX="383.0" layoutY="164.0" mnemonicParsing="false" onAction="#changeLastname" prefHeight="26.0" prefWidth="131.0" text="Change lastname" />
-      <Button layoutX="383.0" layoutY="223.0" mnemonicParsing="false" onAction="#changeCN" prefHeight="26.0" prefWidth="131.0" text="Change civicnumber" />
+      <Button layoutX="383.0" layoutY="116.0" mnemonicParsing="false" onAction="#changeFirstname" prefHeight="26.0" prefWidth="131.0" text="Change firstname" />
+      <Button layoutX="383.0" layoutY="199.0" mnemonicParsing="false" onAction="#changeLastname" prefHeight="26.0" prefWidth="131.0" text="Change lastname" />
       <Button layoutX="383.0" layoutY="277.0" mnemonicParsing="false" onAction="#changeRD" prefHeight="26.0" prefWidth="131.0" text="Change releasedate" />
       <Button layoutX="514.0" layoutY="48.0" mnemonicParsing="false" onAction="#enterID" text="Enter" />
    </children>

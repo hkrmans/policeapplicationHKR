@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
-
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class RegisterController implements Initializable {
     private String password = null;
     private Person personToReg;
     private Sec sec = new Sec();
-    private DbConnect dbc = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$"));
+    private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();
     private ArrayList<Police> polices = new ArrayList<>();
@@ -156,7 +155,7 @@ public class RegisterController implements Initializable {
                 dbc.addInformation(a);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmed");
-                alert.setContentText("You are now registered and your password will be sent to your email");
+                alert.setContentText("Your password is : " + password);
                 alert.showAndWait();
                 password = null;
             } catch (Exception e) {
