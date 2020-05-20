@@ -7,12 +7,18 @@ public class Crime {
     private String typeOfCrime;
     private Person suspect;
     private CrimeRapport rapport;
+    private int CrimeID;
 
-    public Crime(java.sql.Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport) {
+    public Crime(java.sql.Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport, int CrimeID) {
         this.dateOfCrime = dateOfCrime;
         this.typeOfCrime = typeOfCrime;
         this.suspect = suspect;
         this.rapport = rapport;
+        this.CrimeID = CrimeID;
+    }
+
+    public int getCrimeID() {
+        return CrimeID;
     }
 
     public java.sql.Date getDateOfCrime() {

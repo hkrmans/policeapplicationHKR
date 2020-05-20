@@ -29,17 +29,23 @@ public class RegisterController implements Initializable {
 
     {
         try {
-            polices = dbc.getPolice();
+            Police police = new Police(null,null,null,null);
+            polices.add(police);
+            polices = dbc.getInfo(polices);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Civilian civilian = new Civilian(null,null,null);
+        try {
+            civilians.add(civilian);
+            civilians = dbc.getInfo(civilians);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            civilians = dbc.getCivilians();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            accounts = dbc.getAccount();
+            Account account = new Account(civilian,null,null,null);
+            accounts.add(account);
+            accounts = dbc.getInfo(accounts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,7 +154,7 @@ public class RegisterController implements Initializable {
     private void registerButtonOnAction(ActionEvent event) {
         Account a = new Account(personToReg, usernameTextfield.getText(), "Jb84raA1??10", emailTextfield.getText());
         try {
-            dbc.addAccount(a);
+            dbc.addInformation(a);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,11 +166,7 @@ public class RegisterController implements Initializable {
             System.out.println(a.getUsername());
             System.out.println(a.getEmail());
             System.out.println(a.getPassword());
-            try {
-                DbConnect.addAccount(a);
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+ //           DbConnect.addInformation(a);
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmed");

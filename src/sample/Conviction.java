@@ -7,6 +7,7 @@ public class Conviction {
     private java.sql.Date conviction;
     private String sentence;
     private Prisoner prisoner;
+    private int convictionID;
 
     public java.sql.Date getRelease() {
         return release;
@@ -24,10 +25,15 @@ public class Conviction {
         return prisoner;
     }
 
-    public Conviction(Date release, Date conviction, String sentence, Prisoner prisoner) {
+    public int getConvictionID() {
+        return convictionID;
+    }
+
+    public Conviction(Date release, Date conviction, String sentence, Prisoner prisoner, int convictionID) {
         this.release = release;
         this.conviction = conviction;
         this.sentence = sentence;
         this.prisoner = prisoner;
+        this.convictionID = convictionID;
     }
 }

@@ -27,7 +27,7 @@ public class ReportCrimeController implements Initializable {
         String rapport = reportCrimeArea.getText();
         try{
             CrimeRapport crimeRapport = new CrimeRapport(rapport, writer, 0);
-            DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").addCrimeRapport(crimeRapport);
+            DbConnect.getInstance("!)!AY!U!!Q!@b!S\"a\"d%V%U%").addInformation(crimeRapport);
         }catch (Exception e){
             e.printStackTrace();
         }

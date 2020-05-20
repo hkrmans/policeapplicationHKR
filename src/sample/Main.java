@@ -25,6 +25,18 @@ public class Main extends Application {
         primaryStage.show();
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
+
+        Sec sec = new Sec();
+        DbConnect connect = new DbConnect(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!"));
+
+        Civilian civilian = new Civilian(null,null,null);
+        ArrayList<Civilian> civilians = new ArrayList<>();
+        civilians.add(civilian);
+
+
+
+
+
     }
 
     public static void main(String[] args) {

@@ -28,7 +28,10 @@ public class WantedController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Sec sec = new Sec();
-            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getWantedCriminals();
+            ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
+            WantedCriminal wantedCriminal = new WantedCriminal(null,null,null,0,0,0);
+            wantedCriminals.add(wantedCriminal);
+            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(wantedCriminals);
         } catch (Exception e) {
             e.printStackTrace();
         }

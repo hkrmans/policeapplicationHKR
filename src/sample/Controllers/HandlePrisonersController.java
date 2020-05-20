@@ -26,17 +26,17 @@ public class HandlePrisonersController {
 
     @FXML
     private void changeCN(ActionEvent event) {
-        dbc.changePrisonerCivicNumber(CN.getText(), prisoner.getPrisonerId());
+        //dbc.changePrisonerCivicNumber(CN.getText(), prisoner.getPrisonerId());
     }
 
     @FXML
     private void changeFirstname(ActionEvent event) {
-        dbc.changePrisonerFirstname(firstname.getText(), prisoner.getPrisonerId());
+        //dbc.changePrisonerFirstname(firstname.getText(), prisoner.getPrisonerId());
     }
 
     @FXML
     private void changeLastname(ActionEvent event) {
-        dbc.changePrisonerLastname(lastname.getText(), prisoner.getPrisonerId());
+        //dbc.changePrisonerLastname(lastname.getText(), prisoner.getPrisonerId());
     }
 
     @FXML
@@ -44,7 +44,7 @@ public class HandlePrisonersController {
         Date date = null;
         try {
             date = Date.valueOf(RD.getText());
-            dbc.changePrisonerReleaseDate(date, prisoner.getPrisonerId());
+            //dbc.changePrisonerReleaseDate(date, prisoner.getPrisonerId());
         } catch (Exception ex) {
 
         }
@@ -72,7 +72,9 @@ public class HandlePrisonersController {
 
         ArrayList<Prisoner> prisoners = null;
         try {
-            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
+            Prisoner prisoner = new Prisoner(null,null,null,0,null);
+            prisoners.add(prisoner);
+            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
         } catch (Exception e) {
             e.printStackTrace();
         }

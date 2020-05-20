@@ -131,8 +131,14 @@ public class ViewConvictionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Sec sec = new Sec();
-            convictions =  DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getConviction();
-            prisoners = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getPrisoner();
+            ArrayList<Conviction> convictions = new ArrayList<>();
+            Conviction conviction = new Conviction(null,null,null,null,0);
+            convictions.add(conviction);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(convictions);
+            ArrayList<Prisoner> prisoners = new ArrayList<>();
+            Prisoner prisoner = new Prisoner(null,null,null,0, null);
+            prisoners.add(prisoner);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!R!`!`!T#T$")).getInfo(prisoners);
         }catch (Exception ex){
             ex.printStackTrace();
         }

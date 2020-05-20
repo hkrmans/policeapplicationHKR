@@ -27,7 +27,9 @@ public class LoginController {
         boolean check = false;
         ArrayList<Account> accounts = null;
         try {
-            accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getAccount();
+            Account account = new Account(null,null,null,null);
+            accounts.add(account);
+            accounts = DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(accounts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,17 +51,19 @@ public class LoginController {
 
     @FXML
     private void LogInButtonOnAction(ActionEvent event) throws IOException {
-        ArrayList<Police> police = null;
+        ArrayList<Police> polices = null;
         if (checkAccount()) {
             try {
-                police = DbConnect.getInstance(sec.decrypter(password.getText())).getPolice();
+                Police police = new Police(null,null,null,null);
+                polices.add(police);
+                polices = DbConnect.getInstance(sec.decrypter(password.getText())).getInfo(polices);
             }catch (Exception e) {
                 e.printStackTrace();
             }
 
             boolean checkPolice = false;
 
-            for (Police p : police) {
+            for (Police p : polices) {
                 if (p.getCivicNumber().equals(loggedInAccount.getOwner().getCivicNumber())) {
                     checkPolice = true;
                 }

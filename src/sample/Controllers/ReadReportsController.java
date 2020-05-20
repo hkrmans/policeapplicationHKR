@@ -97,8 +97,8 @@ public class ReadReportsController implements Initializable {
                         WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
                                 wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
                         CrimeRapport crimeRapport = new CrimeRapport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
-                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport);
-                        DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).addCrime(crime);
+                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport,0);
+                        DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).addInformation(crime);
                     }else {
                         throw new Exception();
                     }
@@ -121,8 +121,13 @@ public class ReadReportsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int j = 0;
         try {
-            rapports = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getCrimeRapport();
-            wantedCriminals = DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getWantedCriminals();
+            ArrayList<CrimeRapport> rapports = new ArrayList<>();
+            CrimeRapport rapport = new CrimeRapport(null,null,0);
+            rapports.add(rapport);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getInfo(rapports);
+            ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
+            WantedCriminal wantedCriminal = new WantedCriminal(null,null,null,0,0,0);
+            DbConnect.getInstance(sec.decrypter("!)!AY!U!!Q!@b!S\"b#`!R!Q!")).getInfo(wantedCriminals);
             crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         } catch (Exception e) {
