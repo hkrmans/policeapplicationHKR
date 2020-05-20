@@ -1,6 +1,4 @@
-package sample;
-
-import java.sql.Date;
+package sample.Models;
 
 public class Crime {
     private java.sql.Date dateOfCrime;

@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.SceneChanger;
-import sample.WantedCriminal;
+import sample.Models.WantedCriminal;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,10 +23,9 @@ public class WantedController implements Initializable {
     @FXML
     void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void fillWantedList(){
         try {
             WantedCriminal wantedCriminal = new WantedCriminal(null, null, null, 0, 0, 0);
             wantedCriminals.add(wantedCriminal);
@@ -34,9 +33,16 @@ public class WantedController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showWanteds(){
         for (WantedCriminal wc : wantedCriminals) {
             showWanteds.appendText(wc.getFirstName() + " | " + wc.getLastName() + " | CN:" + wc.getCivicNumber()
                     + " | Bounty:" + wc.getBounty() + " | Ranking:" + wc.getRanking() + "\n");
         }
+    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillWantedList();
+        showWanteds();
     }
 }

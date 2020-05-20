@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
-import sample.Prisoner;
+import sample.Models.Prisoner;
 import sample.SceneChanger;
 import java.io.IOException;
 import java.net.URL;

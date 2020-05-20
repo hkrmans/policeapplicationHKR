@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import sample.*;
+import sample.Models.Civilian;
+import sample.Models.Meeting;
+import sample.Models.Prisoner;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

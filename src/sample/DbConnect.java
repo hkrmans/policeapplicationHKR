@@ -1,10 +1,9 @@
 package sample;
 
-import com.mysql.cj.result.SqlDateValueFactory;
+import sample.Models.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 public class DbConnect<T>{
@@ -23,7 +22,7 @@ public class DbConnect<T>{
         return single_instance;
     }
 
-    DbConnect(String password) throws SQLException {
+   private DbConnect(String password) throws SQLException {
         password = sec.decrypter(password);
         this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host","policemanagment" ,password);
     }

@@ -1,4 +1,4 @@
-package sample;
+package sample.Models;
 
 public abstract class Person {
     private String firstName;

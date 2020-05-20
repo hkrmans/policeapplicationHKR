@@ -5,13 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.*;
+import sample.Models.CrimeRapport;
+import sample.Models.Person;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReportCrimeController implements Initializable {
-    private Person writer;
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
     @FXML
@@ -27,7 +28,8 @@ public class ReportCrimeController implements Initializable {
     void UploadCrimeButtonOnAction(ActionEvent event) {
         String rapport = reportCrimeArea.getText();
         try{
-            CrimeRapport crimeRapport = new CrimeRapport(rapport, writer, 0);
+            Person writer = LoginController.getLoggedInAccount().getOwner();
+            CrimeRapport crimeRapport = new CrimeRapport(rapport,writer, 0);
             dbc.addInformation(crimeRapport);
         }catch (Exception e){
             e.printStackTrace();
