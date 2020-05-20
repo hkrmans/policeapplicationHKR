@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.SceneChanger;
-import sample.WantedCriminal;
+import sample.Models.WantedCriminal;
 
 import java.io.IOException;
 import java.net.URL;

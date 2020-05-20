@@ -6,13 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import sample.DbConnect;
-import sample.Prisoner;
+import sample.Models.Prisoner;
 import sample.SceneChanger;
-import sample.Sec;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class HandlePrisonersController {

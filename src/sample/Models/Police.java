@@ -1,4 +1,6 @@
-package sample;
+package sample.Models;
+
+import sample.Models.Person;
 
 public class Police extends Person {
     private String badgeId;

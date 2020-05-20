@@ -1,4 +1,6 @@
-package sample;
+package sample.Models;
+
+import sample.Models.Person;
 
 import java.util.Date;
 

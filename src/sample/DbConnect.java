@@ -1,10 +1,9 @@
 package sample;
 
-import com.mysql.cj.result.SqlDateValueFactory;
+import sample.Models.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 public class DbConnect<T>{

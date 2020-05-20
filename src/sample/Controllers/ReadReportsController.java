@@ -7,6 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
+import sample.Models.Crime;
+import sample.Models.CrimeRapport;
+import sample.Models.Person;
+import sample.Models.WantedCriminal;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

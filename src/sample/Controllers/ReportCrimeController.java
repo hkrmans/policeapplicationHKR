@@ -1,11 +1,12 @@
 package sample.Controllers;
 
-import com.mysql.cj.log.Log;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.*;
+import sample.Models.CrimeRapport;
+import sample.Models.Person;
 
 import java.io.IOException;
 import java.net.URL;

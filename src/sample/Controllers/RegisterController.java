@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.*;
+import sample.Models.Account;
+import sample.Models.Civilian;
+import sample.Models.Person;
+import sample.Models.Police;
+
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;

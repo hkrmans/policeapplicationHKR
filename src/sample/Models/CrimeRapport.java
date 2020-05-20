@@ -1,4 +1,4 @@
-package sample;
+package sample.Models;
 
 public class CrimeRapport {
     private String rapport;

@@ -1,6 +1,4 @@
-package sample;
-
-import java.util.Date;
+package sample.Models;
 
 public class Meeting {
     private Prisoner prisoner;
