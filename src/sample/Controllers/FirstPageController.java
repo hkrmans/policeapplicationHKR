@@ -6,16 +6,16 @@ import javafx.scene.control.Alert;
 import sample.SceneChanger;
 import java.io.IOException;
 
-public class Controller {
+public class FirstPageController {
 
     @FXML
     private void loginButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sampleLogin.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/Login.fxml");
     }
 
     @FXML
     private void registerButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/Register.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/SignUp.fxml");
     }
 
     @FXML

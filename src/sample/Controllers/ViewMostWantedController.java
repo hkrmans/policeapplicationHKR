@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.SceneChanger;
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class WantedController implements Initializable {
+public class ViewMostWantedController implements Initializable {
     private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
@@ -21,8 +22,21 @@ public class WantedController implements Initializable {
     private TextArea showWanteds;
 
     @FXML
-    void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+    void GoBackMostWantedButtonOnAction(ActionEvent event){
+        try {
+            if (LoginController.isPolice()) {
+                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+            } else {
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+            }
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
+        }
+
     }
 
     private void fillWantedList(){

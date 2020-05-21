@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.Models.Prisoner;
@@ -20,9 +21,20 @@ public class ViewPrisonersController implements Initializable {
     private TextArea showPrisoner;
 
     @FXML
-    void GoBackViewPrisonersButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-
+    void GoBackViewPrisonersButtonOnAction(ActionEvent event){
+        try {
+            if (LoginController.isPolice()) {
+                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+            } else {
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+            }
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
+        }
     }
 
     private void showPrisoners(){

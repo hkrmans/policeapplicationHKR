@@ -9,7 +9,7 @@ import java.util.*;
 public class DbConnect<T>{
     private static DbConnect single_instance = null;
     private static Connection connection;
-    private static Sec sec = new Sec();
+    private static Security security = new Security();
 
     public static DbConnect getInstance(String password){
         if (single_instance == null){
@@ -23,7 +23,7 @@ public class DbConnect<T>{
     }
 
    private DbConnect(String password) throws SQLException {
-        password = sec.decrypter(password);
+        password = security.decrypter(password);
         this.connection = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host","policemanagment" ,password);
     }
 
@@ -85,7 +85,7 @@ public class DbConnect<T>{
                     stmt.executeUpdate("INSERT INTO prisoners(CivicNumber) values('" +((Prisoner) info).getCivicNumber()+ "')");
                 }
             }else if(info instanceof Account){
-                stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+((Account) info).getUsername()+"','"+(((Account) info).getOwner().getCivicNumber()+"','"+sec.hashPassword(((Account) info).getPassword())+"','"+((Account) info).getEmail()+"')"));
+                stmt.executeUpdate("INSERT INTO account(username,CivicNumber,password,email) values('"+((Account) info).getUsername()+"','"+(((Account) info).getOwner().getCivicNumber()+"','"+ security.hashPassword(((Account) info).getPassword())+"','"+((Account) info).getEmail()+"')"));
             }else if(info instanceof Conviction){
                 stmt.executeUpdate("INSERT INTO convictions(sentence,convictionDate,realeseDate,PrisonerID) values('" + ((Conviction) info).getSentence() + "','" + ((Conviction) info).getConviction() + "','" + ((Conviction) info).getRelease() + "','" +(((Conviction) info).getPrisoner().getPrisonerId())+ "')");
             }else if(info instanceof Meeting){

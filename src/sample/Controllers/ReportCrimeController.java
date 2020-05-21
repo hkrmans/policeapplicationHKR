@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.*;
 import sample.Models.CrimeRapport;
@@ -20,7 +21,19 @@ public class ReportCrimeController implements Initializable {
 
     @FXML
     void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
+        try {
+            if (LoginController.isPolice()) {
+                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+            } else {
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+            }
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
+        }
 
     }
 

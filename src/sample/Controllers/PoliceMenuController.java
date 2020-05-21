@@ -11,7 +11,7 @@ public class PoliceMenuController {
 
     @FXML
     void LogOutAsPoliceButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @FXML

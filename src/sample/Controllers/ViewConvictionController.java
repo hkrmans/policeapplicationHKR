@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
@@ -11,6 +12,7 @@ import sample.Models.Person;
 import sample.Models.Police;
 import sample.Models.Prisoner;
 import sample.SceneChanger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 public class ViewConvictionController implements Initializable {
 
     private ArrayList<Conviction> convictions = new ArrayList<>();
-   private ArrayList<Prisoner> prisoners = new ArrayList<>();
+    private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private Person person;
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
@@ -36,22 +38,26 @@ public class ViewConvictionController implements Initializable {
     private TextField indexTextField;
 
     @FXML
-    private void goBackButtonOnAction(ActionEvent event){
+    private void goBackButtonOnAction(ActionEvent event) {
         try {
-            if (person instanceof Police) {
+            if (LoginController.isPolice()) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
             } else {
-                SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
             }
-        }catch(IOException ex){
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
         }
 
     }
 
     @FXML
     void LogOutViewConvictionButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
 
     }
 
@@ -72,19 +78,19 @@ public class ViewConvictionController implements Initializable {
         String searchByFirstName = nameTextField.getText();
         String searchBySsn = ssnTextField.getText();
         String searchByLastName = releaseTextField.getText();
-        Prisoner prisoner = new Prisoner(null,null,null,0,null);
+        Prisoner prisoner = new Prisoner(null, null, null, 0, null);
         prisoners.add(prisoner);
 
-       for (int i = 0; i < prisoners.size(); i = i + 1) {
+        for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByFirstName.equals(prisoners.get(i).getFirstName())) {
-               convictionsArea.clear();
-               convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
+                convictionsArea.clear();
+                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
 
             }
         }
 
         for (int i = 0; i < prisoners.size(); i = i + 1) {
-            if (searchBySsn.equals(prisoners.get(i).getCivicNumber())){
+            if (searchBySsn.equals(prisoners.get(i).getCivicNumber())) {
                 convictionsArea.clear();
                 convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
             }
@@ -99,15 +105,15 @@ public class ViewConvictionController implements Initializable {
         }
     }
 
-    private void FillList(){
+    private void FillList() {
         try {
-            Conviction conviction = new Conviction(null,null,null,null,0);
+            Conviction conviction = new Conviction(null, null, null, null, 0);
             convictions.add(conviction);
             dbc.getInfo(convictions);
-            Prisoner prisoner = new Prisoner(null,null,null,0, null);
+            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 

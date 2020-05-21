@@ -53,7 +53,7 @@ public class BookMeetingController implements Initializable {
     
     @FXML
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/StandardMenu.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
     }
     private void fillList(){
         try {
