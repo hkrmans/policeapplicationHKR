@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
+import sample.Models.Person;
+import sample.Models.Sorter;
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class WantedController implements Initializable {

@@ -1,6 +1,6 @@
 package sample.Models;
 
-public class Meeting {
+public class Meeting implements Comparable<Meeting>{
     private Prisoner prisoner;
     private Person visitor;
     private java.sql.Date date;
@@ -32,4 +32,10 @@ public class Meeting {
     public void setPrisoner(Prisoner prisoner){
         this.prisoner = prisoner;
     }
+
+    @Override
+    public int compareTo(Meeting o) {
+        return (this.getPrisoner().getPrisonerId() < o.getPrisoner().getPrisonerId() ? 0:1);
+    }
+
 }

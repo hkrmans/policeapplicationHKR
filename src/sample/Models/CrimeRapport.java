@@ -1,6 +1,6 @@
 package sample.Models;
 
-public class CrimeRapport {
+public class CrimeRapport implements Comparable<CrimeRapport>{
     private String rapport;
     private Person writer;
     private int rapportID;
@@ -22,5 +22,10 @@ public class CrimeRapport {
 
     public int getRapportID(){
         return rapportID;
+    }
+
+    @Override
+    public int compareTo(CrimeRapport o) {
+        return (this.getWriter().getCivicNumber()) == o.getWriter().getCivicNumber() ? 0:1;
     }
 }

@@ -142,9 +142,6 @@ public class ReadReportsController implements Initializable {
                     + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
         }
 
-        for (CrimeRapport e : rapports) {
-            crimeRapportArea.setText(e.getRapport() + " | " + ((Person)e.getWriter()).getFirstName());
-        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
