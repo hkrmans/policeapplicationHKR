@@ -5,8 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.*;
-import sample.Models.CrimeRapport;
+import sample.Models.CrimeReport;
 import sample.Models.Person;
+import sample.Models.Police;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,9 +20,12 @@ public class ReportCrimeController implements Initializable {
     private TextArea reportCrimeArea;
 
     @FXML
-    void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
-
+    void ReportCrimeMenuButtonOnAction(ActionEvent event) throws IOException {
+        if(LoginController.getLoggedInAccount().getOwner() instanceof Police) {
+            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        } else {
+            SceneChanger.changeScene(event,"fxmlFiles/CivilianMenu.fxml");
+        }
     }
 
     @FXML
@@ -29,8 +33,8 @@ public class ReportCrimeController implements Initializable {
         String rapport = reportCrimeArea.getText();
         try{
             Person writer = LoginController.getLoggedInAccount().getOwner();
-            CrimeRapport crimeRapport = new CrimeRapport(rapport,writer, 0);
-            dbc.addInformation(crimeRapport);
+            CrimeReport crimeReport = new CrimeReport(rapport,writer, 0);
+            dbc.addInformation(crimeReport);
         }catch (Exception e){
             e.printStackTrace();
         }

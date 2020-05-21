@@ -6,7 +6,7 @@ import java.security.*;
 import java.util.*;
 
 
-public class Sec{
+public class Security {
     private static final SecureRandom rand = new SecureRandom();
 
     public void checkMysql(String input){

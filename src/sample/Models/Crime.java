@@ -4,10 +4,10 @@ public class Crime implements Comparable<Crime>{
     private java.sql.Date dateOfCrime;
     private String typeOfCrime;
     private Person suspect;
-    private CrimeRapport rapport;
+    private CrimeReport rapport;
     private int CrimeID;
 
-    public Crime(java.sql.Date dateOfCrime, String typeOfCrime, Person suspect, CrimeRapport rapport, int CrimeID) {
+    public Crime(java.sql.Date dateOfCrime, String typeOfCrime, Person suspect, CrimeReport rapport, int CrimeID) {
         this.dateOfCrime = dateOfCrime;
         this.typeOfCrime = typeOfCrime;
         this.suspect = suspect;
@@ -31,7 +31,7 @@ public class Crime implements Comparable<Crime>{
         return suspect;
     }
 
-    public CrimeRapport getRapport() {
+    public CrimeReport getRapport() {
         return rapport;
     }
 

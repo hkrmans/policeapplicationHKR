@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.WantedController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ViewMostWantedController">
    <children>
       <ImageView fitHeight="472.0" fitWidth="695.0" layoutX="-10.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,6 +21,6 @@
          </font>
       </Text>
       <TextArea fx:id="showWanteds" layoutX="22.0" layoutY="105.0" opacity="0.91" prefHeight="238.0" prefWidth="556.0" />
-      <Button layoutX="23.0" layoutY="360.0" mnemonicParsing="false" onAction="#GoBackMostWantedButtonOnAction" prefHeight="18.0" prefWidth="174.0" text="Go back" />
+      <Button layoutX="23.0" layoutY="360.0" mnemonicParsing="false" onAction="#GoBackMostWantedButtonOnAction" prefHeight="18.0" prefWidth="174.0" text="Menu" />
    </children>
 </AnchorPane>

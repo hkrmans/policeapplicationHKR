@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
+import sample.Models.Police;
 import sample.Models.Prisoner;
 import sample.SceneChanger;
 import java.io.IOException;
@@ -21,7 +22,11 @@ public class ViewPrisonersController implements Initializable {
 
     @FXML
     void GoBackViewPrisonersButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        if(LoginController.getLoggedInAccount().getOwner() instanceof Police) {
+            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        } else {
+            SceneChanger.changeScene(event,"fxmlFiles/CivilianMenu.fxml");
+        }
 
     }
 

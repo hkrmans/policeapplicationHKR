@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class RegisterController implements Initializable {
+public class SignUpController implements Initializable {
     private String password = null;
     private Person personToReg;
     private DbConnect dbc = DbConnect.getInstance("!)!AY!U!!Q!@b!R!`!`!T#Q!");
@@ -186,7 +186,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void backButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/sample.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @Override
