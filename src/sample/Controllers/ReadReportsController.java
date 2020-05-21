@@ -45,6 +45,10 @@ public class ReadReportsController implements Initializable {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
+    @FXML
+    void addWantedCriminalButtonOnAction(ActionEvent event) throws IOException{
+        SceneChanger.changeScene(event, "fxmlFiles/AddWantedCriminal.fxml");
+    }
 
     @FXML
     void ReportBackButtonOnAction(ActionEvent event) {

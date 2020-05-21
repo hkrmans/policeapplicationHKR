@@ -28,7 +28,7 @@ public class Sorter {
         Collections.sort(crimes);
     }
 
-    public void raportSorter(ArrayList<CrimeRapport> crimeRapports){
+    public void raportSorter(ArrayList<CrimeReport> crimeRapports){
         Collections.sort(crimeRapports);
     }
 
