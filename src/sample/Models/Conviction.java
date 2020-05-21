@@ -2,7 +2,7 @@ package sample.Models;
 
 import java.sql.Date;
 
-public class Conviction {
+public class Conviction implements Comparable<Conviction>{
     private java.sql.Date release;
     private java.sql.Date conviction;
     private String sentence;
@@ -35,5 +35,10 @@ public class Conviction {
         this.sentence = sentence;
         this.prisoner = prisoner;
         this.convictionID = convictionID;
+    }
+
+    @Override
+    public int compareTo(Conviction o) {
+        return (this.getPrisoner().getPrisonerId() < o.getPrisoner().getPrisonerId() ? 0:1);
     }
 }

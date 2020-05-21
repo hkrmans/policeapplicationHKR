@@ -22,8 +22,10 @@
       <Button layoutX="342.0" layoutY="179.0" mnemonicParsing="false" onAction="#HandlePrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Handle prisoners" />
       <Button layoutX="77.0" layoutY="179.0" mnemonicParsing="false" onAction="#RegisterCrimeSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read and register reports" />
       <Button layoutX="341.0" layoutY="117.0" mnemonicParsing="false" onAction="#ViewPrisonerSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View prisoners" />
-      <Button layoutX="77.0" layoutY="117.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report crime" />
+      <Button layoutX="77.0" layoutY="117.0" mnemonicParsing="false" onAction="#reportSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Report a crime" />
       <Button layoutX="77.0" layoutY="233.0" mnemonicParsing="false" onAction="#ViewMostWantedSceneButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="View most wanted" />
       <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#LogOutAsPoliceButtonOnAction" text="Logout" />
+      <Button layoutX="77.0" layoutY="289.0" mnemonicParsing="false" onAction="#AddPrisonerButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Add prisoner" />
+      <Button layoutX="344.0" layoutY="290.0" mnemonicParsing="false" onAction="#ReadRegisteredCrimesButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read registered crimes" />
    </children>
 </AnchorPane>

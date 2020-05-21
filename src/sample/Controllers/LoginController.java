@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Account;
 import sample.Models.Police;
+import sample.Models.Sorter;
+import sample.Models.WantedCriminal;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -74,7 +76,6 @@ public class LoginController {
                 Police police = new Police(null, null, null, null);
                 polices.add(police);
                 DbConnect.getInstance(password.getText()).getInfo(polices);
-
             }catch (Exception e) {
                 e.printStackTrace();
             }

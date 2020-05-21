@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewConvictionController implements Initializable {
+public class ViewConvictionsController implements Initializable {
 
     private ArrayList<Conviction> convictions = new ArrayList<>();
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ViewConvictionController implements Initializable {
     private TextField indexTextField;
 
     @FXML
-    private void goBackButtonOnAction(ActionEvent event) {
+    private void goBackMenuButtonOnAction(ActionEvent event) {
         try {
             if (LoginController.isPolice()) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
@@ -52,13 +52,6 @@ public class ViewConvictionController implements Initializable {
             alert.setContentText("Failed to change scene!");
             alert.showAndWait();
         }
-
-    }
-
-    @FXML
-    void LogOutViewConvictionButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
-
     }
 
     @FXML

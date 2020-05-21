@@ -6,8 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.*;
-import sample.Models.CrimeRapport;
+import sample.Models.CrimeReport;
 import sample.Models.Person;
+import sample.Models.Police;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +21,7 @@ public class ReportCrimeController implements Initializable {
     private TextArea reportCrimeArea;
 
     @FXML
-    void ReportCrimeLogOutButtonOnAction(ActionEvent event) throws IOException {
+    void ReportCrimeMenuButtonOnAction(ActionEvent event) throws IOException {
         try {
             if (LoginController.isPolice()) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
@@ -34,17 +35,16 @@ public class ReportCrimeController implements Initializable {
             alert.setContentText("Failed to change scene!");
             alert.showAndWait();
         }
-
     }
 
     @FXML
     void UploadCrimeButtonOnAction(ActionEvent event) {
         String rapport = reportCrimeArea.getText();
-        try{
+        try {
             Person writer = LoginController.getLoggedInAccount().getOwner();
-            CrimeRapport crimeRapport = new CrimeRapport(rapport,writer, 0);
-            dbc.addInformation(crimeRapport);
-        }catch (Exception e){
+            CrimeReport crimeReport = new CrimeReport(rapport, writer, 0);
+            dbc.addInformation(crimeReport);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -56,9 +56,9 @@ public class DbConnect<T>{
                 stmt.executeUpdate("delete from police where police.BadgeId = " + '"' + ((Police) info).getBadgeId() + '"');
             }else if(info instanceof WantedCriminal){
                 stmt.executeUpdate("delete from wantedcriminal where wantedcriminal.WantedID = "+ ((WantedCriminal) info).getWantedId());
-            }else if(info instanceof CrimeRapport){
-                stmt.executeUpdate("delete from crime where crime.raportID = " + ((CrimeRapport) info).getRapportID());
-                stmt.executeUpdate("delete from crimeraport where crimeraport.RaportId = " + ((CrimeRapport) info).getRapportID());
+            }else if(info instanceof CrimeReport){
+                stmt.executeUpdate("delete from crime where crime.raportID = " + ((CrimeReport) info).getRapportID());
+                stmt.executeUpdate("delete from crimeraport where crimeraport.RaportId = " + ((CrimeReport) info).getRapportID());
             }else if(info instanceof Crime){
                 stmt.executeUpdate("delete from crime where crime.crimeID = " + ((Crime) info).getCrimeID());
             }else if(info instanceof Prisoner){
@@ -89,11 +89,11 @@ public class DbConnect<T>{
             }else if(info instanceof Conviction){
                 stmt.executeUpdate("INSERT INTO convictions(sentence,convictionDate,realeseDate,PrisonerID) values('" + ((Conviction) info).getSentence() + "','" + ((Conviction) info).getConviction() + "','" + ((Conviction) info).getRelease() + "','" +(((Conviction) info).getPrisoner().getPrisonerId())+ "')");
             }else if(info instanceof Meeting){
-                stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduledDate) values('" + ((Meeting) info).getMeetingID() + "','" + ((Meeting) info).getVisitor().getCivicNumber() + "','" + ((Meeting) info).getDate() + "')");
+                stmt.executeUpdate("INSERT INTO meeting(PrisonerID,person,scheduledDate) values('" + ((Meeting) info).getPrisoner().getPrisonerId() + "','" + ((Meeting) info).getVisitor().getCivicNumber() + "','" +((Meeting) info).getDate()+"')");
             }else if(info instanceof Crime){
                 stmt.executeUpdate("insert into crime(dateOfCrime,typeOfCrime,suspect,raportID) values('"+((Crime) info).getDateOfCrime()+"','"+((Crime) info).getTypeOfCrime()+"','"+((Crime) info).getSuspect().getCivicNumber()+"','"+((Crime) info).getRapport().getRapportID()+"')");
-            }else if(info instanceof CrimeRapport){
-                stmt.executeUpdate("INSERT INTO crimeraport(Writter,Text) values('" + ((CrimeRapport) info).getWriter().getCivicNumber() + "','" + ((CrimeRapport) info).getRapport() + "')");
+            }else if(info instanceof CrimeReport){
+                stmt.executeUpdate("INSERT INTO crimeraport(Writter,Text) values('" + ((CrimeReport) info).getWriter().getCivicNumber() + "','" + ((CrimeReport) info).getRapport() + "')");
             }
         }catch(SQLException | NoSuchAlgorithmException e){
             e.printStackTrace();
@@ -154,16 +154,16 @@ public class DbConnect<T>{
                 ResultSet rs = stmt.executeQuery("select * from crime,crimeraport,wantedcriminal,person where wantedcriminal.CivicNumber = crime.suspect and crime.RaportID = crimeraport.RaportId and writter = person.civicnumber");
                 while (rs.next()) {
                     Person writter = new Civilian(rs.getString(13), rs.getString(14), rs.getString(15));
-                    CrimeRapport raport = new CrimeRapport(rs.getString(7), writter, rs.getInt(4));
+                    CrimeReport raport = new CrimeReport(rs.getString(7), writter, rs.getInt(4));
                     WantedCriminal wantedCriminal = new WantedCriminal(null, null, rs.getString(11), rs.getInt(10), rs.getInt(9), rs.getInt(12));
                     Crime crime = new Crime(rs.getDate(1), rs.getString(2), wantedCriminal, raport,rs.getInt(5));
                     list.add((T) crime);
                 }
-            }else if(list.get(0) instanceof CrimeRapport){
+            }else if(list.get(0) instanceof CrimeReport){
                 ResultSet rs = stmt.executeQuery("select * from person,crimeraport where person.civicnumber = writter");
                 while (rs.next()) {
                     Civilian person = new Civilian(rs.getString(1), rs.getString(2), rs.getString(3));
-                    CrimeRapport rapport = new CrimeRapport(rs.getString(5), person, rs.getInt(6));
+                    CrimeReport rapport = new CrimeReport(rs.getString(5), person, rs.getInt(6));
                     list.add((T) rapport);
                 }
             }

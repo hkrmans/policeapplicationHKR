@@ -6,8 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.DbConnect;
+import sample.Models.Police;
 import sample.Models.Prisoner;
 import sample.SceneChanger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class ViewPrisonersController implements Initializable {
     private TextArea showPrisoner;
 
     @FXML
-    void GoBackViewPrisonersButtonOnAction(ActionEvent event){
+    void GoBackViewPrisonersButtonOnAction(ActionEvent event) {
         try {
             if (LoginController.isPolice()) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
@@ -37,14 +39,14 @@ public class ViewPrisonersController implements Initializable {
         }
     }
 
-    private void showPrisoners(){
+    private void showPrisoners() {
         for (Prisoner p : prisoners) {
             showPrisoner.appendText(p.getFirstName() + " | " + p.getLastName() + " | CN:" + p.getCivicNumber()
                     + " | ID:" + p.getPrisonerId() + " | Release Date:" + p.getReleaseDate() + "\n");
         }
     }
 
-    private void fillPrisonerList(){
+    private void fillPrisonerList() {
         try {
             Prisoner prisoner = new Prisoner(null, null, null, 0, null);
             prisoners.add(prisoner);
@@ -53,6 +55,7 @@ public class ViewPrisonersController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillPrisonerList();

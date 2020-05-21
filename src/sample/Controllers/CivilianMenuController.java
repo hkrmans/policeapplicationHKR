@@ -16,7 +16,7 @@ public class CivilianMenuController {
 
     @FXML
     void CivilianMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/MostWanted.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/ViewMostWanted.fxml");
     }
 
 

@@ -7,9 +7,9 @@ import sample.*;
 import sample.Models.Civilian;
 import sample.Models.Meeting;
 import sample.Models.Prisoner;
-
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -21,9 +21,8 @@ public class BookMeetingController implements Initializable {
     private ArrayList<Meeting> meetings = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+    Prisoner prisoner = null;
+    java.util.Date date = null;
 
     @FXML
     private TextField BookMeetingCivicNumberTextField;
@@ -35,8 +34,11 @@ public class BookMeetingController implements Initializable {
     private TextField AvialiableTextField;
 
     @FXML
-    void BookMeetingButtonOnAction(ActionEvent event) {
-
+    void BookMeetingButtonOnAction(ActionEvent event) throws ParseException {
+        date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        Meeting meeting = new Meeting(prisoner,LoginController.getLoggedInAccount().getOwner(),sqlDate,0);
+        dbc.addInformation(meeting);
     }
 
     @FXML
@@ -46,11 +48,12 @@ public class BookMeetingController implements Initializable {
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
                     AvialiableTextField.appendText("Found!");
+                    prisoner = prisoners.get(i);
 
             }
         }
     }
-    
+
     @FXML
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
@@ -60,6 +63,7 @@ public class BookMeetingController implements Initializable {
             Prisoner prisoner = new Prisoner(null,null,null,0, null);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
+
             Meeting meeting = new Meeting(null,null,null,0);
             meetings.add(meeting);
             dbc.getInfo(meetings);

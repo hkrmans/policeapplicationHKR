@@ -8,7 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Crime;
-import sample.Models.CrimeRapport;
+import sample.Models.CrimeReport;
 import sample.Models.Person;
 import sample.Models.WantedCriminal;
 
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class ReadReportsController implements Initializable {
-    private ArrayList<CrimeRapport> rapports = new ArrayList<>();
+    private ArrayList<CrimeReport> rapports = new ArrayList<>();
     private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private int indexes = 0;
@@ -100,8 +100,8 @@ public class ReadReportsController implements Initializable {
                     if (Pattern.matches(regexThree, index)){
                         WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
                                 wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
-                        CrimeRapport crimeRapport = new CrimeRapport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
-                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeRapport,0);
+                        CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
+                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport,0);
                         dbc.addInformation(crime);
                     }else {
                         throw new Exception();
@@ -123,7 +123,7 @@ public class ReadReportsController implements Initializable {
 
     private void fillLists(){
         try {
-            rapports.add(new CrimeRapport(null,null,0));
+            rapports.add(new CrimeReport(null,null,0));
             dbc.getInfo(rapports);
 
             wantedCriminals.add(new WantedCriminal(null,null,null,0,0,0));
@@ -142,9 +142,6 @@ public class ReadReportsController implements Initializable {
                     + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
         }
 
-        for (CrimeRapport e : rapports) {
-            crimeRapportArea.setText(e.getRapport() + " | " + ((Person)e.getWriter()).getFirstName());
-        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

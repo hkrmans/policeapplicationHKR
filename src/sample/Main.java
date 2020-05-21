@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 import java.sql.SQLException;
 
 public class Main extends Application {
@@ -21,6 +22,8 @@ public class Main extends Application {
         primaryStage.show();
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
+
+
     }
 
     public static void main(String[] args) {

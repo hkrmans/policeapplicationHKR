@@ -2,7 +2,7 @@ package sample.Models;
 
 import sample.Models.Person;
 
-public class WantedCriminal extends Person {
+public class WantedCriminal extends Person implements Comparable<WantedCriminal> {
     private int ranking;
     private int bounty;
     private int wantedId;
@@ -32,5 +32,11 @@ public class WantedCriminal extends Person {
 
     public int getWantedId(){
         return wantedId;
+    }
+
+    @Override
+    public int compareTo(WantedCriminal o) {
+        return (this.getRanking() < o.getRanking() ? -1:
+                (this.getBounty() == o.getBounty() ? 0:1 ));
     }
 }

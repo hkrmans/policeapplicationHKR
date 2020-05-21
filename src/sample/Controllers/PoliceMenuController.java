@@ -32,7 +32,7 @@ public class PoliceMenuController {
 
     @FXML
     void ViewMostWantedSceneButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/MostWanted.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/ViewMostWanted.fxml");
     }
 
 
@@ -46,7 +46,15 @@ public class PoliceMenuController {
     void reportSceneButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/ReportCrime.fxml");
 
+    }
 
+    @FXML
+    void ReadRegisteredCrimesButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event,"fxmlFiles/ReadRegisteredCrimes.fxml");
+    }
+    @FXML
+    void AddPrisonerButtonOnAction(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event,"fxmlFiles/AddPrisoner.fxml");
     }
 
 }
