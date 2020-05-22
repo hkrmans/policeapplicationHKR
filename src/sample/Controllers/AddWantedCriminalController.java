@@ -27,7 +27,7 @@ public class AddWantedCriminalController implements Initializable {
 
     @FXML
     private void goBackButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "fxmlFiles/ReadRegisteredCrimes.fxml");
+        SceneChanger.changeScene(event, "fxmlFiles/ReadReports.fxml");
     }
 
     @FXML
