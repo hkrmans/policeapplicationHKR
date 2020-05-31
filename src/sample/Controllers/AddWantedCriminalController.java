@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AddWantedCriminalController implements Initializable {
     private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
@@ -42,9 +43,37 @@ public class AddWantedCriminalController implements Initializable {
         String civicNumber = civicTextField.getText();
         String ranking = rankingTextField.getText();
         String bounty = bountyTextField.getText();
+        final String regexOne = "[a-zA-Z]+";
+        final String regexTwo = "[0-9]";
         try {
-            WantedCriminal wantedCriminal = new WantedCriminal(firstName, lastName, civicNumber, Integer.parseInt(ranking), Integer.parseInt(bounty), 0);
-            dbc.addInformation(wantedCriminal);
+            if (Pattern.matches(regexOne, firstName)){
+                if (Pattern.matches(regexOne, lastName)){
+                    if (Pattern.matches(regexTwo, civicNumber)){
+                        if (Pattern.matches(regexTwo, ranking)){
+                            if (Pattern.matches(regexTwo, bounty)){
+                                WantedCriminal wantedCriminal = new WantedCriminal(firstName, lastName, civicNumber, Integer.parseInt(ranking), Integer.parseInt(bounty), 0);
+                                dbc.addInformation(wantedCriminal);
+                                /*dbc.getInfo(wantedCriminals);
+                                for (WantedCriminal w : wantedCriminals) {
+                                    wantedTextArea.appendText(w.getFirstName() + " | " + w.getLastName() + " | " + w.getCivicNumber()
+                                            + w.getRanking() + " | " + w.getBounty())
+                                }
+                                 */
+                            }else{
+                                throw new Exception();
+                            }
+                        }else{
+                            throw new Exception();
+                        }
+                    }else{
+                        throw new Exception();
+                    }
+                }else{
+                    throw new Exception();
+                }
+            }else{
+                throw new Exception();
+            }
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
