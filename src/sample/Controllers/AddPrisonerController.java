@@ -36,7 +36,7 @@ public class AddPrisonerController implements Initializable {
 
     @FXML
     void addPrisonerButtonOnAction(ActionEvent event) {
-        Prisoner prisoner = new Prisoner(addPFirstNameTextField.getText(),addPLastNameTextField.getText(),addPCivicNumberTextField.getText(),0,null);
+        Prisoner prisoner = new Prisoner(addPFirstNameTextField.getText(),addPLastNameTextField.getText(),addPCivicNumberTextField.getText(),0);
         dbc.addInformation(prisoner);
         addPFirstNameTextField.clear();
         addPLastNameTextField.clear();
@@ -45,7 +45,7 @@ public class AddPrisonerController implements Initializable {
     }
     private void FillList(){
         try {
-            Prisoner prisoner = new Prisoner(null,null,null,0, null);
+            Prisoner prisoner = new Prisoner(null,null,null,0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
         }catch (Exception ex){

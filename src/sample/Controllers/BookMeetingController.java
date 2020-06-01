@@ -68,7 +68,7 @@ public class BookMeetingController implements Initializable {
     }
     private void fillList(){
         try {
-            Prisoner prisoner = new Prisoner(null,null,null,0, null);
+            Prisoner prisoner = new Prisoner(null,null,null,0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
 

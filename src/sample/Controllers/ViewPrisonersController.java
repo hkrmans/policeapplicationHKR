@@ -42,13 +42,13 @@ public class ViewPrisonersController implements Initializable {
     private void showPrisoners() {
         for (Prisoner p : prisoners) {
             showPrisoner.appendText(p.getFirstName() + " | " + p.getLastName() + " | CN:" + p.getCivicNumber()
-                    + " | ID:" + p.getPrisonerId() + " | Release Date:" + p.getReleaseDate() + "\n");
+                    + " | ID:" + p.getPrisonerId() + " | Release Date:" + "\n");
         }
     }
 
     private void fillPrisonerList() {
         try {
-            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
+            Prisoner prisoner = new Prisoner(null, null, null, 0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
         } catch (Exception e) {

@@ -71,13 +71,13 @@ public class ViewConvictionsController implements Initializable {
         String searchByFirstName = nameTextField.getText();
         String searchBySsn = ssnTextField.getText();
         String searchByLastName = releaseTextField.getText();
-        Prisoner prisoner = new Prisoner(null, null, null, 0, null);
+        Prisoner prisoner = new Prisoner(null, null, null, 0);
         prisoners.add(prisoner);
 
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByFirstName.equals(prisoners.get(i).getFirstName())) {
                 convictionsArea.clear();
-                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
+                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " ));
 
             }
         }
@@ -85,14 +85,14 @@ public class ViewConvictionsController implements Initializable {
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchBySsn.equals(prisoners.get(i).getCivicNumber())) {
                 convictionsArea.clear();
-                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
+                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " ));
             }
         }
 
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByLastName.equals(prisoners.get(i).getLastName())) {
                 convictionsArea.clear();
-                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " + prisoners.get(i).getReleaseDate()));
+                convictionsArea.appendText((" Name | " + prisoners.get(i).getFirstName() + "\n Last name | " + prisoners.get(i).getLastName() + "\n Civic number | " + prisoners.get(i).getCivicNumber() + "\n PrisonerID | " + prisoners.get(i).getPrisonerId() + "\n Release date | " ));
 
             }
         }
@@ -103,7 +103,7 @@ public class ViewConvictionsController implements Initializable {
             Conviction conviction = new Conviction(null, null, null, null, 0);
             convictions.add(conviction);
             dbc.getInfo(convictions);
-            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
+            Prisoner prisoner = new Prisoner(null, null, null, 0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
         } catch (Exception ex) {

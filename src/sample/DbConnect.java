@@ -125,7 +125,7 @@ public class DbConnect<T>{
             }else if(list.get(0) instanceof Prisoner){
                 ResultSet rs = stmt.executeQuery("select firstName,lastName,person.civicnumber,PrisonerId from person,prisoners where person.civicnumber = prisoners.CivicNumber");
                 while (rs.next()) {
-                    Prisoner prisoner = new Prisoner(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), null);
+                    Prisoner prisoner = new Prisoner(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                     list.add((T) prisoner);
                 }
             }else if(list.get(0) instanceof Account){
@@ -138,7 +138,7 @@ public class DbConnect<T>{
             }else if(list.get(0) instanceof Conviction){
                 ResultSet rs = stmt.executeQuery("select * from convictions, prisoners where convictions.PrisonerID = prisoners.PrisonerId");
                 while (rs.next()) {
-                    Prisoner prisoner = new Prisoner(null, null, rs.getString(7), rs.getInt(6), null);
+                    Prisoner prisoner = new Prisoner(null, null, rs.getString(7), rs.getInt(6));
                     Conviction conviction = new Conviction(rs.getDate(4), rs.getDate(3), rs.getString(1), prisoner,rs.getInt(2));
                     list.add((T) conviction);
                 }
@@ -146,7 +146,7 @@ public class DbConnect<T>{
                 ResultSet rs = stmt.executeQuery("select * from prisoners,person,meeting where prisoners.PrisonerId = meeting.PrisonerID and meeting.person = person.CivicNumber");
                 while (rs.next()) {
                     Civilian person = new Civilian(rs.getString(3), rs.getString(4), rs.getString(5));
-                    Prisoner prisoner = new Prisoner(null, null, null, rs.getInt(1), null);
+                    Prisoner prisoner = new Prisoner(null, null, null, rs.getInt(1));
                     Meeting meeting = new Meeting(prisoner, person, rs.getDate(8),rs.getInt(9));
                     list.add((T) meeting);
                 }
