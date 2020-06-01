@@ -11,11 +11,14 @@ import sample.SceneChanger;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class HandlePrisonersController {
     private Prisoner prisoner;
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
+    private Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
     private TextField ID, firstname, lastname, RD;
@@ -25,17 +28,45 @@ public class HandlePrisonersController {
     @FXML
     private void changeFirstname(ActionEvent event) {
         Prisoner p = prisoner;
-        p.setFirstName(firstname.getText());
-        dbc.updateInfo(p);
-        setLabels();
+        try {
+            if (Pattern.matches("[a-zA-Z]", firstname.getText())) {
+                p.setFirstName(firstname.getText());
+                dbc.updateInfo(p);
+                setLabels();
+                confirm.setTitle("Success");
+                confirm.setContentText("First name has been changed for the chosen prisoner");
+                confirm.showAndWait();
+            } else {
+                throw new Exception();
+            }
+        }catch (Exception e){
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Wrong input");
+            alert.setContentText("Please enter a valid input");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void changeLastname(ActionEvent event) {
         Prisoner p = prisoner;
-        p.setLastName(lastname.getText());
-        dbc.updateInfo(p);
-        setLabels();
+        try {
+            if (Pattern.matches("[a-zA-Z]", lastname.getText())) {
+                p.setLastName(lastname.getText());
+                dbc.updateInfo(p);
+                setLabels();
+                confirm.setTitle("Success");
+                confirm.setContentText("Last name has been changed for the chosen prisoner");
+                confirm.showAndWait();
+            }else {
+                throw new Exception();
+            }
+        }catch (Exception ex){
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Wrong input");
+            alert.setContentText("Please enter a valid input");
+            alert.showAndWait();
+        }
     }
 
     @FXML
