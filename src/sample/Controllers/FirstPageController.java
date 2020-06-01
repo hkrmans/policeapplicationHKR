@@ -1,9 +1,13 @@
 package sample.Controllers;
 
+import com.itextpdf.text.DocumentException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import sample.Models.pdf;
 import sample.SceneChanger;
+
+import java.io.FileNotFoundException;
 
 public class FirstPageController {
 

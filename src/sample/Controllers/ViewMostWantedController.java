@@ -1,5 +1,6 @@
 package sample.Controllers;
 
+import com.itextpdf.text.DocumentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,9 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
 
 
+import sample.Models.pdf;
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -59,7 +62,14 @@ public class ViewMostWantedController implements Initializable {
     @FXML
 
     private void saveToPdfButtonOnAction() {
-
+        pdf p = new pdf();
+        try {
+            p.SaveToPdf(wantedCriminals);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
 
     }
 
