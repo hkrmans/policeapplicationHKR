@@ -2,7 +2,6 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Civilian;
@@ -17,7 +16,7 @@ import java.util.ResourceBundle;
 
 
 
-public class BookMeetingController implements Initializable {
+    public class BookMeetingController implements Initializable {
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private ArrayList<Meeting> meetings = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();
@@ -40,26 +39,19 @@ public class BookMeetingController implements Initializable {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         Meeting meeting = new Meeting(prisoner,LoginController.getLoggedInAccount().getOwner(),sqlDate,0);
         dbc.addInformation(meeting);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText("Meeting booked");
-        alert.setContentText("You're meeting has been booked!");
-        alert.showAndWait();
     }
 
     @FXML
     void CheckAvaliableButtonOnAction(ActionEvent event) {
         String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
         String userInputDate = BookMeetingDateTextField.getText();
+        for (int i = 0; i < prisoners.size(); i = i + 1) {
+            if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
+                AvialiableTextField.appendText("Found!");
+                prisoner = prisoners.get(i);
 
-            for (int i = 0; i < prisoners.size(); i = i + 1) {
-                if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
-                    AvialiableTextField.appendText("Found!");
-                    prisoner = prisoners.get(i);
-
-                }
             }
-
+        }
     }
 
     @FXML
@@ -87,6 +79,6 @@ public class BookMeetingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       fillList();
+        fillList();
     }
 }

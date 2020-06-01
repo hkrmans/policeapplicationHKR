@@ -1,5 +1,7 @@
 package sample.Controllers;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,24 +13,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
-import sample.Models.Person;
-import sample.Models.Sorter;
-
-import sample.Models.Police;
-
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import javax.swing.text.Document;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class ViewMostWantedController implements Initializable {
     private ArrayList<WantedCriminal> wantedCriminals = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+
 
     @FXML
     private TextArea showWanteds;
@@ -51,6 +48,9 @@ public class ViewMostWantedController implements Initializable {
 
 
     ObservableList list= FXCollections.observableList(wantedCriminals);
+
+    public ViewMostWantedController() throws FileNotFoundException {
+    }
 
     @FXML
     void GoBackMostWantedButtonOnAction(ActionEvent event) {
@@ -90,13 +90,11 @@ public class ViewMostWantedController implements Initializable {
     void saveToPdfButtonOnAction(ActionEvent event) {
 
 
-
     }
 
-    private void pdfWriter(OutputStream outputStream) throws IOException{
 
-    }
-    
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillWantedList();
         showWanteds();
@@ -106,6 +104,7 @@ public class ViewMostWantedController implements Initializable {
         RA.setCellValueFactory(new PropertyValueFactory<>("ranking"));
         BO.setCellValueFactory(new PropertyValueFactory<>("bounty"));
         tableView.setItems(list);
+
 
     }
 }
