@@ -43,12 +43,18 @@ public class ViewConvictionsController implements Initializable {
 
     @FXML
     private void viewMoreInfoButtonOnAction() {
-        convictionsArea.clear();
-        String index = indexTextField.getText();
-        for (int i = 0; i < convictions.size(); i = i + 1) {
-            if (index.equals(convictions.get(i).getPrisoner().getCivicNumber())) {
-                convictionsArea.appendText(("\n Convictions \n" + convictions.get(i).getConviction() + convictions.get(i).getSentence()));
+        try {
+            convictionsArea.clear();
+            String index = indexTextField.getText();
+            for (int i = 0; i < convictions.size(); i = i + 1) {
+                if (index.equals(convictions.get(i).getPrisoner().getCivicNumber())) {
+                    convictionsArea.appendText(("\n Convictions \n" + convictions.get(i).getConviction() + convictions.get(i).getSentence()));
+                }
             }
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to retrieve more information");
+            alert.showAndWait();
         }
     }
 
@@ -86,9 +92,15 @@ public class ViewConvictionsController implements Initializable {
     @FXML
     private void searchButtonOnAction() {
         convictionsArea.clear();
-        searchByFirstName();
-        searchByLastName();
-        searchBySSN();
+        try {
+            searchByFirstName();
+            searchByLastName();
+            searchBySSN();
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed the search, try again");
+            alert.showAndWait();
+        }
     }
 
     private void FillList() {

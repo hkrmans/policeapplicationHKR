@@ -49,14 +49,18 @@ public class BookMeetingController implements Initializable {
 
     @FXML
     void CheckAvaliableButtonOnAction() {
-        String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
-        String userInputDate = BookMeetingDateTextField.getText();
-        for (int i = 0; i < prisoners.size(); i = i + 1) {
-            if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
-                AvialiableTextField.appendText("Found!");
-                prisoner = prisoners.get(i);
-
+        try {
+            String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
+            for (int i = 0; i < prisoners.size(); i = i + 1) {
+                if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
+                    AvialiableTextField.appendText("Found!");
+                    prisoner = prisoners.get(i);
+                }
             }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong, try again");
+            alert.showAndWait();
         }
     }
 
