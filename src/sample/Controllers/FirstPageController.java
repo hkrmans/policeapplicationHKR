@@ -4,27 +4,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import sample.SceneChanger;
-import java.io.IOException;
 
 public class FirstPageController {
 
     @FXML
-    private void loginButtonOnAction(ActionEvent event) throws IOException {
+    private void loginButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/Login.fxml");
     }
 
     @FXML
-    private void registerButtonOnAction(ActionEvent event) throws IOException {
+    private void registerButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/SignUp.fxml");
     }
 
     @FXML
-    private void exitButtonOnAction(ActionEvent event) {
+    private void exitButtonOnAction() {
         System.exit(0);
     }
 
     @FXML
-    private void helpButtonOnAction(ActionEvent event) throws IOException {
+    private void helpButtonOnAction() {
         try {
             throw new NumberFormatException();
         } catch (NumberFormatException e) {

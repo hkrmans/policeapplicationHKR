@@ -5,25 +5,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import java.io.IOException;
-
 public class SceneChanger {
 
-    public static void changeScene(ActionEvent event, String path) throws IOException {
-        SceneChanger sc = new SceneChanger();
+    public static void changeScene(ActionEvent event, String path){
+        try {
+            SceneChanger sc = new SceneChanger();
 
-        Node node = sc.getNode(event);
-        Window window = sc.getWindow(node);
-        Stage stage = sc.getStage(window);
+            Node node = sc.getNode(event);
+            Window window = sc.getWindow(node);
+            Stage stage = sc.getStage(window);
 
-        FXMLLoader loader = sc.getFxmlLoader(path);
+            FXMLLoader loader = sc.getFxmlLoader(path);
 
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to change scene");
+            alert.showAndWait();
+        }
     }
 
     private Node getNode(ActionEvent event) {

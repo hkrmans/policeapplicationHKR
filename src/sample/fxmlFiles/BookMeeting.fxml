@@ -35,6 +35,6 @@
       </Text>
       <TextField fx:id="AvialiableTextField" layoutX="184.0" layoutY="258.0" prefHeight="26.0" prefWidth="118.0" />
       <Button layoutX="337.0" layoutY="258.0" mnemonicParsing="false" onAction="#BookMeetingButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="Book meeting" />
-      <Button layoutX="30.0" layoutY="351.0" mnemonicParsing="false" onAction="#GoBackBookMeetingButtonOnAction" prefHeight="26.0" prefWidth="77.0" text="Menu" />
+      <Button layoutX="30.0" layoutY="351.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="77.0" text="Menu" />
    </children>
 </AnchorPane>

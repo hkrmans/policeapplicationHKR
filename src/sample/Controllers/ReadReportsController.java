@@ -12,7 +12,6 @@ import sample.Models.CrimeReport;
 import sample.Models.Person;
 import sample.Models.WantedCriminal;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -41,30 +40,30 @@ public class ReadReportsController implements Initializable {
     private TextArea crimeRapportArea;
 
     @FXML
-    void ReportGoBackButtonOnAction(ActionEvent event) throws IOException {
+    private void menuButton(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
     @FXML
-    void addWantedCriminalButtonOnAction(ActionEvent event) throws IOException{
+    private void addWantedCriminalButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/AddWantedCriminal.fxml");
     }
 
     @FXML
-    void ReportBackButtonOnAction(ActionEvent event) {
+    private void ReportBackButtonOnAction() {
         try {
             indexes--;
-            if (indexes < 0){
+            if (indexes < 0) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("This is the first rapport");
                 alert.setContentText("This is the first rapport in the system");
                 alert.showAndWait();
                 indexes = 0;
-            }else if (indexes <= rapports.size()){
+            } else if (indexes <= rapports.size()) {
                 crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -72,51 +71,51 @@ public class ReadReportsController implements Initializable {
 
 
     @FXML
-    void ReportNextButtonOnAction(ActionEvent event) {
+    private void ReportNextButtonOnAction() {
         try {
             indexes++;
-            if (indexes > rapports.size()){
+            if (indexes > rapports.size()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("No rapports left");
                 alert.setContentText("There aren't any rapports left");
                 alert.showAndWait();
-                indexes = rapports.size()-1;
-            }else if (indexes < rapports.size()){
+                indexes = rapports.size() - 1;
+            } else if (indexes < rapports.size()) {
                 crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + ((Person) rapports.get(indexes).getWriter()).getFirstName());
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     @FXML
-    void ReportRegisterButtonOnAction(ActionEvent event) {
+    private void ReportRegisterButtonOnAction() {
         String dateOfCrime = dateOfCrimeTextField.getText();
         String typeOfCrime = typeOfCrimeTextField.getText();
         String index = wantedCriminalTextField.getText();
         final String regex = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))[-]([0][1-9]|[1-2][\\d]|[3][0-1])";
         final String regexTwo = "[a-zA-Z]+";
         final String regexThree = "[0-9]";
-        try{
-            if (Pattern.matches(regex, dateOfCrime)){
-                if(Pattern.matches(regexTwo, typeOfCrime)){
-                    if (Pattern.matches(regexThree, index)){
+        try {
+            if (Pattern.matches(regex, dateOfCrime)) {
+                if (Pattern.matches(regexTwo, typeOfCrime)) {
+                    if (Pattern.matches(regexThree, index)) {
                         WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
                                 wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
                         CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
-                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport,0);
+                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport, 0);
                         dbc.addInformation(crime);
-                    }else {
+                    } else {
                         throw new Exception();
                     }
-                }else {
+                } else {
                     throw new Exception();
                 }
-            }else {
+            } else {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("You have entered wrong input");
@@ -125,28 +124,23 @@ public class ReadReportsController implements Initializable {
         }
     }
 
-    private void fillLists(){
-        try {
-            rapports.add(new CrimeReport(null,null,0));
+    private void fillLists() {
+            rapports.add(new CrimeReport(null, null, 0));
             dbc.getInfo(rapports);
 
-            wantedCriminals.add(new WantedCriminal(null,null,null,0,0,0));
+            wantedCriminals.add(new WantedCriminal(null, null, null, 0, 0, 0));
             dbc.getInfo(wantedCriminals);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    private void oklart(){
+    private void oklart() {
         crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         for (int i = 0; i < wantedCriminals.size(); i++) {
             wantedCriminalArea.appendText(i + ". | " + wantedCriminals.get(i).getFirstName() + " | "
                     + wantedCriminals.get(i).getLastName() + " | " + wantedCriminals.get(i).getCivicNumber() + "\n");
         }
-
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillLists();

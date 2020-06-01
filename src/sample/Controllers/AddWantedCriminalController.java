@@ -10,8 +10,6 @@ import sample.DbConnect;
 import sample.Models.WantedCriminal;
 import sample.SceneChanger;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,17 +25,17 @@ public class AddWantedCriminalController implements Initializable {
     private TextArea wantedTextArea;
 
     @FXML
-    private void goBackButtonOnAction(ActionEvent event) throws IOException {
+    private void goBackButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ReadReports.fxml");
     }
 
     @FXML
-    private void logOutButtonOnAction(ActionEvent event) throws IOException{
+    private void logOutButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @FXML
-    private void addCriminalButtonOnAction(ActionEvent event){
+    private void addCriminalButtonOnAction() {
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
         String civicNumber = civicTextField.getText();
@@ -46,11 +44,11 @@ public class AddWantedCriminalController implements Initializable {
         final String regexOne = "[a-zA-Z]+";
         final String regexTwo = "[0-9]";
         try {
-            if (Pattern.matches(regexOne, firstName)){
-                if (Pattern.matches(regexOne, lastName)){
-                    if (Pattern.matches(regexTwo, civicNumber)){
-                        if (Pattern.matches(regexTwo, ranking)){
-                            if (Pattern.matches(regexTwo, bounty)){
+            if (Pattern.matches(regexOne, firstName)) {
+                if (Pattern.matches(regexOne, lastName)) {
+                    if (Pattern.matches(regexTwo, civicNumber)) {
+                        if (Pattern.matches(regexTwo, ranking)) {
+                            if (Pattern.matches(regexTwo, bounty)) {
                                 WantedCriminal wantedCriminal = new WantedCriminal(firstName, lastName, civicNumber, Integer.parseInt(ranking), Integer.parseInt(bounty), 0);
                                 dbc.addInformation(wantedCriminal);
                                 /*dbc.getInfo(wantedCriminals);
@@ -59,22 +57,22 @@ public class AddWantedCriminalController implements Initializable {
                                             + w.getRanking() + " | " + w.getBounty())
                                 }
                                  */
-                            }else{
+                            } else {
                                 throw new Exception();
                             }
-                        }else{
+                        } else {
                             throw new Exception();
                         }
-                    }else{
+                    } else {
                         throw new Exception();
                     }
-                }else{
+                } else {
                     throw new Exception();
                 }
-            }else{
+            } else {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("You have not entered a valid input");
@@ -83,23 +81,18 @@ public class AddWantedCriminalController implements Initializable {
         }
     }
 
-    private void fillList(){
-        try{
-            wantedCriminals.add(new WantedCriminal(null,null,null,0,0,0));
-            dbc.getInfo(wantedCriminals);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    private void fillList() {
+        wantedCriminals.add(new WantedCriminal(null, null, null, 0, 0, 0));
+        dbc.getInfo(wantedCriminals);
     }
 
-    private void fillScene(){
-        try{
-            for (WantedCriminal w : wantedCriminals){
+    private void fillScene() {
+        try {
+            for (WantedCriminal w : wantedCriminals) {
                 wantedTextArea.appendText(w.getFirstName() + " | " + w.getLastName() + " | " + w.getCivicNumber()
-                                          + w.getRanking() + " | " + w.getBounty());
+                        + w.getRanking() + " | " + w.getBounty());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
