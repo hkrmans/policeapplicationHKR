@@ -3,16 +3,12 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Account;
 import sample.Models.Police;
-import sample.Models.Sorter;
-import sample.Models.WantedCriminal;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -48,14 +44,13 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void backButtonOnAction(ActionEvent event) throws IOException {
+    private void backButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @FXML
-    void exitLoginButtonOnAction(ActionEvent event) {
+    private void exitLoginButtonOnAction() {
         System.exit(0);
-
     }
 
     private boolean checkAccount() {
@@ -66,7 +61,9 @@ public class LoginController implements Initializable {
             accounts.add(account);
             DbConnect.getInstance(password.getText()).getInfo(accounts);
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Wrong password");
+            alert.showAndWait();
         }
         try {
             for (Account a : accounts) {
@@ -78,38 +75,47 @@ public class LoginController implements Initializable {
                 }
             }
         } catch (NullPointerException | NoSuchAlgorithmException ex) {
-
+            ex.printStackTrace();
         }
         return check;
-
     }
 
+    private void checkIfPolice() {
+        try {
+            Police police = new Police(null, null, null, null);
+            polices.add(police);
+            DbConnect.getInstance(password.getText()).getInfo(polices);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Connection to database failed");
+            alert.showAndWait();
+        }
+
+        for (Police p : polices) {
+            if (p.getCivicNumber().equals(loggedInAccount.getOwner().getCivicNumber())) {
+                isPolice = true;
+                break;
+            }
+        }
+    }
+
+    private void changeScene(ActionEvent event) {
+        if (isPolice) {
+            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        } else {
+            SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+        }
+    }
 
     @FXML
-    private void LogInButtonOnAction(ActionEvent event) throws IOException {
+    private void LogInButtonOnAction(ActionEvent event) {
         if (checkAccount()) {
-            try {
-                Police police = new Police(null, null, null, null);
-                polices.add(police);
-                DbConnect.getInstance(password.getText()).getInfo(polices);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            for (Police p : polices) {
-                if (p.getCivicNumber().equals(loggedInAccount.getOwner().getCivicNumber())) {
-                    isPolice = true;
-                    break;
-                }
-            }
-
-            if (isPolice) {
-                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-            } else {
-                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
-            }
+            checkIfPolice();
+            changeScene(event);
         } else {
-            System.out.println("Pass and user does not match");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Password and Username does not match");
+            alert.showAndWait();
         }
     }
 

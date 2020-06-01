@@ -35,8 +35,8 @@
          </font>
       </Text>
       <TextField fx:id="AvialiableTextField" layoutX="443.0" layoutY="105.0" prefHeight="26.0" prefWidth="118.0" />
-      <Button layoutX="443.0" layoutY="153.0" mnemonicParsing="false" onAction="#BookMeetingButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="Book meeting" />
-      <Button layoutX="465.0" layoutY="12.0" mnemonicParsing="false" onAction="#GoBackBookMeetingButtonOnAction" prefHeight="26.0" prefWidth="77.0" text="Menu" />
+      <Button layoutX="443.0" layoutY="153.0" mnemonicParsing="false" onAction="#bookMeetingButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="Book meeting" />
+      <Button layoutX="465.0" layoutY="12.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="77.0" text="Menu" />
       <Button layoutX="14.0" layoutY="237.0" mnemonicParsing="false" onAction="#checkMeetingButtonOnAction" prefHeight="26.0" prefWidth="143.0" text="Check meetings" />
       <Button layoutX="490.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteMeetingButtonOnAction" prefHeight="26.0" prefWidth="110.0" text="Delete meeting" />
       <TextField fx:id="deleteMeetingTextField" layoutX="490.0" layoutY="332.0" prefHeight="26.0" prefWidth="110.0" promptText="meeting id" />

@@ -1,29 +1,29 @@
 package sample.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Civilian;
 import sample.Models.Meeting;
 import sample.Models.Prisoner;
-import java.io.IOException;
+
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
-
-    public class BookMeetingController implements Initializable {
+public class BookMeetingController implements Initializable {
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private ArrayList<Meeting> meetings = new ArrayList<>();
     private ArrayList<Civilian> civilians = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
-    Prisoner prisoner = null;
-    java.util.Date date = null;
+    private Prisoner prisoner = null;
+    private java.util.Date date = null;
 
     @FXML
     private TextField BookMeetingCivicNumberTextField;
@@ -43,27 +43,38 @@ import java.util.ResourceBundle;
 
 
     @FXML
-    void BookMeetingButtonOnAction(ActionEvent event) throws ParseException {
-        date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Meeting meeting = new Meeting(prisoner,LoginController.getLoggedInAccount().getOwner(),sqlDate,0);
-        dbc.addInformation(meeting);
-    }
-
-    @FXML
-    void CheckAvaliableButtonOnAction(ActionEvent event) {
-        String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
-        for (int i = 0; i < prisoners.size(); i = i + 1) {
-            if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
-                AvialiableTextField.appendText("Found!");
-                prisoner = prisoners.get(i);
-
-            }
+    void bookMeetingButtonOnAction() {
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), sqlDate, 0);
+            dbc.addInformation(meeting);
+        } catch (ParseException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to convert the inserted date");
+            alert.showAndWait();
         }
     }
 
     @FXML
-    void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
+    private void CheckAvaliableButtonOnAction() {
+        try {
+            String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
+            for (int i = 0; i < prisoners.size(); i = i + 1) {
+                if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
+                    AvialiableTextField.appendText("Found!");
+                    prisoner = prisoners.get(i);
+                }
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong, try again");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void menuButton(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
     }
 
@@ -97,22 +108,17 @@ import java.util.ResourceBundle;
 
 
     }
-    private void fillList(){
-        try {
-            Prisoner prisoner = new Prisoner(null,null,null,0);
-            prisoners.add(prisoner);
-            dbc.getInfo(prisoners);
-            Meeting meeting = new Meeting(null,null,null,0);
-            meetings.add(meeting);
-            dbc.getInfo(meetings);
-            Civilian civilian = new Civilian(null,null,null);
-            civilians.add(civilian);
-            dbc.getInfo(civilians);
 
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-
+    private void fillList() {
+        Prisoner prisoner = new Prisoner(null, null, null, 0);
+        prisoners.add(prisoner);
+        dbc.getInfo(prisoners);
+        Meeting meeting = new Meeting(null, null, null, 0);
+        meetings.add(meeting);
+        dbc.getInfo(meetings);
+        Civilian civilian = new Civilian(null, null, null);
+        civilians.add(civilian);
+        dbc.getInfo(civilians);
     }
 
     @Override
