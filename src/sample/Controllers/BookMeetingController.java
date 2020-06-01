@@ -2,6 +2,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Civilian;
@@ -39,6 +40,11 @@ public class BookMeetingController implements Initializable {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         Meeting meeting = new Meeting(prisoner,LoginController.getLoggedInAccount().getOwner(),sqlDate,0);
         dbc.addInformation(meeting);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Meeting booked");
+        alert.setContentText("You're meeting has been booked!");
+        alert.showAndWait();
     }
 
     @FXML
