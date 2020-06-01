@@ -73,7 +73,7 @@ public class DbConnect<T> {
             }
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Failed to update information in the database");
+            alert.setContentText("Failed to delete information in the database");
             alert.showAndWait();
         }
     }
@@ -104,7 +104,7 @@ public class DbConnect<T> {
             }
         } catch (SQLException | NoSuchAlgorithmException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Failed to update information in the database");
+            alert.setContentText("Failed to add information in the database");
             alert.showAndWait();
         }
     }
@@ -178,7 +178,7 @@ public class DbConnect<T> {
             }
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Failed to update information in the database");
+            alert.setContentText("Failed to fetch information in the database");
             alert.showAndWait();
         }
         list.remove(0);
