@@ -45,6 +45,10 @@ public class ReadReportsController implements Initializable {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
+    @FXML
+    void addWantedCriminalButtonOnAction(ActionEvent event) throws IOException{
+        SceneChanger.changeScene(event, "fxmlFiles/AddWantedCriminal.fxml");
+    }
 
     @FXML
     void ReportBackButtonOnAction(ActionEvent event) {
@@ -93,7 +97,7 @@ public class ReadReportsController implements Initializable {
         String index = wantedCriminalTextField.getText();
         final String regex = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))[-]([0][1-9]|[1-2][\\d]|[3][0-1])";
         final String regexTwo = "[a-zA-Z]+";
-        final String regexThree = "[0-9]$";
+        final String regexThree = "[0-9]";
         try{
             if (Pattern.matches(regex, dateOfCrime)){
                 if(Pattern.matches(regexTwo, typeOfCrime)){

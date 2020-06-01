@@ -18,6 +18,12 @@ public class LoginController {
     private Security security = new Security();
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<Police> polices = new ArrayList<>();
+    private static boolean isPolice = false;
+
+    public static boolean isPolice() {
+        return isPolice;
+    }
+
     @FXML
     private TextField username, password;
 
@@ -74,16 +80,14 @@ public class LoginController {
                 e.printStackTrace();
             }
 
-            boolean checkPolice = false;
-
             for (Police p : polices) {
                 if (p.getCivicNumber().equals(loggedInAccount.getOwner().getCivicNumber())) {
-                    checkPolice = true;
+                    isPolice = true;
                     break;
                 }
             }
 
-            if (checkPolice) {
+            if (isPolice) {
                 SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
             } else {
                 SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");

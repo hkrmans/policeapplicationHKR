@@ -1,9 +1,15 @@
 package sample.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
 import sample.Models.Person;
 import sample.Models.Sorter;
@@ -14,6 +20,7 @@ import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,17 +32,44 @@ public class ViewMostWantedController implements Initializable {
 
     @FXML
     private TextArea showWanteds;
+    @FXML
+    private TableView<WantedCriminal> tableView;
+    @FXML
+    private TableColumn<WantedCriminal,String> FN;
 
     @FXML
-    void GoBackMostWantedButtonOnAction(ActionEvent event) throws IOException {
-        if(LoginController.getLoggedInAccount().getOwner() instanceof Police) {
-            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-        } else {
-            SceneChanger.changeScene(event,"fxmlFiles/CivilianMenu.fxml");
+    private TableColumn<WantedCriminal, String> LN;
+
+    @FXML
+    private TableColumn<WantedCriminal, String> CV;
+
+    @FXML
+    private TableColumn<WantedCriminal, Integer> RA;
+
+    @FXML
+    private TableColumn<WantedCriminal, Integer> BO;
+
+
+    ObservableList list= FXCollections.observableList(wantedCriminals);
+
+    @FXML
+    void GoBackMostWantedButtonOnAction(ActionEvent event) {
+        try {
+            if (LoginController.isPolice()) {
+                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+            } else {
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+            }
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
         }
     }
 
-    private void fillWantedList(){
+    private void fillWantedList() {
         try {
             WantedCriminal wantedCriminal = new WantedCriminal(null, null, null, 0, 0, 0);
             wantedCriminals.add(wantedCriminal);
@@ -45,14 +79,33 @@ public class ViewMostWantedController implements Initializable {
         }
     }
 
-    private void showWanteds(){
+    private void showWanteds() {
         for (WantedCriminal wc : wantedCriminals) {
             showWanteds.appendText(wc.getFirstName() + " | " + wc.getLastName() + " | CN:" + wc.getCivicNumber()
                     + " | Bounty:" + wc.getBounty() + " | Ranking:" + wc.getRanking() + "\n");
         }
     }
+
+    @FXML
+    void saveToPdfButtonOnAction(ActionEvent event) {
+
+
+
+    }
+
+    private void pdfWriter(OutputStream outputStream) throws IOException{
+
+    }
+    
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillWantedList();
         showWanteds();
+        FN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        LN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        CV.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
+        RA.setCellValueFactory(new PropertyValueFactory<>("ranking"));
+        BO.setCellValueFactory(new PropertyValueFactory<>("bounty"));
+        tableView.setItems(list);
+
     }
 }

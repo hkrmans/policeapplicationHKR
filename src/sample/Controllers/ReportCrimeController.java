@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import sample.*;
 import sample.Models.CrimeReport;
@@ -21,21 +22,29 @@ public class ReportCrimeController implements Initializable {
 
     @FXML
     void ReportCrimeMenuButtonOnAction(ActionEvent event) throws IOException {
-        if(LoginController.getLoggedInAccount().getOwner() instanceof Police) {
-            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-        } else {
-            SceneChanger.changeScene(event,"fxmlFiles/CivilianMenu.fxml");
+        try {
+            if (LoginController.isPolice()) {
+                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+            } else {
+                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
+            }
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Scenefail");
+            alert.setContentText("Failed to change scene!");
+            alert.showAndWait();
         }
     }
 
     @FXML
     void UploadCrimeButtonOnAction(ActionEvent event) {
         String rapport = reportCrimeArea.getText();
-        try{
+        try {
             Person writer = LoginController.getLoggedInAccount().getOwner();
-            CrimeReport crimeReport = new CrimeReport(rapport,writer, 0);
+            CrimeReport crimeReport = new CrimeReport(rapport, writer, 0);
             dbc.addInformation(crimeReport);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

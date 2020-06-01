@@ -34,5 +34,6 @@
       <Text layoutX="417.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wanted criminals" />
       <TextField fx:id="wantedCriminalTextField" layoutX="6.0" layoutY="224.0" />
       <Text fill="#fffdfd" layoutX="3.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter index for criminal" />
+      <Button layoutX="454.0" layoutY="361.0" mnemonicParsing="false" onAction="#addWantedCriminalButtonOnAction" text="Add wanted criminal" />
    </children>
 </AnchorPane>

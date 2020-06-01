@@ -3,6 +3,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import sample.DbConnect;
 import sample.Models.Prisoner;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AddPrisonerController implements Initializable {
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
@@ -36,12 +38,37 @@ public class AddPrisonerController implements Initializable {
 
     @FXML
     void addPrisonerButtonOnAction(ActionEvent event) {
-        Prisoner prisoner = new Prisoner(addPFirstNameTextField.getText(),addPLastNameTextField.getText(),addPCivicNumberTextField.getText(),0,null);
-        dbc.addInformation(prisoner);
-        addPFirstNameTextField.clear();
-        addPLastNameTextField.clear();
-        addPCivicNumberTextField.clear();
-
+        final String regexOne = "[a-zA-Z]";
+        final String regexTwo = "[0-9]";
+        try {
+            if (Pattern.matches(regexOne, addPFirstNameTextField.getText())) {
+                if (Pattern.matches(regexOne, addPLastNameTextField.getText())) {
+                    if (Pattern.matches(regexTwo, addPCivicNumberTextField.getText())) {
+                        Prisoner prisoner = new Prisoner(addPFirstNameTextField.getText(), addPLastNameTextField.getText(), addPCivicNumberTextField.getText(), 0, null);
+                        dbc.addInformation(prisoner);
+                        addPFirstNameTextField.clear();
+                        addPLastNameTextField.clear();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Success!");
+                        alert.setHeaderText("Prisoner has been added");
+                        alert.setContentText("The prisoner has been added to th system");
+                        alert.showAndWait();
+                    }else{
+                        throw new Exception();
+                    }
+                }else{
+                    throw new Exception();
+                }
+            }else{
+                throw new Exception();
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Wrong input");
+            alert.setContentText("Please enter a valid input");
+            alert.show();
+        }
     }
     private void FillList(){
         try {
