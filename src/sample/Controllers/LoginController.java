@@ -2,6 +2,8 @@ package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Account;
@@ -9,11 +11,14 @@ import sample.Models.Police;
 import sample.Models.Sorter;
 import sample.Models.WantedCriminal;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
     private static Account loggedInAccount = null;
     private Security security = new Security();
     private ArrayList<Account> accounts = new ArrayList<>();
@@ -25,10 +30,21 @@ public class LoginController {
     }
 
     @FXML
-    private TextField username, password;
+    private TextField username, password, showPassword;
 
     public static Account getLoggedInAccount() {
         return loggedInAccount;
+    }
+
+    @FXML
+    private void mouseEnter() {
+        showPassword.setText(password.getText());
+        showPassword.setVisible(true);
+    }
+
+    @FXML
+    private void mouseExit() {
+        showPassword.setVisible(false);
     }
 
     @FXML
@@ -76,7 +92,7 @@ public class LoginController {
                 Police police = new Police(null, null, null, null);
                 polices.add(police);
                 DbConnect.getInstance(password.getText()).getInfo(polices);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -95,6 +111,11 @@ public class LoginController {
         } else {
             System.out.println("Pass and user does not match");
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showPassword.setVisible(false);
     }
 }
 

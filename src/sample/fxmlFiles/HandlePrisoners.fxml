@@ -22,15 +22,15 @@
             <Font name="Impact" size="30.0" />
          </font>
       </Text>
-      <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#GoBackHandlePrisonerButtonOnAction" text="Go back" />
+      <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#MenuButton" text="Menu" />
       <TextField fx:id="ID" layoutX="383.0" layoutY="47.0" prefHeight="26.0" prefWidth="90.0" />
       <Text fill="WHITE" layoutX="332.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the prisoner you want to handle" />
       <TextField fx:id="firstname" layoutX="279.0" layoutY="308.0" />
       <TextField fx:id="lastname" layoutX="279.0" layoutY="348.0" />
-      <Button layoutX="457.0" layoutY="307.0" mnemonicParsing="false" onAction="#changeFirstname" prefHeight="26.0" prefWidth="131.0" text="Change firstname" />
-      <Button layoutX="457.0" layoutY="347.0" mnemonicParsing="false" onAction="#changeLastname" prefHeight="26.0" prefWidth="131.0" text="Change lastname" />
+      <Button layoutX="457.0" layoutY="307.0" mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="131.0" text="Update prisoner" />
+      <Button layoutX="457.0" layoutY="347.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="131.0" text="Reset" />
       <Button layoutX="514.0" layoutY="48.0" mnemonicParsing="false" onAction="#enterID" text="Enter" />
-      <TableView fx:id="tableView" layoutX="35.0" layoutY="77.0" prefHeight="200.0" prefWidth="530.0">
+      <TableView fx:id="tableView" layoutX="35.0" layoutY="88.0" prefHeight="200.0" prefWidth="530.0">
          <columns>
             <TableColumn fx:id="FN" prefWidth="119.20001983642578" text="First Name" />
             <TableColumn fx:id="LN" prefWidth="141.60003662109375" text="Last Name" />

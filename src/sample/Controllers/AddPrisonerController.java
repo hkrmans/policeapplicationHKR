@@ -33,7 +33,7 @@ public class AddPrisonerController implements Initializable {
         SceneChanger.changeScene(event,"fxmlFiles/PoliceMenu.fxml");
 
     }
-    
+
     @FXML
     void addPrisonerButtonOnAction(ActionEvent event) {
         final String regexOne = "[a-zA-Z]";

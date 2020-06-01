@@ -30,26 +30,27 @@ public class HandlePrisonersController implements Initializable {
     private TableView<Prisoner> tableView;
     @FXML
     private TableColumn<Prisoner,String> FN;
-
     @FXML
     private TableColumn<Prisoner, String> LN;
-
     @FXML
     private TableColumn<Prisoner, String> CN;
-
     @FXML
     private TableColumn<Prisoner, Integer> PID;
 
     @FXML
-    private void changeFirstname(ActionEvent event) {
+    private void update(ActionEvent event) throws IOException {
         prisoner.setFirstName(firstname.getText());
+        prisoner.setLastName(lastname.getText());
         dbc.updateInfo(prisoner);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Update successful!");
+        alert.showAndWait();
+        MenuButton(event);
     }
 
     @FXML
-    private void changeLastname(ActionEvent event) {
-        prisoner.setLastName(lastname.getText());
-        dbc.updateInfo(prisoner);
+    private void reset(ActionEvent event) {
+        setText();
     }
 
     @FXML
@@ -62,11 +63,12 @@ public class HandlePrisonersController implements Initializable {
             alert.setContentText("There is no prisoner with that id.");
             alert.showAndWait();
         }
+        ID.clear();
     }
 
     private void setText() {
-        firstname.setText("Firstname");
-        lastname.setText("Lastname");
+        firstname.setText(prisoner.getFirstName());
+        lastname.setText(prisoner.getLastName());
     }
 
     private void fillPrisonerList(){
@@ -91,14 +93,14 @@ public class HandlePrisonersController implements Initializable {
     }
 
     @FXML
-    private void GoBackHandlePrisonerButtonOnAction(ActionEvent event) throws IOException {
+    private void MenuButton(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
     private void fillTable(){
         FN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         LN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         CN.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
-        PID.setCellValueFactory(new PropertyValueFactory<>("Prisoner ID"));
+        PID.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
         tableView.setItems(list);
     }
 
@@ -106,6 +108,5 @@ public class HandlePrisonersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillPrisonerList();
         fillTable();
-        setText();
     }
 }
