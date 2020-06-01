@@ -2,6 +2,7 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.*;
 import sample.Models.Civilian;
@@ -33,6 +34,14 @@ import java.util.ResourceBundle;
     @FXML
     private TextField AvialiableTextField;
 
+
+    @FXML
+    private TextField deleteMeetingTextField;
+
+    @FXML
+    private TextArea meetingsTextArea;
+
+
     @FXML
     void BookMeetingButtonOnAction(ActionEvent event) throws ParseException {
         date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
@@ -44,7 +53,6 @@ import java.util.ResourceBundle;
     @FXML
     void CheckAvaliableButtonOnAction(ActionEvent event) {
         String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
-        String userInputDate = BookMeetingDateTextField.getText();
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
                 AvialiableTextField.appendText("Found!");
@@ -58,12 +66,42 @@ import java.util.ResourceBundle;
     void GoBackBookMeetingButtonOnAction(ActionEvent event) throws IOException {
         SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
     }
+
+    @FXML
+    void deleteMeetingButtonOnAction(ActionEvent event) {
+        int CivilianInputMeetingId = Integer.parseInt(deleteMeetingTextField.getText());
+        for (int i = 0; i < meetings.size(); i = i + 1) {
+            if (CivilianInputMeetingId == (meetings.get(i).getMeetingID()))  {
+                dbc.deleteInformation(meetings.get(i));
+            }
+        }
+    }
+
+    @FXML
+    void checkMeetingButtonOnAction(ActionEvent event) {
+        meetingsTextArea.clear();
+        String CivilianInputCivicNumber = LoginController.getLoggedInAccount().getOwner().getCivicNumber();
+        for (int i = 0; i < meetings.size(); i = i + 1) {
+            if (CivilianInputCivicNumber.equals(meetings.get(i).getVisitor().getCivicNumber())) {
+             meetingsTextArea.appendText("---- Meetings ---- \n");
+             meetingsTextArea.appendText("Meeting ID \n");
+             meetingsTextArea.appendText(String.valueOf(meetings.get(i).getMeetingID()) + "\n");
+             meetingsTextArea.appendText("Date \n");
+             meetingsTextArea.appendText(String.valueOf(meetings.get(i).getDate() + "\n"));
+             meetingsTextArea.appendText("Prisoner ID \n");
+             meetingsTextArea.appendText(meetings.get(i).getPrisoner().getPrisonerId() + "\n");
+
+            }
+        }
+
+
+
+    }
     private void fillList(){
         try {
             Prisoner prisoner = new Prisoner(null,null,null,0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
-
             Meeting meeting = new Meeting(null,null,null,0);
             meetings.add(meeting);
             dbc.getInfo(meetings);
@@ -80,5 +118,6 @@ import java.util.ResourceBundle;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillList();
+
     }
 }

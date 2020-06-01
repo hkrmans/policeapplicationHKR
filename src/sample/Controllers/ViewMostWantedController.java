@@ -95,6 +95,8 @@ public class ViewMostWantedController implements Initializable {
 
 
 
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillWantedList();
         showWanteds();
