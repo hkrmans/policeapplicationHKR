@@ -16,6 +16,9 @@ import sample.Models.Sorter;
 
 import sample.Models.Police;
 
+import java.io.*;
+
+
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
@@ -87,10 +90,7 @@ public class ViewMostWantedController implements Initializable {
     }
 
     @FXML
-    void saveToPdfButtonOnAction(ActionEvent event) {
-
-
-
+    void saveToPdfButtonOnAction(ActionEvent event) throws IOException {
     }
 
     private void pdfWriter(OutputStream outputStream) throws IOException{
@@ -108,4 +108,5 @@ public class ViewMostWantedController implements Initializable {
         tableView.setItems(list);
 
     }
+
 }

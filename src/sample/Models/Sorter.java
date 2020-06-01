@@ -35,4 +35,6 @@ public class Sorter {
     public void meetingSorter(ArrayList<Meeting> meetings){
         Collections.sort(meetings);
     }
+
+    //Not used currently thanks to tableview. Will be kept if we were to need it later.
 }

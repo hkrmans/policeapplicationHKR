@@ -9,16 +9,6 @@ import java.util.*;
 public class Security {
     private static final SecureRandom rand = new SecureRandom();
 
-    public void checkMysql(String input){
-        try{
-            if(input.chars().filter(c-> c>='A' && c<='Z').count() + input.chars().filter(c-> c>='a' && c<='z').count() != input.length()){
-                throw new IllegalArgumentException("Only letters are allowed!");
-            }
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     public String hashPassword(String input) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedhash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
@@ -62,6 +52,7 @@ public class Security {
         String host = "localhost";
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host",host);
+        //Not working but If we get the time we will add it.
     }
 
 
