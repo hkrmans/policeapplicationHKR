@@ -7,6 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 public class Main extends Application {
 
     @Override
@@ -17,6 +22,10 @@ public class Main extends Application {
         primaryStage.show();
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
+
+        mail mail = new mail();
+        mail.sendValidationEmail("mats_06_20@hotmail.com","password");
+
     }
 
     public static void main(String[] args) {
