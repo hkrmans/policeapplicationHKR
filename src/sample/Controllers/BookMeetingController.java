@@ -51,12 +51,22 @@ public class BookMeetingController implements Initializable {
     void CheckAvaliableButtonOnAction(ActionEvent event) {
         String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
         String userInputDate = BookMeetingDateTextField.getText();
-        for (int i = 0; i < prisoners.size(); i = i + 1) {
-            if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
+        try {
+            for (int i = 0; i < prisoners.size(); i = i + 1) {
+                if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
                     AvialiableTextField.appendText("Found!");
                     prisoner = prisoners.get(i);
 
+                } else {
+                    throw new Exception();
+                }
             }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Prisoner not found");
+            alert.setContentText("Enter a prisoners civic number, try again!");
+            alert.showAndWait();
         }
     }
 
