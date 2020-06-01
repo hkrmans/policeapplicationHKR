@@ -61,10 +61,10 @@ public class ReadRegisteredCrimesController implements Initializable {
     }
     private void getCrime(){
         ReadRegisteredCrimesTextField.clear();
-        ReadRegisteredCrimesTextField.appendText(crimes.get(index).getTypeOfCrime());
-        ReadRegisteredCrimesTextField.appendText(String.valueOf(crimes.get(index).getCrimeID()));
-        ReadRegisteredCrimesTextField.appendText(String.valueOf(crimes.get(index).getDateOfCrime()));
-        ReadRegisteredCrimesTextField.appendText(crimes.get(index).getRapport().getRapport());
+        ReadRegisteredCrimesTextField.appendText("Type of crime: " + crimes.get(index).getTypeOfCrime() + "\n");
+        ReadRegisteredCrimesTextField.appendText("Crime ID: " + String.valueOf(crimes.get(index).getCrimeID())+ "\n");
+        ReadRegisteredCrimesTextField.appendText("Date: " + String.valueOf(crimes.get(index).getDateOfCrime()) + "\n");
+        ReadRegisteredCrimesTextField.appendText("-- Report --\n" + crimes.get(index).getRapport().getRapport() + "\n");
         /*if(crimes.get(index).getSuspect() != null) {
             ReadRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getFirstName());
             ReadRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getLastName());
@@ -72,9 +72,10 @@ public class ReadRegisteredCrimesController implements Initializable {
         }
 
          */
-        ReadRegisteredCrimesTextField.appendText(crimes.get(index).getRapport().getWriter().getFirstName());
-        ReadRegisteredCrimesTextField.appendText(crimes.get(index).getRapport().getWriter().getLastName());
-        ReadRegisteredCrimesTextField.appendText(crimes.get(index).getRapport().getWriter().getCivicNumber());
+        ReadRegisteredCrimesTextField.appendText("-- Plaintiff --\n");
+        ReadRegisteredCrimesTextField.appendText("First name: " + crimes.get(index).getRapport().getWriter().getFirstName() + "\n");
+        ReadRegisteredCrimesTextField.appendText("Last name: " + crimes.get(index).getRapport().getWriter().getLastName() + "\n");
+        ReadRegisteredCrimesTextField.appendText("Civic number: " + crimes.get(index).getRapport().getWriter().getCivicNumber() + "\n");
     }
 
     @Override
