@@ -11,7 +11,7 @@ import javafx.stage.Window;
 
 public class SceneChanger {
 
-    public static void changeScene(ActionEvent event, String path){
+    public static void changeScene(ActionEvent event, String path) {
         try {
             SceneChanger sc = new SceneChanger();
 
