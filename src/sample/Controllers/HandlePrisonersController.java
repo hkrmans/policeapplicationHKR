@@ -9,27 +9,25 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
 import sample.Models.Prisoner;
-import sample.Models.WantedCriminal;
 import sample.SceneChanger;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class HandlePrisonersController implements Initializable {
     private Prisoner prisoner;
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
-    private ObservableList list= FXCollections.observableList(prisoners);
+    private ObservableList list = FXCollections.observableList(prisoners);
 
     @FXML
     private TextField ID, firstname, lastname;
     @FXML
     private TableView<Prisoner> tableView;
     @FXML
-    private TableColumn<Prisoner,String> FN;
+    private TableColumn<Prisoner, String> FN;
     @FXML
     private TableColumn<Prisoner, String> LN;
     @FXML
@@ -38,29 +36,39 @@ public class HandlePrisonersController implements Initializable {
     private TableColumn<Prisoner, Integer> PID;
 
     @FXML
-    private void update(ActionEvent event) throws IOException {
-        prisoner.setFirstName(firstname.getText());
-        prisoner.setLastName(lastname.getText());
-        dbc.updateInfo(prisoner);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Update successful!");
-        alert.showAndWait();
-        MenuButton(event);
+    private void update(ActionEvent event) {
+        if (Pattern.matches("[a-zA-Z]", firstname.getText())) {
+            if (Pattern.matches("[a-zA-Z]", lastname.getText())) {
+                prisoner.setFirstName(firstname.getText());
+                prisoner.setLastName(lastname.getText());
+                dbc.updateInfo(prisoner);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Update successful!");
+                alert.showAndWait();
+
+                menuButton(event);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Firstname and Lastname may only contain letters!");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
-    private void reset(ActionEvent event) {
+    private void reset() {
         setText();
     }
 
     @FXML
-    private void enterID(ActionEvent event) {
+    private void enterID() {
         if (searchForPrisoner()) {
             setText();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("There is no prisoner with that id.");
+            alert.setContentText("There is no prisoner with that ID!");
             alert.showAndWait();
         }
         ID.clear();
@@ -71,15 +79,12 @@ public class HandlePrisonersController implements Initializable {
         lastname.setText(prisoner.getLastName());
     }
 
-    private void fillPrisonerList(){
-        try {
-            Prisoner prisoner = new Prisoner(null,null,null,0);
+    private void fillPrisonerList() {
+            Prisoner prisoner = new Prisoner(null, null, null, 0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
+
     private boolean searchForPrisoner() {
         boolean check = false;
 
@@ -93,15 +98,22 @@ public class HandlePrisonersController implements Initializable {
     }
 
     @FXML
-    private void MenuButton(ActionEvent event) throws IOException {
+    private void menuButton(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
-    private void fillTable(){
-        FN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        LN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        CN.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
-        PID.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
-        tableView.setItems(list);
+
+    private void fillTable() {
+        try {
+            FN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            LN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            CN.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
+            PID.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
+            tableView.setItems(list);
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to fill the table");
+            alert.showAndWait();
+        }
     }
 
     @Override

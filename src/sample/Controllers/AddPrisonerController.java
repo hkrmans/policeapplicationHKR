@@ -9,7 +9,6 @@ import sample.DbConnect;
 import sample.Models.Prisoner;
 import sample.SceneChanger;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -29,13 +28,12 @@ public class AddPrisonerController implements Initializable {
     private TextField addPCivicNumberTextField;
 
     @FXML
-    void AddPrisonerMenuButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event,"fxmlFiles/PoliceMenu.fxml");
-
+   private void menuButton(ActionEvent event) {
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
     @FXML
-    void addPrisonerButtonOnAction(ActionEvent event) {
+   private void addPrisonerButtonOnAction() {
         final String regexOne = "[a-zA-Z]";
         final String regexTwo = "[0-9]";
         try {
@@ -49,18 +47,18 @@ public class AddPrisonerController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Success!");
                         alert.setHeaderText("Prisoner has been added");
-                        alert.setContentText("The prisoner has been added to th system");
+                        alert.setContentText("The prisoner has been added to the system");
                         alert.showAndWait();
-                    }else{
+                    } else {
                         throw new Exception();
                     }
-                }else{
+                } else {
                     throw new Exception();
                 }
-            }else{
+            } else {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Wrong input");
@@ -68,19 +66,15 @@ public class AddPrisonerController implements Initializable {
             alert.show();
         }
     }
-    private void FillList(){
-        try {
-            Prisoner prisoner = new Prisoner(null,null,null,0);
-            prisoners.add(prisoner);
-            dbc.getInfo(prisoners);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
 
+    private void fillList() {
+        Prisoner prisoner = new Prisoner(null, null, null, 0);
+        prisoners.add(prisoner);
+        dbc.getInfo(prisoners);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FillList();
+        fillList();
     }
 }
