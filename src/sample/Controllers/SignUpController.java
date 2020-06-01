@@ -150,9 +150,8 @@ public class SignUpController implements Initializable {
 
             try {
                 dbc.addInformation(a);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("Your password is : " + password);
-                alert.showAndWait();
+                mail mail = new mail();
+                mail.sendValidationEmail(a.getEmail(),password);
                 password = null;
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

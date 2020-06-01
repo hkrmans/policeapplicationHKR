@@ -9,8 +9,7 @@ public class mail {
     //Not working yet
 
     public static void sendValidationEmail(String userEmail, String password) {
-        String from = "mats_06_20@hotmail.com";
-
+        String from = "jailhkr@gmail.com";
         String host = "smtp.gmail.com";
 
         Properties properties = System.getProperties();
@@ -30,7 +29,6 @@ public class mail {
 
         });
         session.setDebug(true);
-
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
