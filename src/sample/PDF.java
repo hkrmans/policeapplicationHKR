@@ -1,4 +1,4 @@
-package sample.Models;
+package sample;
 
 
 import com.itextpdf.text.Document;
@@ -6,11 +6,13 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import sample.Models.WantedCriminal;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class pdf {
+public class PDF {
 
     public void SaveToPdf(ArrayList<WantedCriminal> wantedCriminals) throws FileNotFoundException, DocumentException {
         Document document = new Document(PageSize.A4,50,50,50,50);

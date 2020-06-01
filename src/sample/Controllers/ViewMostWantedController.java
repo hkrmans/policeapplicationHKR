@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
 
 
-import sample.Models.pdf;
+import sample.PDF;
 import sample.SceneChanger;
 import sample.Models.WantedCriminal;
 
@@ -62,7 +62,7 @@ public class ViewMostWantedController implements Initializable {
     @FXML
 
     private void saveToPdfButtonOnAction() {
-        pdf p = new pdf();
+        PDF p = new PDF();
         try {
             p.SaveToPdf(wantedCriminals);
         } catch (FileNotFoundException e) {

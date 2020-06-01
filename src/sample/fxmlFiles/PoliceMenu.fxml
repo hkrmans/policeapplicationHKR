@@ -27,5 +27,6 @@
       <Button layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#LogOutAsPoliceButtonOnAction" text="Logout" />
       <Button layoutX="77.0" layoutY="289.0" mnemonicParsing="false" onAction="#AddPrisonerButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Add prisoner" />
       <Button layoutX="344.0" layoutY="290.0" mnemonicParsing="false" onAction="#ReadRegisteredCrimesButtonOnAction" prefHeight="26.0" prefWidth="178.0" text="Read registered crimes" />
+      <Button layoutX="76.0" layoutY="338.0" mnemonicParsing="false" onAction="#addConvictionScene" prefHeight="26.0" prefWidth="178.0" text="Add conviction" />
    </children>
 </AnchorPane>
