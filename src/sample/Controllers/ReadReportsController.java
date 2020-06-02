@@ -125,6 +125,15 @@ public class ReadReportsController implements Initializable {
         }
     }
 
+    @FXML
+    private void removeReportButtonOnAction(ActionEvent event){
+        int firstReport = 0;
+        CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
+        rapports.remove(crimeReport);
+        dbc.deleteInformation(crimeReport);
+        crimeRapportArea.setText(rapports.get(firstReport).getRapport() + " | " + rapports.get(firstReport).getWriter().getFirstName());
+    }
+
     private void fillLists() {
             rapports.add(new CrimeReport(null, null, 0));
             dbc.getInfo(rapports);
