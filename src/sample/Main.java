@@ -17,6 +17,8 @@ public class Main extends Application {
         primaryStage.show();
         Image image = new Image("images/icon.png");
         primaryStage.getIcons().add(image);
+        mail mail = new mail();
+        mail.sendValidationEmail("mats_06_20@hotmail.com","password");
     }
 
     public static void main(String[] args) {
