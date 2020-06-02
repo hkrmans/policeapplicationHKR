@@ -5,7 +5,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class mail {
+public class Mail {
     //Not working yet
 
     public static void sendValidationEmail(String userEmail, String password) {

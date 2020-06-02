@@ -7,7 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.*;
+import sample.DbConnect;
+import sample.Mail;
+import sample.SceneChanger;
 import sample.Models.Account;
 import sample.Models.Civilian;
 import sample.Models.Person;
@@ -150,7 +152,7 @@ public class SignUpController implements Initializable {
 
             try {
                 dbc.addInformation(a);
-                mail mail = new mail();
+                Mail mail = new Mail();
                 mail.sendValidationEmail(a.getEmail(),password);
                 password = null;
             } catch (Exception e) {

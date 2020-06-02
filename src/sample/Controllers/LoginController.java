@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import sample.*;
+import sample.DbConnect;
+import sample.SceneChanger;
+import sample.Security;
 import sample.Models.Account;
 import sample.Models.Police;
 

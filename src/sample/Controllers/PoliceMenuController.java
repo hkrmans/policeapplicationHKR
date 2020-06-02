@@ -50,4 +50,9 @@ public class PoliceMenuController {
     private void AddPrisonerButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/AddPrisoner.fxml");
     }
+
+    @FXML
+    private void addConvictionScene(ActionEvent event){
+        SceneChanger.changeScene(event,"fxmlFiles/AddConviction.fxml");
+    }
 }

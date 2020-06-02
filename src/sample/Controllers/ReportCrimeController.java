@@ -4,7 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import sample.*;
+import sample.DbConnect;
+import sample.SceneChanger;
 import sample.Models.CrimeReport;
 import sample.Models.Person;
 
