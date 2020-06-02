@@ -98,6 +98,7 @@ public class LoginController implements Initializable {
                 isPolice = true;
                 break;
             }
+            isPolice=false;
         }
     }
 
