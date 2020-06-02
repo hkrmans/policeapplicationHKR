@@ -5,20 +5,11 @@ import sample.Models.Person;
 import java.util.Date;
 
 public class Prisoner extends Person implements Comparable<Prisoner>{
-    private Date releaseDate;
     private int prisonerId;
-    public Prisoner(String firstName, String lastName, String civicNumber, int prisonerId, Date releaseDate) {
+    public Prisoner(String firstName, String lastName, String civicNumber, int prisonerId) {
         super(firstName, lastName, civicNumber);
         this.prisonerId = prisonerId;
-        this.releaseDate = releaseDate;
-    }
 
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
     }
 
     public int getPrisonerId() {

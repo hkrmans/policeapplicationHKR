@@ -1,16 +1,18 @@
 package sample.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DbConnect;
-import sample.Models.Police;
 import sample.Models.Prisoner;
 import sample.SceneChanger;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,47 +20,51 @@ import java.util.ResourceBundle;
 public class ViewPrisonersController implements Initializable {
     private ArrayList<Prisoner> prisoners = new ArrayList<>();
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
+    private ObservableList list = FXCollections.observableList(prisoners);
 
     @FXML
-    private TextArea showPrisoner;
+    private TableView<Prisoner> tableView;
+    @FXML
+    private TableColumn<Prisoner, String> FN;
+    @FXML
+    private TableColumn<Prisoner, String> LN;
+    @FXML
+    private TableColumn<Prisoner, String> CN;
+    @FXML
+    private TableColumn<Prisoner, Integer> PID;
 
     @FXML
-    void GoBackViewPrisonersButtonOnAction(ActionEvent event) {
-        try {
-            if (LoginController.isPolice()) {
-                SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
-            } else {
-                SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
-            }
-        } catch (Exception ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Scenefail");
-            alert.setContentText("Failed to change scene!");
-            alert.showAndWait();
-        }
-    }
-
-    private void showPrisoners() {
-        for (Prisoner p : prisoners) {
-            showPrisoner.appendText(p.getFirstName() + " | " + p.getLastName() + " | CN:" + p.getCivicNumber()
-                    + " | ID:" + p.getPrisonerId() + " | Release Date:" + p.getReleaseDate() + "\n");
+    private void menuButton(ActionEvent event) {
+        if (LoginController.isPolice()) {
+            SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
+        } else {
+            SceneChanger.changeScene(event, "fxmlFiles/CivilianMenu.fxml");
         }
     }
 
     private void fillPrisonerList() {
-        try {
-            Prisoner prisoner = new Prisoner(null, null, null, 0, null);
+            Prisoner prisoner = new Prisoner(null, null, null, 0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
-        } catch (Exception e) {
-            e.printStackTrace();
+    }
+
+    private void fillTable() {
+        try {
+            FN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            LN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            CN.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
+            PID.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
+            tableView.setItems(list);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to fill the table");
+            alert.showAndWait();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillPrisonerList();
-        showPrisoners();
+        fillTable();
     }
 }

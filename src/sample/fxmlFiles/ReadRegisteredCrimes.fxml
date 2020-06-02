@@ -16,10 +16,10 @@
             <Image url="@../../images/shutterstock_burglary1.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="125.0" layoutY="347.0" mnemonicParsing="false" onAction="#BackRegisteredCrimeButtonOnAction" prefHeight="26.0" prefWidth="103.0" text="Previous" />
-      <Button layoutX="468.0" layoutY="347.0" mnemonicParsing="false" onAction="#NextRegisteredCrimeButtonOnAction" prefHeight="26.0" prefWidth="103.0" text="Next" />
-      <Button layoutX="17.0" layoutY="347.0" mnemonicParsing="false" onAction="#CrimesMenuButtonOnAction" text="Menu" />
-      <TextArea fx:id="ReadRegisteredCrimesTextField" layoutX="125.0" layoutY="111.0" prefHeight="222.0" prefWidth="445.0" />
+      <Button layoutX="125.0" layoutY="347.0" mnemonicParsing="false" onAction="#backRegisteredCrimeButtonOnAction" prefHeight="26.0" prefWidth="103.0" text="Previous" />
+      <Button layoutX="468.0" layoutY="347.0" mnemonicParsing="false" onAction="#nextRegisteredCrimeButtonOnAction" prefHeight="26.0" prefWidth="103.0" text="Next" />
+      <Button layoutX="17.0" layoutY="347.0" mnemonicParsing="false" onAction="#menuButton" text="Menu" />
+      <TextArea fx:id="readRegisteredCrimesTextField" layoutX="125.0" layoutY="111.0" prefHeight="222.0" prefWidth="445.0" />
       <Text fill="WHITE" layoutX="17.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Read registered crimes">
          <font>
             <Font name="Impact" size="37.0" />

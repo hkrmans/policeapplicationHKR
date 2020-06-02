@@ -7,7 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.*;
+import sample.DbConnect;
+import sample.Mail;
+import sample.SceneChanger;
 import sample.Models.Account;
 import sample.Models.Civilian;
 import sample.Models.Person;
@@ -16,7 +18,6 @@ import sample.Models.Police;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.io.IOException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,32 +30,24 @@ public class SignUpController implements Initializable {
     private ArrayList<Civilian> civilians = new ArrayList<>();
     private ArrayList<Police> polices = new ArrayList<>();
 
-    private void fillLists() {
-        try {
-            polices.add(new Police(null, null, null, null));
-            dbc.getInfo(polices);
-
-            Civilian civilian = new Civilian(null,null,null);
-            civilians.add(civilian);
-            dbc.getInfo(civilians);
-
-            accounts.add(new Account(civilian,null,null,null));
-            dbc.getInfo(accounts);
-        } catch (Exception ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("This is the first rapport");
-            alert.setContentText("This is the first rapport in the system");
-            alert.showAndWait();
-        }
-    }
-
     @FXML
     private TextField emailTextfield, usernameTextfield, CNTextfield;
     @FXML
     private Label usernameLabel, emailLabel, civicNumberLabel;
     @FXML
     private Button registerButton;
+
+    private void fillLists() {
+        polices.add(new Police(null, null, null, null));
+        dbc.getInfo(polices);
+
+        Civilian civilian = new Civilian(null, null, null);
+        civilians.add(civilian);
+        dbc.getInfo(civilians);
+
+        accounts.add(new Account(civilian, null, null, null));
+        dbc.getInfo(accounts);
+    }
 
     private void setButton() {
         if (checkCivicNumber() && checkUsername() && checkEmail()) {
@@ -144,7 +137,9 @@ public class SignUpController implements Initializable {
                 }
                 Files.write(path, lines2);
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Failed to generate a password");
+                alert.showAndWait();
             }
         }
     }
@@ -157,35 +152,25 @@ public class SignUpController implements Initializable {
 
             try {
                 dbc.addInformation(a);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmed");
-                alert.setContentText("Your password is : " + password);
-                alert.showAndWait();
+                Mail mail = new Mail();
+                mail.sendValidationEmail(a.getEmail(),password);
                 password = null;
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Failed to create the account");
+                alert.showAndWait();
             }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
             alert.setContentText("Something went wrong when generating your password");
             alert.showAndWait();
         }
-
-        try {
-            backButtonOnAction(event);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Something went wrong when trying to go back");
-            alert.showAndWait();
-        }
+        backButtonOnAction(event);
     }
 
     @FXML
-    private void backButtonOnAction(ActionEvent event) throws IOException {
+    private void backButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 

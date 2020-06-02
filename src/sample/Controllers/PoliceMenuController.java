@@ -4,57 +4,55 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import sample.SceneChanger;
 
-import java.io.IOException;
-
-
 public class PoliceMenuController {
 
     @FXML
-    void LogOutAsPoliceButtonOnAction(ActionEvent event) throws IOException {
+    private void LogOutAsPoliceButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
     }
 
     @FXML
-    void HandlePrisonerSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void HandlePrisonerSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/HandlePrisoners.fxml");
     }
 
-
     @FXML
-    void RegisterCrimeSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void RegisterCrimeSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ReadReports.fxml");
     }
 
     @FXML
-    void ViewConvictionsSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void ViewConvictionsSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ViewConviction.fxml");
     }
 
     @FXML
-    void ViewMostWantedSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void ViewMostWantedSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ViewMostWanted.fxml");
     }
 
-
     @FXML
-    void ViewPrisonerSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void ViewPrisonerSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ViewPrisoners.fxml");
-
     }
 
     @FXML
-    void reportSceneButtonOnAction(ActionEvent event) throws IOException {
+    private void reportSceneButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/ReportCrime.fxml");
-
     }
 
     @FXML
-    void ReadRegisteredCrimesButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event,"fxmlFiles/ReadRegisteredCrimes.fxml");
-    }
-    @FXML
-    void AddPrisonerButtonOnAction(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event,"fxmlFiles/AddPrisoner.fxml");
+    private void ReadRegisteredCrimesButtonOnAction(ActionEvent event) {
+        SceneChanger.changeScene(event, "fxmlFiles/ReadRegisteredCrimes.fxml");
     }
 
+    @FXML
+    private void AddPrisonerButtonOnAction(ActionEvent event) {
+        SceneChanger.changeScene(event, "fxmlFiles/AddPrisoner.fxml");
+    }
+
+    @FXML
+    private void addConvictionScene(ActionEvent event){
+        SceneChanger.changeScene(event,"fxmlFiles/AddConviction.fxml");
+    }
 }

@@ -44,7 +44,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Button layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#goBackMenuButtonOnAction" prefHeight="26.0" prefWidth="97.0" text="Menu" />
+      <Button layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="97.0" text="Menu" />
       <Button layoutX="77.0" layoutY="241.0" mnemonicParsing="false" onAction="#searchButtonOnAction" text="Search" />
       <TextField fx:id="indexTextField" layoutX="351.0" layoutY="330.0" prefHeight="26.0" prefWidth="130.0" />
       <Button layoutX="494.0" layoutY="330.0" mnemonicParsing="false" onAction="#viewMoreInfoButtonOnAction" text="View more info" />
