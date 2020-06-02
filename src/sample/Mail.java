@@ -23,10 +23,8 @@ public class Mail {
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-
                 return new PasswordAuthentication("jailhkr@gmail.com", "hkrpass123");
             }
-
         });
         session.setDebug(true);
         try {
