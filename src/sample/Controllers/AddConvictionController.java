@@ -1,10 +1,13 @@
 package sample.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import sample.DbConnect;
 import sample.Models.Conviction;
 import sample.Models.Prisoner;
+import sample.SceneChanger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,6 +69,11 @@ public class AddConvictionController {
         Prisoner prisoner = new Prisoner(null, null, null, 0);
         prisoners.add(prisoner);
         dbc.getInfo(prisoners);
+    }
+
+    @FXML
+    private void menuButton(ActionEvent event){
+        SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
 }

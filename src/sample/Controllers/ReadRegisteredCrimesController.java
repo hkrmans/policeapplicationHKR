@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import sample.DbConnect;
 import sample.Models.Crime;
 import sample.SceneChanger;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,22 +57,24 @@ public class ReadRegisteredCrimesController implements Initializable {
     }
 
     private void getCrime() {
-        readRegisteredCrimesTextField.clear();
-        readRegisteredCrimesTextField.appendText("Type of crime: " + crimes.get(index).getTypeOfCrime() + "\n");
-        readRegisteredCrimesTextField.appendText("Crime ID: " + String.valueOf(crimes.get(index).getCrimeID()) + "\n");
-        readRegisteredCrimesTextField.appendText("Date: " + String.valueOf(crimes.get(index).getDateOfCrime()) + "\n");
-        readRegisteredCrimesTextField.appendText("-- Report --\n" + crimes.get(index).getRapport().getRapport() + "\n");
-        /*if(crimes.get(index).getSuspect() != null) {
-            ReadRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getFirstName());
-            ReadRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getLastName());
-            ReadRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getCivicNumber());
-        }
+        if (crimes.size() != 0) {
+            readRegisteredCrimesTextField.clear();
+            readRegisteredCrimesTextField.appendText("Type of crime: " + crimes.get(index).getTypeOfCrime() + "\n");
+            readRegisteredCrimesTextField.appendText("Crime ID: " + String.valueOf(crimes.get(index).getCrimeID()) + "\n");
+            readRegisteredCrimesTextField.appendText("Date: " + String.valueOf(crimes.get(index).getDateOfCrime()) + "\n");
+            readRegisteredCrimesTextField.appendText("-- Report --\n" + crimes.get(index).getRapport().getRapport() + "\n");
+        /*    if (crimes.get(index).getSuspect() != null) {
+                readRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getFirstName());
+                readRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getLastName());
+                readRegisteredCrimesTextField.appendText(crimes.get(index).getSuspect().getCivicNumber());
+            }
 
          */
-        readRegisteredCrimesTextField.appendText("-- Plaintiff --\n");
-        readRegisteredCrimesTextField.appendText("First name: " + crimes.get(index).getRapport().getWriter().getFirstName() + "\n");
-        readRegisteredCrimesTextField.appendText("Last name: " + crimes.get(index).getRapport().getWriter().getLastName() + "\n");
-        readRegisteredCrimesTextField.appendText("Civic number: " + crimes.get(index).getRapport().getWriter().getCivicNumber() + "\n");
+            readRegisteredCrimesTextField.appendText("-- Plaintiff --\n");
+            readRegisteredCrimesTextField.appendText("First name: " + crimes.get(index).getRapport().getWriter().getFirstName() + "\n");
+            readRegisteredCrimesTextField.appendText("Last name: " + crimes.get(index).getRapport().getWriter().getLastName() + "\n");
+            readRegisteredCrimesTextField.appendText("Civic number: " + crimes.get(index).getRapport().getWriter().getCivicNumber() + "\n");
+        }
     }
 
     @Override

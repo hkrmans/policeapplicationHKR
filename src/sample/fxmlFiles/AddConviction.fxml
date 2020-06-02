@@ -11,5 +11,6 @@
       <TextField fx:id="sentence" layoutX="40.0" layoutY="151.0" promptText="sentence" />
       <TextField fx:id="prisonerID" layoutX="40.0" layoutY="200.0" promptText="ID of prisoner" />
       <Button layoutX="82.0" layoutY="264.0" mnemonicParsing="false" onAction="#addConviction" text="Add conviction" />
+      <Button layoutX="82.0" layoutY="306.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="96.0" text="Menu" />
    </children>
 </AnchorPane>

@@ -25,6 +25,7 @@ public class SceneChanger {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to change scene");
             alert.showAndWait();

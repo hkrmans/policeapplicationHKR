@@ -154,11 +154,15 @@ public class SignUpController implements Initializable {
                 dbc.addInformation(a);
                 Mail mail = new Mail();
                 mail.sendValidationEmail(a.getEmail(),password);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Account successfully created");
+                alert.showAndWait();
                 password = null;
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Failed to create the account");
                 alert.showAndWait();
+                backButtonOnAction(event);
             }
 
         } else {
@@ -166,7 +170,7 @@ public class SignUpController implements Initializable {
             alert.setContentText("Something went wrong when generating your password");
             alert.showAndWait();
         }
-        backButtonOnAction(event);
+       // backButtonOnAction(event);
     }
 
     @FXML
