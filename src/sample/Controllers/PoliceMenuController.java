@@ -2,7 +2,6 @@ package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import sample.DbConnect;
 import sample.SceneChanger;
 
 public class PoliceMenuController {
