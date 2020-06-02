@@ -21,7 +21,7 @@
             <Font size="33.0" />
          </font></Text>
       <TextField fx:id="usernameTextfield" layoutX="29.0" layoutY="161.0" onKeyReleased="#keyReleaseUsername" prefHeight="26.0" prefWidth="184.0" />
-      <TextField fx:id="emailTextfield" layoutX="279.0" layoutY="161.0" onKeyReleased="#keyReleaseEmail" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="emailTextfield" layoutX="279.0" layoutY="161.0" onKeyReleased="#keyReleaseEmail" prefHeight="26.0" prefWidth="184.0" promptText="123@mail.com" />
       <Text fill="WHITE" layoutX="28.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="141.33673095703125">
          <font>
             <Font size="26.0" />
@@ -33,7 +33,7 @@
       <Button fx:id="registerButton" layoutX="478.0" layoutY="200.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="108.0" text="Register" />
       <Button layoutX="425.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Exit" />
       <Button layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="141.0" text="Go Back" />
-      <TextField fx:id="CNTextfield" layoutX="29.0" layoutY="261.0" onKeyReleased="#keyReleaseCivicNumber" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="CNTextfield" layoutX="29.0" layoutY="261.0" onKeyReleased="#keyReleaseCivicNumber" prefHeight="26.0" prefWidth="184.0" promptText="YYYYMMDDXXXX" />
       <Text fill="#fffdfd" layoutX="27.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Civicnumber">
          <font>
             <Font size="26.0" />

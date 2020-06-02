@@ -15,9 +15,8 @@
             <Font name="Impact" size="32.0" />
          </font>
       </Text>
-      <Button layoutX="53.0" layoutY="338.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" text="Log Out" />
-      <Button layoutX="98.0" layoutY="304.0" mnemonicParsing="false" onAction="#addCriminalButtonOnAction" text="Add criminal" />
-      <Button layoutX="166.0" layoutY="338.0" mnemonicParsing="false" onAction="#goBackButtonOnAction" text="Go back" />
+      <Button layoutX="48.0" layoutY="297.0" mnemonicParsing="false" onAction="#addCriminalButtonOnAction" text="Add criminal" />
+      <Button layoutX="48.0" layoutY="347.0" mnemonicParsing="false" onAction="#goBackButtonOnAction" prefHeight="26.0" prefWidth="83.0" text="Go back" />
       <TextArea fx:id="wantedTextArea" layoutX="326.0" layoutY="138.0" prefHeight="215.0" prefWidth="254.0" />
       <Text layoutX="386.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wanted criminal(s)">
          <font>
@@ -26,7 +25,7 @@
       </Text>
       <TextField fx:id="firstNameTextField" layoutX="24.0" layoutY="106.0" />
       <TextField fx:id="lasNameTextField" layoutX="24.0" layoutY="138.0" />
-      <TextField fx:id="civicTextField" layoutX="24.0" layoutY="175.0" />
+      <TextField fx:id="civicTextField" layoutX="24.0" layoutY="175.0" promptText="YYYYMMDDXXXX" />
       <TextField fx:id="rankingTextField" layoutX="24.0" layoutY="212.0" />
       <TextField fx:id="bountyTextField" layoutX="24.0" layoutY="246.0" />
       <Text layoutX="185.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />

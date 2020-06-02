@@ -27,12 +27,16 @@ public class LoginController implements Initializable {
         return isPolice;
     }
 
-    @FXML
-    private TextField username, password, showPassword;
+    public static void setIsPolice(boolean isPolice) {
+        LoginController.isPolice = isPolice;
+    }
 
     public static Account getLoggedInAccount() {
         return loggedInAccount;
     }
+
+    @FXML
+    private TextField username, password, showPassword;
 
     @FXML
     private void mouseEnter() {

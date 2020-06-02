@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DbConnect<T> {
     private static DbConnect single_instance = null;
-    private static Connection connection;
+    private Connection connection;
     private static Security security = new Security();
 
     public static DbConnect getInstance(String password) {
@@ -17,6 +17,14 @@ public class DbConnect<T> {
             single_instance = new DbConnect(password);
         }
         return single_instance;
+    }
+
+    public void closeCon(){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private DbConnect(String password) {

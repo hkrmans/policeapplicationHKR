@@ -2,6 +2,7 @@ package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import sample.DbConnect;
 import sample.SceneChanger;
 
 public class PoliceMenuController {
@@ -9,6 +10,7 @@ public class PoliceMenuController {
     @FXML
     private void LogOutAsPoliceButtonOnAction(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
+        LoginController.setIsPolice(false);
     }
 
     @FXML

@@ -25,8 +25,8 @@
       <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#menuButton" text="Menu" />
       <TextField fx:id="ID" layoutX="383.0" layoutY="47.0" prefHeight="26.0" prefWidth="90.0" />
       <Text fill="WHITE" layoutX="332.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the prisoner you want to handle" />
-      <TextField fx:id="firstname" layoutX="279.0" layoutY="308.0" />
-      <TextField fx:id="lastname" layoutX="279.0" layoutY="348.0" />
+      <TextField fx:id="firstname" layoutX="279.0" layoutY="308.0" promptText="Firstname" />
+      <TextField fx:id="lastname" layoutX="279.0" layoutY="348.0" promptText="Lastname" />
       <Button layoutX="457.0" layoutY="307.0" mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="131.0" text="Update prisoner" />
       <Button layoutX="457.0" layoutY="347.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="131.0" text="Reset" />
       <Button layoutX="514.0" layoutY="48.0" mnemonicParsing="false" onAction="#enterID" text="Enter" />

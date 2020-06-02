@@ -23,7 +23,7 @@
          </font></Text>
       <TextField fx:id="nameTextField" layoutX="28.0" layoutY="91.0" />
       <TextField fx:id="releaseTextField" layoutX="28.0" layoutY="140.0" />
-      <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="197.0" />
+      <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="197.0" promptText="YYYYMMDDXXXX" />
       <Text fill="WHITE" layoutX="28.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for prisoner(s)">
          <font>
             <Font size="19.0" />
@@ -46,7 +46,7 @@
       </Text>
       <Button layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="97.0" text="Menu" />
       <Button layoutX="77.0" layoutY="241.0" mnemonicParsing="false" onAction="#searchButtonOnAction" text="Search" />
-      <TextField fx:id="indexTextField" layoutX="351.0" layoutY="330.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField fx:id="indexTextField" layoutX="351.0" layoutY="330.0" prefHeight="26.0" prefWidth="130.0" promptText="YYYYMMDDXXXX" />
       <Button layoutX="494.0" layoutY="330.0" mnemonicParsing="false" onAction="#viewMoreInfoButtonOnAction" text="View more info" />
       <Text fill="WHITE" layoutX="200.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter prisoner ssn to see convictions:" wrappingWidth="164.893798828125">
          <font>

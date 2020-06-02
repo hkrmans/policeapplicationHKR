@@ -19,9 +19,9 @@
          <font>
             <Font name="Impact" size="32.0" />
          </font></Text>
-      <TextField fx:id="addPFirstNameTextField" layoutX="69.0" layoutY="111.0" />
-      <TextField fx:id="addPLastNameTextField" layoutX="69.0" layoutY="153.0" />
-      <TextField fx:id="addPCivicNumberTextField" layoutX="69.0" layoutY="200.0" />
+      <TextField fx:id="addPFirstNameTextField" layoutX="69.0" layoutY="111.0" promptText="Firstname" />
+      <TextField fx:id="addPLastNameTextField" layoutX="69.0" layoutY="153.0" promptText="Lastname" />
+      <TextField fx:id="addPCivicNumberTextField" layoutX="69.0" layoutY="200.0" promptText="YYYYMMDDXXXX" />
       <Button layoutX="68.0" layoutY="250.0" mnemonicParsing="false" onAction="#addPrisonerButtonOnAction" prefHeight="26.0" prefWidth="149.0" text="Add prisoner" />
       <Text fill="WHITE" layoutX="247.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname">
          <font>
