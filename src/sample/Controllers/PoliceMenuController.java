@@ -53,7 +53,7 @@ public class PoliceMenuController {
     }
 
     @FXML
-    private void addConvictionScene(ActionEvent event){
-        SceneChanger.changeScene(event,"fxmlFiles/AddConviction.fxml");
+    private void addConvictionScene(ActionEvent event) {
+        SceneChanger.changeScene(event, "fxmlFiles/AddConviction.fxml");
     }
 }

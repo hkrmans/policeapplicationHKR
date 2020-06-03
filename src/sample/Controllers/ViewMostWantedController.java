@@ -54,23 +54,21 @@ public class ViewMostWantedController implements Initializable {
     }
 
     private void fillWantedList() {
-            WantedCriminal wantedCriminal = new WantedCriminal(null, null, null, 0, 0, 0);
-            wantedCriminals.add(wantedCriminal);
-            dbc.getInfo(wantedCriminals);
+        WantedCriminal wantedCriminal = new WantedCriminal(null, null, null, 0, 0, 0);
+        wantedCriminals.add(wantedCriminal);
+        dbc.getInfo(wantedCriminals);
     }
 
     @FXML
-
     private void saveToPdfButtonOnAction() {
         PDF p = new PDF();
         try {
             p.SaveToPdf(wantedCriminals);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException | DocumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to save as PDF, try again");
+            alert.showAndWait();
         }
-
     }
 
     private void fillTable() {
@@ -81,19 +79,15 @@ public class ViewMostWantedController implements Initializable {
             RA.setCellValueFactory(new PropertyValueFactory<>("ranking"));
             BO.setCellValueFactory(new PropertyValueFactory<>("bounty"));
             tableView.setItems(list);
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to fill the table");
             alert.showAndWait();
         }
     }
 
-
-
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillWantedList();
         fillTable();
     }
-
 }

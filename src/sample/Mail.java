@@ -6,7 +6,6 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class Mail {
-    //Not working yet
 
     public static void sendValidationEmail(String userEmail, String password) {
         Security sec = new Security();

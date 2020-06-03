@@ -1,8 +1,6 @@
 package sample.Models;
 
-import sample.Models.Person;
-
-public class Police extends Person implements Comparable<Police>{
+public class Police extends Person{
     private String badgeId;
 
     public Police(String firstName, String lastName, String civicNumber, String badgeId) {
@@ -14,12 +12,4 @@ public class Police extends Person implements Comparable<Police>{
         return badgeId;
     }
 
-    public void setBadgeId(String badgeId) {
-        this.badgeId = badgeId;
-    }
-
-    @Override
-    public int compareTo(Police o) {
-        return (Integer.parseInt(this.getBadgeId()) < Integer.parseInt(o.getBadgeId()) ? 0:1);
-    }
 }

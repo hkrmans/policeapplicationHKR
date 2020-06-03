@@ -21,34 +21,19 @@
          <font>
             <Font size="34.0" />
          </font></Text>
-      <TextField fx:id="nameTextField" layoutX="28.0" layoutY="91.0" />
-      <TextField fx:id="releaseTextField" layoutX="28.0" layoutY="140.0" />
-      <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="197.0" promptText="YYYYMMDDXXXX" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for prisoner(s)">
+      <TextField fx:id="nameTextField" layoutX="28.0" layoutY="127.0" promptText="Firstname" />
+      <TextField fx:id="releaseTextField" layoutX="28.0" layoutY="175.0" promptText="Lastname" />
+      <TextField fx:id="ssnTextField" layoutX="28.0" layoutY="219.0" promptText="YYYYMMDDXXXX" />
+      <Text fill="WHITE" layoutX="21.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for prisoner(s)">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fill="#fdfcfc" layoutX="28.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="28.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text fill="#fff8f8" layoutX="28.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSN">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
       <Button layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="97.0" text="Menu" />
-      <Button layoutX="77.0" layoutY="241.0" mnemonicParsing="false" onAction="#searchButtonOnAction" text="Search" />
-      <TextField fx:id="indexTextField" layoutX="351.0" layoutY="330.0" prefHeight="26.0" prefWidth="130.0" promptText="YYYYMMDDXXXX" />
-      <Button layoutX="494.0" layoutY="330.0" mnemonicParsing="false" onAction="#viewMoreInfoButtonOnAction" text="View more info" />
-      <Text fill="WHITE" layoutX="200.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter prisoner ssn to see convictions:" wrappingWidth="164.893798828125">
+      <Button layoutX="76.0" layoutY="275.0" mnemonicParsing="false" onAction="#searchButtonOnAction" text="Search" />
+      <TextField fx:id="indexTextField" layoutX="352.0" layoutY="342.0" prefHeight="26.0" prefWidth="130.0" promptText="YYYYMMDDXXXX" />
+      <Button layoutX="494.0" layoutY="342.0" mnemonicParsing="false" onAction="#viewMoreInfoButtonOnAction" text="View more info" />
+      <Text fill="WHITE" layoutX="206.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter prisoner ssn to see convictions" wrappingWidth="130.4000000000001">
          <font>
             <Font size="16.0" />
          </font>

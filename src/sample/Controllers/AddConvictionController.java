@@ -18,16 +18,7 @@ public class AddConvictionController {
     private Prisoner prisoner;
 
     @FXML
-    private TextField releaseDate;
-
-    @FXML
-    private TextField convictionDate;
-
-    @FXML
-    private TextField sentence;
-
-    @FXML
-    private TextField prisonerID;
+    private TextField releaseDate, convictionDate, sentence, prisonerID;
 
     @FXML
     private void addConviction() {
@@ -43,9 +34,9 @@ public class AddConvictionController {
             java.sql.Date sqlDate2 = new java.sql.Date(date.getTime());
 
             if (checkPrisoner()) {
-                Conviction c = new Conviction(sqlDate, sqlDate2, sentence.getText(),prisoner,0);
+                Conviction c = new Conviction(sqlDate, sqlDate2, sentence.getText(), prisoner, 0);
                 dbc.addInformation(c);
-            }else{
+            } else {
                 System.out.println("wrong id");
             }
         } catch (ParseException e) {
@@ -72,7 +63,7 @@ public class AddConvictionController {
     }
 
     @FXML
-    private void menuButton(ActionEvent event){
+    private void menuButton(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 

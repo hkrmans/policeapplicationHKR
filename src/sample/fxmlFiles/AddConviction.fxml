@@ -13,9 +13,9 @@
       <TextField fx:id="prisonerID" layoutX="300.0" layoutY="187.0" promptText="ID of prisoner" />
       <Button layoutX="326.0" layoutY="260.0" mnemonicParsing="false" onAction="#addConviction" text="Add conviction" />
       <Button layoutX="66.0" layoutY="259.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="96.0" text="Menu" />
-      <Text layoutX="162.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Release Date" wrappingWidth="82.93670654296875" />
-      <Text layoutX="162.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conviction Date" wrappingWidth="108.53668212890625" />
-      <Text layoutX="162.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sentence" />
+      <Text layoutX="180.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Release Date" wrappingWidth="72.53668212890625" />
+      <Text layoutX="162.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conviction Date" wrappingWidth="87.7366943359375" />
+      <Text layoutX="201.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sentence" />
       <Text layoutX="125.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID of the convicted prisoner" wrappingWidth="170.34063720703125" />
    </children>
 </AnchorPane>

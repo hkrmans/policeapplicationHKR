@@ -26,19 +26,10 @@ public class ReadReportsController implements Initializable {
     private int indexes = 0;
 
     @FXML
-    private TextField wantedCriminalTextField;
+    private TextField wantedCriminalTextField, typeOfCrimeTextField, dateOfCrimeTextField;
 
     @FXML
-    private TextField dateOfCrimeTextField;
-
-    @FXML
-    private TextField typeOfCrimeTextField;
-
-    @FXML
-    private TextArea wantedCriminalArea;
-
-    @FXML
-    private TextArea crimeRapportArea;
+    private TextArea wantedCriminalArea, crimeRapportArea;
 
     @FXML
     private void menuButton(ActionEvent event) {
@@ -126,7 +117,7 @@ public class ReadReportsController implements Initializable {
     }
 
     @FXML
-    private void removeReportButtonOnAction(ActionEvent event){
+    private void removeReportButtonOnAction() {
         int firstReport = 0;
         CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
         rapports.remove(crimeReport);
@@ -135,14 +126,14 @@ public class ReadReportsController implements Initializable {
     }
 
     private void fillLists() {
-            rapports.add(new CrimeReport(null, null, 0));
-            dbc.getInfo(rapports);
+        rapports.add(new CrimeReport(null, null, 0));
+        dbc.getInfo(rapports);
 
-            wantedCriminals.add(new WantedCriminal(null, null, null, 0, 0, 0));
-            dbc.getInfo(wantedCriminals);
+        wantedCriminals.add(new WantedCriminal(null, null, null, 0, 0, 0));
+        dbc.getInfo(wantedCriminals);
     }
 
-    private void oklart() {
+    private void fillArea() {
         crimeRapportArea.setText(rapports.get(indexes).getRapport() + " | " + rapports.get(indexes).getWriter().getFirstName());
 
         for (int i = 0; i < wantedCriminals.size(); i++) {
@@ -154,7 +145,7 @@ public class ReadReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillLists();
-        oklart();
+        fillArea();
     }
 }
 

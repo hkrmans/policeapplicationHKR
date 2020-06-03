@@ -19,21 +19,15 @@ public class AddPrisonerController implements Initializable {
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
 
     @FXML
-    private TextField addPFirstNameTextField;
+    private TextField addPFirstNameTextField, addPLastNameTextField, addPCivicNumberTextField;
 
     @FXML
-    private TextField addPLastNameTextField;
-
-    @FXML
-    private TextField addPCivicNumberTextField;
-
-    @FXML
-   private void menuButton(ActionEvent event) {
+    private void menuButton(ActionEvent event) {
         SceneChanger.changeScene(event, "fxmlFiles/PoliceMenu.fxml");
     }
 
     @FXML
-   private void addPrisonerButtonOnAction() {
+    private void addPrisonerButtonOnAction() {
         final String regexOne = "[a-zA-Z]";
         final String regexTwo = "[0-9]";
         try {

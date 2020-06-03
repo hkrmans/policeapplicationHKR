@@ -16,7 +16,7 @@
             <Image url="@../../images/file-20200210-109939-187g3so.png" />
          </image>
       </ImageView>
-      <Button layoutX="28.0" layoutY="349.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="147.0" text="Menu" />
+      <Button layoutX="28.0" layoutY="349.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="26.0" prefWidth="90.0" text="Menu" />
       <Text fill="WHITE" layoutX="161.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIEW PRISONERS" wrappingWidth="274.2031936645508">
          <font>
             <Font name="Arial Black" size="28.0" />

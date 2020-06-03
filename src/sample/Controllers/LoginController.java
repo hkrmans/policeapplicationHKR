@@ -61,7 +61,6 @@ public class LoginController implements Initializable {
 
     private boolean checkAccount() {
         loggedInAccount = null;
-        boolean check = false;
         try {
             Account account = new Account(null, null, null, null);
             accounts.add(account);
@@ -76,14 +75,13 @@ public class LoginController implements Initializable {
                 if (a.getUsername().equalsIgnoreCase(username.getText()) &&
                         a.getPassword().equals(security.hashPassword(password.getText()))) {
                     loggedInAccount = a;
-                    check = true;
-                    break;
+                    return true;
                 }
             }
         } catch (NullPointerException | NoSuchAlgorithmException ex) {
             ex.printStackTrace();
         }
-        return check;
+        return false;
     }
 
     private void checkIfPolice() {

@@ -24,13 +24,10 @@ public class FirstPageController {
 
     @FXML
     private void helpButtonOnAction() {
-        try {
-            throw new NumberFormatException();
-        } catch (NumberFormatException e) {
-            Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
-            errorAlert.setHeaderText("Information");
-            errorAlert.setContentText("Hello and welcome to this police application. \n To progress, you need to register and create an account.\n When you register you will receive a password sent to you.");
-            errorAlert.showAndWait();
-        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Information");
+        alert.setContentText("Hello and welcome to this police application. \n To progress, you need to register and create an account.\n When you register you will receive a password sent to you.");
+        alert.showAndWait();
+
     }
 }
