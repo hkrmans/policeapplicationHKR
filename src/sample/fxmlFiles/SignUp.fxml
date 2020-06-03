@@ -20,27 +20,27 @@
          <font>
             <Font size="33.0" />
          </font></Text>
-      <TextField fx:id="usernameTextfield" layoutX="29.0" layoutY="161.0" onKeyReleased="#keyReleaseUsername" prefHeight="26.0" prefWidth="184.0" />
-      <TextField fx:id="emailTextfield" layoutX="279.0" layoutY="161.0" onKeyReleased="#keyReleaseEmail" prefHeight="26.0" prefWidth="184.0" promptText="123@mail.com" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="141.33673095703125">
+      <TextField fx:id="usernameTextfield" layoutX="187.0" layoutY="130.0" onKeyReleased="#keyReleaseUsername" prefHeight="26.0" prefWidth="184.0" promptText="Username" />
+      <TextField fx:id="emailTextfield" layoutX="187.0" layoutY="199.0" onKeyReleased="#keyReleaseEmail" prefHeight="26.0" prefWidth="184.0" promptText="123@mail.com" />
+      <Text fill="WHITE" layoutX="61.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="118.3359375">
          <font>
             <Font size="26.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="279.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fill="WHITE" layoutX="115.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="26.0" />
          </font></Text>
       <Button fx:id="registerButton" layoutX="478.0" layoutY="200.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="108.0" text="Register" />
       <Button layoutX="425.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Exit" />
       <Button layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="141.0" text="Go Back" />
-      <TextField fx:id="CNTextfield" layoutX="29.0" layoutY="261.0" onKeyReleased="#keyReleaseCivicNumber" prefHeight="26.0" prefWidth="184.0" promptText="YYYYMMDDXXXX" />
-      <Text fill="#fffdfd" layoutX="27.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Civicnumber">
+      <TextField fx:id="CNTextfield" layoutX="187.0" layoutY="270.0" onKeyReleased="#keyReleaseCivicNumber" prefHeight="26.0" prefWidth="184.0" promptText="YYYYMMDDXXXX" />
+      <Text fill="#fffdfd" layoutX="33.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Civicnumber">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Label fx:id="usernameLabel" layoutX="45.0" layoutY="204.0" prefHeight="18.0" prefWidth="108.0" textFill="RED" />
-      <Label fx:id="emailLabel" layoutX="300.0" layoutY="204.0" prefHeight="18.0" prefWidth="118.0" textFill="RED" />
-      <Label fx:id="civicNumberLabel" layoutX="50.0" layoutY="298.0" prefHeight="18.0" prefWidth="118.0" textFill="RED" />
+      <Label fx:id="usernameLabel" layoutX="187.0" layoutY="161.0" prefHeight="18.0" prefWidth="184.0" textFill="RED" />
+      <Label fx:id="emailLabel" layoutX="187.0" layoutY="230.0" prefHeight="18.0" prefWidth="184.0" textFill="RED" />
+      <Label fx:id="civicNumberLabel" layoutX="187.0" layoutY="303.0" prefHeight="18.0" prefWidth="184.0" textFill="RED" />
    </children>
 </AnchorPane>
