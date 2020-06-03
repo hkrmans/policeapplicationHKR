@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.DbConnect;
@@ -15,6 +16,7 @@ import sample.Models.WantedCriminal;
 
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -26,10 +28,13 @@ public class ReadReportsController implements Initializable {
     private int indexes = 0;
 
     @FXML
-    private TextField wantedCriminalTextField, typeOfCrimeTextField, dateOfCrimeTextField;
+    private TextField wantedCriminalTextField, typeOfCrimeTextField;
 
     @FXML
     private TextArea wantedCriminalArea, crimeRapportArea;
+
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private void menuButton(ActionEvent event) {
@@ -83,29 +88,24 @@ public class ReadReportsController implements Initializable {
 
     @FXML
     private void ReportRegisterButtonOnAction() {
-        String dateOfCrime = dateOfCrimeTextField.getText();
+        LocalDate dateOfCrime = datePicker.getValue();
         String typeOfCrime = typeOfCrimeTextField.getText();
         String index = wantedCriminalTextField.getText();
-        final String regex = "[2][0][\\d]{2}[-]([0][\\d]|([1][0-2]))[-]([0][1-9]|[1-2][\\d]|[3][0-1])";
         final String regexTwo = "[a-zA-Z]+";
         final String regexThree = "[0-9]";
         try {
-            if (Pattern.matches(regex, dateOfCrime)) {
-                if (Pattern.matches(regexTwo, typeOfCrime)) {
-                    if (Pattern.matches(regexThree, index)) {
-                        WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
-                                wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
-                        CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
-                        Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport, 0);
-                        dbc.addInformation(crime);
+            if (Pattern.matches(regexTwo, typeOfCrime)) {
+                if (Pattern.matches(regexThree, index)) {
+                    WantedCriminal wantedCriminal = new WantedCriminal(wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getFirstName(), wantedCriminals.get(Integer.parseInt(index)).getCivicNumber(),
+                            wantedCriminals.get(Integer.parseInt(index)).getRanking(), wantedCriminals.get(Integer.parseInt(index)).getBounty(), wantedCriminals.get(Integer.parseInt(index)).getWantedId());
+                    CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
+                    Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport, 0);
+                    dbc.addInformation(crime);
                     } else {
                         throw new Exception();
                     }
                 } else {
                     throw new Exception();
-                }
-            } else {
-                throw new Exception();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

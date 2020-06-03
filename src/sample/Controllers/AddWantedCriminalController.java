@@ -79,7 +79,7 @@ public class AddWantedCriminalController implements Initializable {
         try {
             for (WantedCriminal w : wantedCriminals) {
                 wantedTextArea.appendText(w.getFirstName() + " | " + w.getLastName() + " | " + w.getCivicNumber()
-                        + w.getRanking() + " | " + w.getBounty());
+                        + w.getRanking() + " | " + w.getBounty() + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
