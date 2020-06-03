@@ -160,7 +160,7 @@ public class DbConnect<T> {
                     list.add((T) conviction);
                 }
             } else if (list.get(0) instanceof Meeting) {
-                ResultSet rs = stmt.executeQuery("select * from prisoners,person,meeting where prisoners.PrisonerId = meeting.PrisonerID and meeting.person = person.CivicNumber");
+                ResultSet rs = stmt.executeQuery("select * from prisoners,person,meeting where prisoners.PrisonerId = meeting.PrisonerID and meeting.person = person.civicnumber");
                 while (rs.next()) {
                     Civilian person = new Civilian(rs.getString(3), rs.getString(4), rs.getString(5));
                     Prisoner prisoner = new Prisoner(null, null, null, rs.getInt(1));

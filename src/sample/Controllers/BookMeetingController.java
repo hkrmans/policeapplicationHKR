@@ -17,6 +17,7 @@ import sample.Models.Prisoner;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -28,6 +29,9 @@ public class BookMeetingController implements Initializable {
     private Prisoner prisoner = null;
     private java.util.Date date = null;
     private ObservableList list = FXCollections.observableList(prisoners);
+
+    @FXML
+    private DatePicker DatesPicker;
 
     @FXML
     private TextField BookMeetingCivicNumberTextField;
@@ -59,6 +63,22 @@ public class BookMeetingController implements Initializable {
     @FXML
     private TableColumn<Prisoner, Integer> PNColumn;
 
+    /*@FXML
+    void datePickerButtonOnAction(ActionEvent event) {
+        LocalDate today = LocalDate.now();
+        LocalDate meetingdate = showDatesPicker.getValue();
+        for (int i = 0; i <prisoners.size(); i = i + 1) {
+            for (int j = 0; j < meetings.size(); j = j + 1)
+                if (meetingdate.equals(meetings.get(i).getPrisoner().getCivicNumber() == String.valueOf(meetings.get(j).getDate()))) {
+                    if (meetings.get(i).getPrisoner().getCivicNumber() == String.valueOf(prisoners.get(j).getPrisonerId())) {
+                        System.out.println("Same date");
+
+                    }
+                }
+        }
+    }
+
+     */
 
 
     @FXML
@@ -68,7 +88,22 @@ public class BookMeetingController implements Initializable {
         if (index <= -1){
             return;
         }
-        BookMeetingCivicNumberTextField.setText(prisoners.get(index).getCivicNumber());
+        BookMeetingCivicNumberTextField.setText(Integer.toString(prisoners.get(index).getPrisonerId()));
+    }
+
+    @FXML
+    void MouseDateButtonOnAction(MouseEvent event) {
+
+    }
+
+    private boolean checkDate(){
+        for (Meeting m: meetings) {
+            if (m.getPrisoner().getPrisonerId() == Integer.parseInt(BookMeetingCivicNumberTextField.getText())
+                    && m.getDate().equals(BookMeetingDateTextField.getText())){
+                return false;
+            }
+        }
+        return true;
     }
 
     @FXML
@@ -76,28 +111,23 @@ public class BookMeetingController implements Initializable {
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), sqlDate, 0);
-            dbc.addInformation(meeting);
+            if (checkDate()) {
+                String prisonerID = BookMeetingCivicNumberTextField.getText();
+                for (Prisoner p : prisoners) {
+                    if (p.getPrisonerId() == Integer.parseInt(prisonerID)) {
+                        prisoner = p;
+                    }
+                }
+                Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), sqlDate, 0);
+                dbc.addInformation(meeting);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("--");
+                alert.showAndWait();
+            }
         } catch (ParseException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to convert the inserted date");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void CheckAvaliableButtonOnAction() {
-        try {
-            String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
-            for (int i = 0; i < prisoners.size(); i = i + 1) {
-                if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
-                    AvailableTextField.appendText("Found!");
-                    prisoner = prisoners.get(i);
-                }
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Something went wrong, try again");
             alert.showAndWait();
         }
     }
