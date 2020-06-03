@@ -9,6 +9,7 @@ public class Mail {
     //Not working yet
 
     public static void sendValidationEmail(String userEmail, String password) {
+        Security sec = new Security();
         String from = "jailhkr@gmail.com";
         String host = "smtp.gmail.com";
 
@@ -23,7 +24,7 @@ public class Mail {
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("jailhkr@gmail.com", "hkrpass123");
+                return new PasswordAuthentication("jailhkr@gmail.com", sec.mailDecrypter("26292@2>2/2A2A123"));
             }
         });
         session.setDebug(true);
