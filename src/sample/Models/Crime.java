@@ -35,4 +35,8 @@ public class Crime {
         return rapport;
     }
 
+    public void setSuspect(Person suspect) {
+        this.suspect = suspect;
+    }
+
 }

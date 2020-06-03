@@ -36,4 +36,9 @@ public class Conviction {
         this.prisoner = prisoner;
         this.convictionID = convictionID;
     }
+
+    public void setPrisoner(Prisoner prisoner) {
+        this.prisoner = prisoner;
+    }
+
 }

@@ -94,6 +94,7 @@ public class BookMeetingController implements Initializable {
 
             }
         }
+
     }
 
     private void fillList() {
@@ -106,6 +107,13 @@ public class BookMeetingController implements Initializable {
         Civilian civilian = new Civilian(null, null, null);
         civilians.add(civilian);
         dbc.getInfo(civilians);
+        for (int i = 0; i < meetings.size(); i++) {
+            for (int j = 0; j < prisoners.size(); j++) {
+                if (meetings.get(i).getPrisoner().getPrisonerId() == (prisoners.get(j).getPrisonerId())){
+                    meetings.get(i).setPrisoner(prisoners.get(j));
+                }
+            }
+        }
     }
 
     @Override
