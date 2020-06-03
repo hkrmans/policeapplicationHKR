@@ -43,4 +43,25 @@ public class Security {
         return (passreturn);
     }
 
+    public String mailDecrypter(String password){
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        int l = password.length();
+        int convert;
+        for (int i = 0; i < l; i++) {
+            convert = password.charAt(i);
+            numbers.add(convert);
+        }
+        ArrayList<Integer> passnumbers = new ArrayList<>();
+        for(int i = 0; i <numbers.size()-3; i+=2){
+            passnumbers.add(numbers.get(i) + numbers.get(i+1));
+        }
+        String passreturn = "";
+        for (int x : passnumbers) {
+            passreturn += (char) x;
+        }
+        passreturn+="123";
+        return (passreturn);
+    }
+
 }
