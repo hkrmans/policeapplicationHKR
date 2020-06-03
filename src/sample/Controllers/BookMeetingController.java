@@ -27,25 +27,13 @@ public class BookMeetingController implements Initializable {
     private java.util.Date date = null;
 
     @FXML
-    private TextField BookMeetingCivicNumberTextField;
-
-    @FXML
-    private TextField BookMeetingDateTextField;
-
-    @FXML
-    private TextField AvialiableTextField;
-
-
-    @FXML
-    private TextField deleteMeetingTextField;
+    private TextField BookMeetingCivicNumberTextField, BookMeetingDateTextField, AvailableTextField, deleteMeetingTextField;
 
     @FXML
     private TextArea meetingsTextArea;
 
-
     @FXML
-
-    void bookMeetingButtonOnAction() {
+    private void bookMeetingButtonOnAction() {
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -64,11 +52,11 @@ public class BookMeetingController implements Initializable {
             String UserInputCivicnumber = BookMeetingCivicNumberTextField.getText();
             for (int i = 0; i < prisoners.size(); i = i + 1) {
                 if (UserInputCivicnumber.equals(prisoners.get(i).getCivicNumber())) {
-                    AvialiableTextField.appendText("Found!");
+                    AvailableTextField.appendText("Found!");
                     prisoner = prisoners.get(i);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Something went wrong, try again");
             alert.showAndWait();
@@ -81,28 +69,28 @@ public class BookMeetingController implements Initializable {
     }
 
     @FXML
-    void deleteMeetingButtonOnAction(ActionEvent event) {
+    private void deleteMeetingButtonOnAction() {
         int CivilianInputMeetingId = Integer.parseInt(deleteMeetingTextField.getText());
         for (int i = 0; i < meetings.size(); i = i + 1) {
-            if (CivilianInputMeetingId == (meetings.get(i).getMeetingID()))  {
+            if (CivilianInputMeetingId == (meetings.get(i).getMeetingID())) {
                 dbc.deleteInformation(meetings.get(i));
             }
         }
     }
 
     @FXML
-    void checkMeetingButtonOnAction(ActionEvent event) {
+    private void checkMeetingButtonOnAction() {
         meetingsTextArea.clear();
         String CivilianInputCivicNumber = LoginController.getLoggedInAccount().getOwner().getCivicNumber();
         for (int i = 0; i < meetings.size(); i = i + 1) {
             if (CivilianInputCivicNumber.equals(meetings.get(i).getVisitor().getCivicNumber())) {
-             meetingsTextArea.appendText("---- Meetings ---- \n");
-             meetingsTextArea.appendText("Meeting ID \n");
-             meetingsTextArea.appendText(String.valueOf(meetings.get(i).getMeetingID()) + "\n");
-             meetingsTextArea.appendText("Date \n");
-             meetingsTextArea.appendText(String.valueOf(meetings.get(i).getDate() + "\n"));
-             meetingsTextArea.appendText("Prisoner ID \n");
-             meetingsTextArea.appendText(meetings.get(i).getPrisoner().getPrisonerId() + "\n");
+                meetingsTextArea.appendText("---- Meetings ---- \n");
+                meetingsTextArea.appendText("Meeting ID \n");
+                meetingsTextArea.appendText(String.valueOf(meetings.get(i).getMeetingID()) + "\n");
+                meetingsTextArea.appendText("Date \n");
+                meetingsTextArea.appendText(String.valueOf(meetings.get(i).getDate() + "\n"));
+                meetingsTextArea.appendText("Prisoner ID \n");
+                meetingsTextArea.appendText(meetings.get(i).getPrisoner().getPrisonerId() + "\n");
 
             }
         }
@@ -123,6 +111,5 @@ public class BookMeetingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillList();
-
     }
 }

@@ -31,6 +31,9 @@ public class ReportCrimeController {
             Person writer = LoginController.getLoggedInAccount().getOwner();
             CrimeReport crimeReport = new CrimeReport(rapport, writer, 0);
             dbc.addInformation(crimeReport);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Report successfully uploaded");
+            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to upload the report");

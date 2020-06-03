@@ -60,8 +60,8 @@ public class ReadRegisteredCrimesController implements Initializable {
         if (crimes.size() != 0) {
             readRegisteredCrimesTextField.clear();
             readRegisteredCrimesTextField.appendText("Type of crime: " + crimes.get(index).getTypeOfCrime() + "\n");
-            readRegisteredCrimesTextField.appendText("Crime ID: " + String.valueOf(crimes.get(index).getCrimeID()) + "\n");
-            readRegisteredCrimesTextField.appendText("Date: " + String.valueOf(crimes.get(index).getDateOfCrime()) + "\n");
+            readRegisteredCrimesTextField.appendText("Crime ID: " + (crimes.get(index).getCrimeID()) + "\n");
+            readRegisteredCrimesTextField.appendText("Date: " + (crimes.get(index).getDateOfCrime()) + "\n");
             readRegisteredCrimesTextField.appendText("-- Report --\n" + crimes.get(index).getRapport().getRapport() + "\n");
 
             for (int i = 0; i < crimes.size(); i++) {
@@ -73,9 +73,7 @@ public class ReadRegisteredCrimesController implements Initializable {
                         readRegisteredCrimesTextField.appendText("Civicnumber: " + wantedCriminals.get(j).getCivicNumber() + "\n");
                     }
                 }
-
             }
-
             readRegisteredCrimesTextField.appendText("-- Plaintiff --\n");
             readRegisteredCrimesTextField.appendText("First name: " + crimes.get(index).getRapport().getWriter().getFirstName() + "\n");
             readRegisteredCrimesTextField.appendText("Last name: " + crimes.get(index).getRapport().getWriter().getLastName() + "\n");

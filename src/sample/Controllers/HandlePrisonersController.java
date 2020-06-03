@@ -80,21 +80,19 @@ public class HandlePrisonersController implements Initializable {
     }
 
     private void fillPrisonerList() {
-            Prisoner prisoner = new Prisoner(null, null, null, 0);
-            prisoners.add(prisoner);
-            dbc.getInfo(prisoners);
+        Prisoner prisoner = new Prisoner(null, null, null, 0);
+        prisoners.add(prisoner);
+        dbc.getInfo(prisoners);
     }
 
     private boolean searchForPrisoner() {
-        boolean check = false;
-
         for (Prisoner p : prisoners) {
             if (p.getPrisonerId() == Integer.parseInt(ID.getText())) {
                 prisoner = p;
-                check = true;
+                return true;
             }
         }
-        return check;
+        return false;
     }
 
     @FXML
@@ -109,7 +107,7 @@ public class HandlePrisonersController implements Initializable {
             CN.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
             PID.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
             tableView.setItems(list);
-        }catch(Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to fill the table");
             alert.showAndWait();

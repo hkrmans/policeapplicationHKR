@@ -21,7 +21,7 @@
       <Button layoutX="88.0" layoutY="127.0" mnemonicParsing="false" onAction="#CivilianReportCrimeButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="Report crime" />
       <Button layoutX="88.0" layoutY="249.0" mnemonicParsing="false" onAction="#CivilianViewConvictionsButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="View convictions" />
       <Button layoutX="382.0" layoutY="127.0" mnemonicParsing="false" onAction="#CivilianBookMeetingButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="Book meeting" />
-      <Button layoutX="516.0" layoutY="343.0" mnemonicParsing="false" onAction="#LogOutCivilianButtonOnAction" text="Logout" />
+      <Button layoutX="33.0" layoutY="346.0" mnemonicParsing="false" onAction="#LogOutCivilianButtonOnAction" prefHeight="26.0" prefWidth="66.0" text="Logout" />
       <Button layoutX="382.0" layoutY="249.0" mnemonicParsing="false" onAction="#CivilianMostWantedButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="View most wanted" />
    </children>
 </AnchorPane>

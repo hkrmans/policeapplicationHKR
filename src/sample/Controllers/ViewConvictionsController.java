@@ -24,13 +24,7 @@ public class ViewConvictionsController implements Initializable {
     @FXML
     private TextArea convictionsArea;
     @FXML
-    private TextField nameTextField;
-    @FXML
-    private TextField ssnTextField;
-    @FXML
-    private TextField releaseTextField;
-    @FXML
-    private TextField indexTextField;
+    private TextField nameTextField, ssnTextField, releaseTextField, indexTextField;
 
     @FXML
     private void menuButton(ActionEvent event) {
@@ -51,14 +45,14 @@ public class ViewConvictionsController implements Initializable {
                     convictionsArea.appendText(("\n Convictions \n" + convictions.get(i).getConviction() + convictions.get(i).getSentence()));
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to retrieve more information");
             alert.showAndWait();
         }
     }
 
-    private void searchByFirstName(){
+    private void searchByFirstName() {
         String searchByFirstName = nameTextField.getText();
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByFirstName.equals(prisoners.get(i).getFirstName())) {
@@ -69,7 +63,7 @@ public class ViewConvictionsController implements Initializable {
         }
     }
 
-    private void searchBySSN(){
+    private void searchBySSN() {
         String searchBySsn = ssnTextField.getText();
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchBySsn.equals(prisoners.get(i).getCivicNumber())) {
@@ -79,7 +73,7 @@ public class ViewConvictionsController implements Initializable {
         }
     }
 
-    private void searchByLastName(){
+    private void searchByLastName() {
         String searchByLastName = releaseTextField.getText();
         for (int i = 0; i < prisoners.size(); i = i + 1) {
             if (searchByLastName.equals(prisoners.get(i).getLastName())) {
@@ -89,6 +83,7 @@ public class ViewConvictionsController implements Initializable {
             }
         }
     }
+
     @FXML
     private void searchButtonOnAction() {
         convictionsArea.clear();
@@ -96,7 +91,7 @@ public class ViewConvictionsController implements Initializable {
             searchByFirstName();
             searchByLastName();
             searchBySSN();
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed the search, try again");
             alert.showAndWait();
@@ -104,12 +99,12 @@ public class ViewConvictionsController implements Initializable {
     }
 
     private void FillList() {
-            Conviction conviction = new Conviction(null, null, null, null, 0);
-            convictions.add(conviction);
-            dbc.getInfo(convictions);
-            Prisoner prisoner = new Prisoner(null, null, null, 0);
-            prisoners.add(prisoner);
-            dbc.getInfo(prisoners);
+        Conviction conviction = new Conviction(null, null, null, null, 0);
+        convictions.add(conviction);
+        dbc.getInfo(convictions);
+        Prisoner prisoner = new Prisoner(null, null, null, 0);
+        prisoners.add(prisoner);
+        dbc.getInfo(prisoners);
     }
 
     @Override

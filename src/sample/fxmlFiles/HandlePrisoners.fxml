@@ -17,20 +17,20 @@
             <Image url="@../../images/file-20200210-109939-187g3so.png" />
          </image>
       </ImageView>
-      <Text fill="#fdfbfb" layoutX="51.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handle Prisoners">
+      <Text fill="#fdfbfb" layoutX="50.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handle Prisoners">
          <font>
             <Font name="Impact" size="30.0" />
          </font>
       </Text>
       <Button layoutX="26.0" layoutY="348.0" mnemonicParsing="false" onAction="#menuButton" text="Menu" />
-      <TextField fx:id="ID" layoutX="383.0" layoutY="47.0" prefHeight="26.0" prefWidth="90.0" />
-      <Text fill="WHITE" layoutX="332.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the prisoner you want to handle" />
+      <TextField fx:id="ID" layoutX="278.0" layoutY="269.0" prefHeight="26.0" prefWidth="149.0" />
+      <Text fill="WHITE" layoutX="14.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the ID of the prisoner you want to handle" />
       <TextField fx:id="firstname" layoutX="279.0" layoutY="308.0" promptText="Firstname" />
       <TextField fx:id="lastname" layoutX="279.0" layoutY="348.0" promptText="Lastname" />
       <Button layoutX="457.0" layoutY="307.0" mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="131.0" text="Update prisoner" />
       <Button layoutX="457.0" layoutY="347.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="131.0" text="Reset" />
-      <Button layoutX="514.0" layoutY="48.0" mnemonicParsing="false" onAction="#enterID" text="Enter" />
-      <TableView fx:id="tableView" layoutX="35.0" layoutY="88.0" prefHeight="200.0" prefWidth="530.0">
+      <Button layoutX="454.0" layoutY="270.0" mnemonicParsing="false" onAction="#enterID" prefHeight="26.0" prefWidth="131.0" text="Enter" />
+      <TableView fx:id="tableView" layoutX="35.0" layoutY="61.0" prefHeight="200.0" prefWidth="530.0">
          <columns>
             <TableColumn fx:id="FN" prefWidth="119.20001983642578" text="First Name" />
             <TableColumn fx:id="LN" prefWidth="141.60003662109375" text="Last Name" />

@@ -30,11 +30,6 @@ public class AddWantedCriminalController implements Initializable {
     }
 
     @FXML
-    private void logOutButtonOnAction(ActionEvent event) {
-        SceneChanger.changeScene(event, "fxmlFiles/FirstPage.fxml");
-    }
-
-    @FXML
     private void addCriminalButtonOnAction() {
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -51,12 +46,6 @@ public class AddWantedCriminalController implements Initializable {
                             if (Pattern.matches(regexTwo, bounty)) {
                                 WantedCriminal wantedCriminal = new WantedCriminal(firstName, lastName, civicNumber, Integer.parseInt(ranking), Integer.parseInt(bounty), 0);
                                 dbc.addInformation(wantedCriminal);
-                                /*dbc.getInfo(wantedCriminals);
-                                for (WantedCriminal w : wantedCriminals) {
-                                    wantedTextArea.appendText(w.getFirstName() + " | " + w.getLastName() + " | " + w.getCivicNumber()
-                                            + w.getRanking() + " | " + w.getBounty())
-                                }
-                                 */
                             } else {
                                 throw new Exception();
                             }
