@@ -37,6 +37,10 @@ public class Conviction implements Comparable<Conviction>{
         this.convictionID = convictionID;
     }
 
+    public void setPrisoner(Prisoner prisoner) {
+        this.prisoner = prisoner;
+    }
+
     @Override
     public int compareTo(Conviction o) {
         return (this.getPrisoner().getPrisonerId() < o.getPrisoner().getPrisonerId() ? 0:1);

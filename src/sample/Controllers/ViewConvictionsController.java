@@ -110,6 +110,14 @@ public class ViewConvictionsController implements Initializable {
             Prisoner prisoner = new Prisoner(null, null, null, 0);
             prisoners.add(prisoner);
             dbc.getInfo(prisoners);
+        for (int i = 0; i < convictions.size(); i++) {
+            for (int j = 0; j < prisoners.size(); j++) {
+                if (convictions.get(i).getPrisoner().getPrisonerId() == (prisoners.get(j).getPrisonerId())){
+                    convictions.get(i).setPrisoner(prisoners.get(j));
+                }
+            }
+
+        }
     }
 
     @Override

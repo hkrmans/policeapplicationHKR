@@ -53,6 +53,14 @@ public class ReadRegisteredCrimesController implements Initializable {
         WantedCriminal wantedCriminal = new WantedCriminal(null, null, null, 0, 0, 0);
         wantedCriminals.add(wantedCriminal);
         dbc.getInfo(wantedCriminals);
+        for (int i = 0; i < crimes.size(); i++) {
+            for (int j = 0; j < wantedCriminals.size(); j++) {
+                if (crimes.get(i).getSuspect().getCivicNumber() == (wantedCriminals.get(j).getCivicNumber())){
+                    crimes.get(i).setSuspect(wantedCriminals.get(j));
+                }
+            }
+
+        }
 
     }
 

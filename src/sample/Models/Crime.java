@@ -35,6 +35,10 @@ public class Crime implements Comparable<Crime>{
         return rapport;
     }
 
+    public void setSuspect(Person suspect) {
+        this.suspect = suspect;
+    }
+
     @Override
     public int compareTo(Crime o) {
         return (this.getCrimeID() < o.getCrimeID() ? 0:1);
