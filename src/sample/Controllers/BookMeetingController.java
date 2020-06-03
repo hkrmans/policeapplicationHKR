@@ -1,11 +1,13 @@
 package sample.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import sample.DbConnect;
 import sample.SceneChanger;
 import sample.Models.Civilian;
@@ -25,6 +27,7 @@ public class BookMeetingController implements Initializable {
     private DbConnect dbc = DbConnect.getInstance(LoginController.getLoggedInAccount().getPassword());
     private Prisoner prisoner = null;
     private java.util.Date date = null;
+    private ObservableList list = FXCollections.observableList(prisoners);
 
     @FXML
     private TextField BookMeetingCivicNumberTextField;
@@ -35,16 +38,39 @@ public class BookMeetingController implements Initializable {
     @FXML
     private TextField AvialiableTextField;
 
-
     @FXML
     private TextField deleteMeetingTextField;
 
     @FXML
     private TextArea meetingsTextArea;
 
+    @FXML
+    private javafx.scene.control.TableView<Prisoner> TableView;
 
     @FXML
+    private TableColumn<Prisoner, String> FNColumn;
 
+    @FXML
+    private TableColumn<Prisoner, String> LNColumn;
+
+    @FXML
+    private TableColumn<Prisoner, Integer> CNColumn;
+
+    @FXML
+    private TableColumn<Prisoner, Integer> PNColumn;
+
+
+
+    @FXML
+    void PickButtonOnAction(MouseEvent event) {
+        int index = -1;
+        index = TableView.getSelectionModel().getSelectedIndex();
+        if (index <= -1){
+            return;
+        }
+        BookMeetingCivicNumberTextField.setText(prisoners.get(index).getCivicNumber());
+    }
+    @FXML
     void bookMeetingButtonOnAction() {
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
@@ -128,9 +154,23 @@ public class BookMeetingController implements Initializable {
         }
     }
 
+    private void fillTable(){
+        try {
+            FNColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            LNColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            CNColumn.setCellValueFactory(new PropertyValueFactory<>("civicNumber"));
+            PNColumn.setCellValueFactory(new PropertyValueFactory<>("prisonerId"));
+            TableView.setItems(list);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to fill the table");
+            alert.showAndWait();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillList();
-
+        fillTable();
     }
 }
