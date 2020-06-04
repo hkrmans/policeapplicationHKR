@@ -151,9 +151,9 @@ public class SignUpController implements Initializable {
             Account a = new Account(personToReg, usernameTextfield.getText(), password, emailTextfield.getText());
 
             try {
-                dbc.addInformation(a);
                 Mail mail = new Mail();
                 mail.sendValidationEmail(a.getEmail(), password);
+                dbc.addInformation(a);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Account successfully created");
                 alert.showAndWait();
