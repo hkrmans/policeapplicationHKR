@@ -17,7 +17,6 @@ import sample.Models.Prisoner;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -63,24 +62,6 @@ public class BookMeetingController implements Initializable {
     @FXML
     private TableColumn<Prisoner, Integer> PNColumn;
 
-    /*@FXML
-    void datePickerButtonOnAction(ActionEvent event) {
-        LocalDate today = LocalDate.now();
-        LocalDate meetingdate = showDatesPicker.getValue();
-        for (int i = 0; i <prisoners.size(); i = i + 1) {
-            for (int j = 0; j < meetings.size(); j = j + 1)
-                if (meetingdate.equals(meetings.get(i).getPrisoner().getCivicNumber() == String.valueOf(meetings.get(j).getDate()))) {
-                    if (meetings.get(i).getPrisoner().getCivicNumber() == String.valueOf(prisoners.get(j).getPrisonerId())) {
-                        System.out.println("Same date");
-
-                    }
-                }
-        }
-    }
-
-     */
-
-
     @FXML
     void PickButtonOnAction(MouseEvent event) {
         int index = -1;
@@ -88,6 +69,11 @@ public class BookMeetingController implements Initializable {
         if (index <= -1){
             return;
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Prisoner information");
+        alert.setContentText("Name: " + prisoners.get(index).getFirstName() + " | Last name: " + prisoners.get(index).getLastName()
+        + "\nCivic number: " + prisoners.get(index).getCivicNumber() + " | Prisoner ID: " + prisoners.get(index).getPrisonerId());
+        alert.showAndWait();
         BookMeetingCivicNumberTextField.setText(Integer.toString(prisoners.get(index).getPrisonerId()));
     }
 
@@ -99,7 +85,7 @@ public class BookMeetingController implements Initializable {
     private boolean checkDate(){
         for (Meeting m: meetings) {
             if (m.getPrisoner().getPrisonerId() == Integer.parseInt(BookMeetingCivicNumberTextField.getText())
-                    && m.getDate().equals(BookMeetingDateTextField.getText())){
+                    && String.valueOf(m.getDate()).equals(BookMeetingDateTextField.getText())){
                 return false;
             }
         }
@@ -120,9 +106,13 @@ public class BookMeetingController implements Initializable {
                 }
                 Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), sqlDate, 0);
                 dbc.addInformation(meeting);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Booking confirmation");
+                alert.setContentText("Your meeting has been booked");
+                alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("--");
+                alert.setContentText("Prisoner already got a meeting that day!");
                 alert.showAndWait();
             }
         } catch (ParseException e) {
