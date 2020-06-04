@@ -46,6 +46,16 @@ public class AddWantedCriminalController implements Initializable {
                             if (Pattern.matches(regexTwo, bounty)) {
                                 WantedCriminal wantedCriminal = new WantedCriminal(firstName, lastName, civicNumber, Integer.parseInt(ranking), Integer.parseInt(bounty), 0);
                                 dbc.addInformation(wantedCriminal);
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Success");
+                                alert.setHeaderText("Wanted criminal added");
+                                alert.setContentText("Wanted criminal has been added to the database!");
+                                alert.showAndWait();
+                                firstNameTextField.clear();
+                                lastNameTextField.clear();
+                                civicTextField.clear();
+                                rankingTextField.clear();
+                                bountyTextField.clear();
                             } else {
                                 throw new Exception();
                             }

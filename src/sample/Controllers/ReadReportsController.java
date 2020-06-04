@@ -101,6 +101,13 @@ public class ReadReportsController implements Initializable {
                     CrimeReport crimeReport = new CrimeReport(rapports.get(indexes).getRapport(), rapports.get(indexes).getWriter(), rapports.get(indexes).getRapportID());
                     Crime crime = new Crime(Date.valueOf(dateOfCrime), typeOfCrime, wantedCriminal, crimeReport, 0);
                     dbc.addInformation(crime);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText("Wanted crime added");
+                    alert.setContentText("Wanted crime has been added to the database!");
+                    alert.showAndWait();
+                    typeOfCrimeTextField.clear();
+                    wantedCriminalTextField.clear();
                     } else {
                         throw new Exception();
                     }
