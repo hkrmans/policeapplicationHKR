@@ -15,8 +15,8 @@ import sample.Models.Meeting;
 import sample.Models.Prisoner;
 
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -30,16 +30,10 @@ public class BookMeetingController implements Initializable {
     private ObservableList list = FXCollections.observableList(prisoners);
 
     @FXML
-    private DatePicker DatesPicker;
+    private DatePicker DatePicker;
 
     @FXML
-    private TextField BookMeetingCivicNumberTextField;
-
-    @FXML
-    private TextField BookMeetingDateTextField;
-
-    @FXML
-    private TextField AvailableTextField;
+    private TextField BookMeetingPrisonerIdTextField;
 
     @FXML
     private TextField deleteMeetingTextField;
@@ -74,18 +68,14 @@ public class BookMeetingController implements Initializable {
         alert.setContentText("Name: " + prisoners.get(index).getFirstName() + " | Last name: " + prisoners.get(index).getLastName()
         + "\nCivic number: " + prisoners.get(index).getCivicNumber() + " | Prisoner ID: " + prisoners.get(index).getPrisonerId());
         alert.showAndWait();
-        BookMeetingCivicNumberTextField.setText(Integer.toString(prisoners.get(index).getPrisonerId()));
+        BookMeetingPrisonerIdTextField.setText(Integer.toString(prisoners.get(index).getPrisonerId()));
     }
 
-    @FXML
-    void MouseDateButtonOnAction(MouseEvent event) {
-
-    }
 
     private boolean checkDate(){
         for (Meeting m: meetings) {
-            if (m.getPrisoner().getPrisonerId() == Integer.parseInt(BookMeetingCivicNumberTextField.getText())
-                    && String.valueOf(m.getDate()).equals(BookMeetingDateTextField.getText())){
+            if (m.getPrisoner().getPrisonerId() == Integer.parseInt(BookMeetingPrisonerIdTextField.getText())
+                    && String.valueOf(m.getDate()).equals(String.valueOf(DatePicker.getValue()))){
                 return false;
             }
         }
@@ -95,16 +85,15 @@ public class BookMeetingController implements Initializable {
     @FXML
     private void bookMeetingButtonOnAction() {
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse(BookMeetingDateTextField.getText());
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            LocalDate date = DatePicker.getValue();
             if (checkDate()) {
-                String prisonerID = BookMeetingCivicNumberTextField.getText();
+                String prisonerID = BookMeetingPrisonerIdTextField.getText();
                 for (Prisoner p : prisoners) {
                     if (p.getPrisonerId() == Integer.parseInt(prisonerID)) {
                         prisoner = p;
                     }
                 }
-                Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), sqlDate, 0);
+                Meeting meeting = new Meeting(prisoner, LoginController.getLoggedInAccount().getOwner(), Date.valueOf(date), 0);
                 dbc.addInformation(meeting);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Booking confirmation");
@@ -115,7 +104,8 @@ public class BookMeetingController implements Initializable {
                 alert.setContentText("Prisoner already got a meeting that day!");
                 alert.showAndWait();
             }
-        } catch (ParseException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Failed to convert the inserted date");
             alert.showAndWait();
@@ -153,7 +143,6 @@ public class BookMeetingController implements Initializable {
 
             }
         }
-
     }
 
     private void fillList() {
